@@ -1,0 +1,115 @@
+\documentclass[conference]{IEEEtran}
+
+% ---------------------------------------------------------------------------
+% Abstracts must be submitted by August 10-12th; submitted abstracts may not
+% exceed 500 words. submitted
+% manuscripts may not exceed ten (10) single-spaced double-column pages using
+% 10-point size font on 8.5x11 inch pages (IEEE conference style), including
+% figures, tables, and references. The submitted manuscripts should include
+% author names and affiliations. The submission portal will be available by
+% September. Return to this site to submit your abstract and upload your
+% submissions.
+% ---------------------------------------------------------------------------
+
+\input{head}
+\input{include}
+
+% ---------------------------------------------------------------------------
+% BEGIN DOCUMENT
+% ---------------------------------------------------------------------------
+\begin{document}
+
+\title{Title}
+
+\author{
+    \IEEEauthorblockN{
+        Author 1\IEEEauthorrefmark{1},
+        Author 2\IEEEauthorrefmark{2},
+        Author 3\IEEEauthorrefmark{3},
+        Author 4\IEEEauthorrefmark{4},\\
+        Author 5\IEEEauthorrefmark{1},
+        Author 6\IEEEauthorrefmark{2},
+        Author 7\IEEEauthorrefmark{3} and
+        Author 8\IEEEauthorrefmark{4}
+    }
+    \IEEEauthorblockA{
+        \IEEEauthorrefmark{1}Affiliation 1
+    }
+    \IEEEauthorblockA{
+        \IEEEauthorrefmark{2}Affiliation 2
+    }
+    \IEEEauthorblockA{
+        \IEEEauthorrefmark{3}Affiliation 3
+    }
+    \IEEEauthorblockA{
+        \IEEEauthorrefmark{4}Affiliation 4
+    }
+}
+
+
+% ---------------------------------------------------------------------------
+% ABSTRACT
+% ---------------------------------------------------------------------------
+\maketitle
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+% \keywords{Distributed computing, Workload management system}
+
+
+% ---------------------------------------------------------------------------
+% I - INTRODUCTION
+% ---------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+\input{introduction}
+
+
+% ---------------------------------------------------------------------------
+% II - SECTION
+% ---------------------------------------------------------------------------
+\section{Section}
+\label{sec:1}
+% \input{}
+
+
+% ---------------------------------------------------------------------------
+% III - SECTION
+% ---------------------------------------------------------------------------
+\section{Section}
+\label{sec:2}
+% \input{}
+
+
+% ---------------------------------------------------------------------------
+% IV - SECTION
+% ---------------------------------------------------------------------------
+\section{Section}
+\label{sec:n}
+% \input{}
+
+
+% ---------------------------------------------------------------------------
+% VIII - CONCLUSION
+% ---------------------------------------------------------------------------
+%\vspace{-0.1in}
+\section{Conclusion}
+\label{sec:conclusion}
+\input{conclusion}
+
+
+% ---------------------------------------------------------------------------
+% ACKNOWLEDGEMENTS
+% ---------------------------------------------------------------------------
+\section*{Acknowledgements}
+\label{sec:ack}
+\input{acknowledgements}
+
+
+% ---------------------------------------------------------------------------
+% REFERENCES
+% ---------------------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,hpc-workflow-y1}
+
+\end{document}
