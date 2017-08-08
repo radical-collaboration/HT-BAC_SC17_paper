@@ -1,0 +1,35 @@
+\subsection{Automated binding affinity calculations}
+
+Molecular dynamics (MD) is a well established computational methodology for studying the time-evolution and conformational dynamics of a diverse array of physicochemical systems at the molecular level, from which a whole host of physical and chemical properties can be determined \cite{Karplus2005}. 
+The implementation of any physically realistic molecular simulation has, however, always been an involved and multistage process, often requiring the scientist to overcome a large manual overhead in the construction, preparation, and execution protocols needed to complete a set of simulations as well as to invoke various analysis protocols for determining desired properties postproduction.
+The binding affinity calculator (BAC) \cite{Sadiq2008} tool has been developed to automate theses steps for the rapid, accurate and reproducible computation of binding free energies of small molecules to their target proteins.
+BAC is currently a partially automated workflow which comprises model building (including incorporation of mutations into patient specific protein sequences); run of ensembles of MD simulations, using a range of free energy techniques; and statistical analysis.
+
+Two protocols are encapsulated in BAC, ESMACS (enhanced sampling of molecular dynamics with approximation of continuum solvent) \cite{Wan2017brd4} and TIES (thermodynamic integration with enhanced sampling) \cite{Bhati2017}.
+The former is based on variants of the molecular mechanics Poisson-Boltzmann surface area (MMPBSA) end-point method and the latter the alchemical thermodynamic integration (TI) approach.
+In both cases ensembles of MD simulations are employed in order to perform averaging and to obtain tight control of error bounds in our estimates.
+We have demonstrated the lack of reproducibility of single trajectory approaches in both HIV-1 protease and MHC systems, with calculations for the same protein-ligand combination, with identical initial structure and force field, shown to produce binding affinities varying by up to 12 kcal mol $^{-1}$ for small ligands (flexible ligands can vary even more). \cite{Wan2015, Sadiq2010, Wright2014}
+Indeed, our work has revealed how completely unreliable single simulation based approaches are. 
+While accuracy of force fields could be a source of error, we know from our work to date \cite{} that the very large fluctuations in trajectory-based calculations account for the lion’s share of the variance (hence also uncertainty) of the results.
+Almost all MMPBSA studies in the literature use the so-called 1-trajectory method, in which the energies of protein-inhibitor complexes, receptor proteins and ligands are extracted from the MD trajectories of the complexes alone. 
+ESMACS protocols can additionally use  separate ligand and receptor trajectories to account for adaptation energies. 
+Previous work has produced results in agreement with previously published experimental findings \cite{Sadiq2010, Wan2011, Wright2014, Bhati2017, Wan2017brd4, Wan2017trk}, and correctly predicted the results of experimental studies performed by colleagues in collaboration \cite{Bunney2015}.
+
+In this work we demonstrate an enhancement of BAC, called high throughput BAC (HT-BAC), which builds upon the Ensemble Toolkit (and thus RADICAL-Pilot) to create a flexible software framework for runtime execution and performance.
+
+
+\subsubsection{ESMACS workflow}
+
+Each replica within the ESMACS protocol consists of a series of simulation steps followed by post production analysis.
+Generally an ESMACS replica will contain between 3 and 12 equilibration simulation steps followed by a production MD run all of which are conducted in the NAMD package \cite{Phillips2005}.
+The first step is system minimization, the following steps involve the gradual release of positional constraints upon the structure and the heating to a physiologically realistic temperature.
+Upon completion of the MD simulation, the MMPBSA analysis is performed using AmberTools \cite{amber14, Case2005, MillerIII2012}.
+
+
+\subsubsection{Benchmark kinase system}
+
+A common target of kinase inhibitors is the epidermal growth factor receptor (EGFR) which regulates important cellular processes including proliferation, differentiation and apoptosis.
+EGFR is frequently over expressed in a range of cancers, and is associated with disease progression and treatment. 
+Clinical studies have shown that EGFR mutations confer tumour sensitivity to tyrosine kinase inhibitors in patients with non-small-cell lung cancer.
+The tyrosine kinase domain of EGFR contains 288 residues, the full simulation system including solvent and the AEE788 inhibitor contains approximately 50 thousand atoms.
+The well established AMBER ff99SBildn and GAFF force fields \cite{Maier2015, Wang2004} were used to parameterize the system for this work.
