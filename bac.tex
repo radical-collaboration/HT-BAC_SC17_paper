@@ -16,20 +16,3 @@ ESMACS protocols can additionally use  separate ligand and receptor trajectories
 Previous work has produced results in agreement with previously published experimental findings \cite{Sadiq2010, Wan2011, Wright2014, Bhati2017, Wan2017brd4, Wan2017trk}, and correctly predicted the results of experimental studies performed by colleagues in collaboration \cite{Bunney2015}.
 
 In this work we demonstrate an enhancement of BAC, called high throughput BAC (HT-BAC), which builds upon the Ensemble Toolkit (and thus RADICAL-Pilot) to create a flexible software framework for runtime execution and performance.
-
-
-\subsubsection{ESMACS workflow}
-
-Each replica within the ESMACS protocol consists of a series of simulation steps followed by post production analysis.
-Generally an ESMACS replica will contain between 3 and 12 equilibration simulation steps followed by a production MD run all of which are conducted in the NAMD package \cite{Phillips2005}.
-The first step is system minimization, the following steps involve the gradual release of positional constraints upon the structure and the heating to a physiologically realistic temperature.
-Upon completion of the MD simulation, the MMPBSA analysis is performed using AmberTools \cite{amber14, Case2005, MillerIII2012}.
-
-
-\subsubsection{Benchmark kinase system}
-
-A common target of kinase inhibitors is the epidermal growth factor receptor (EGFR) which regulates important cellular processes including proliferation, differentiation and apoptosis.
-EGFR is frequently over expressed in a range of cancers, and is associated with disease progression and treatment. 
-Clinical studies have shown that EGFR mutations confer tumour sensitivity to tyrosine kinase inhibitors in patients with non-small-cell lung cancer.
-The tyrosine kinase domain of EGFR contains 288 residues, the full simulation system including solvent and the AEE788 inhibitor contains approximately 50 thousand atoms.
-The well established AMBER ff99SBildn and GAFF force fields \cite{Maier2015, Wang2004} were used to parameterize the system for this work.
