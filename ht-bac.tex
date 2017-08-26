@@ -2,13 +2,11 @@
 
 (Stefan/Jumana)
 
-The BAC workload consists of seven stages: untar, preprocess, minimization, 4 equilibration steps, and tar. The NAMD stages request 8 cores while the others request a single core. We perform validation and performance of scalability of the BAC workload using Ensemble Toolkit. 
+HT-BAC is a workflow system that uses RADICAL-Cybertools to implement ESMACS protocol, consisting of concurrent multi-stage consecutive MD runs followed by post processing steps. HT-BAC uses the EnTK API to express this workflow, which provides the required high-throughput capabilities. 
 
-\subsubsection{Characterization of Scalability}
-
-We characterize the scalability of the BAC workload using Ensemble Toolkit by performing weak scaling tests for ensemble of pipelines pattern. We validate the overhead by measuring the overhead of bin sleep0. Figure X presents the results of our weak scaling experiments. We keep the number of cores designated for the pilot size consistent with the number of cores for the simulation. We vary the number of pipelines between 8 to 128, where each pipeline receives 8 cores per stage. 
-
-NAMD logs - corrolate the overhead for each pipeline makes the system invariant to the worload. Remaining will be RP overhead    
-
-\subsubsection{Analysis of scaling results}
-
+\begin{figure}[tb]
+\centering
+  \includegraphics[width=0.6\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
+  \caption{\bf Integration between HT-BAC workflow system and EnTK. Numbers indicate the temporal sequence of execution. RADICAL-Pilot (RP) database (DB) can be deployed on any host reachable from the resources.}
+   \label{figure:ht-bac_rp}
+\end{figure}
