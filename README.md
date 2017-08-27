@@ -10,3 +10,5 @@ EnTK-documentation model: https://docs.google.com/drawings/d/1vVEQNm9DIAaBJ4n38R
 
 HTBAC-EnTK-RP diagram: https://docs.google.com/document/d/19Q6d6cbWn883RR2e5FjKbrKxegaVjzkeqiJmyzlYimg/edit
 
+HTBAC-Pipelines diagram: https://docs.google.com/drawings/d/1IBU2wJt2RUsWlR06qokTmE6s5JstLcev7JMJr5shT18/edit
+
