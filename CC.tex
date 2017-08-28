@@ -1,0 +1,63 @@
+
+\subsection{Computational Challenges}
+
+Supercomputers and high-performance computing environments were primarily
+designed to suppor the strong and weak scaling of single tasks (hitherto
+mostly simulations). However as the nature of scientific inquiry that HPC are
+used for as well as the programs/applications to support that inquiry has
+evolved, there is a critical need to support the scalable and concurrent
+execution of a large number of typically smaller tasks.
+
+The aggregation of these tasks and their dependencies are often referred to as
+"workflows". Often times the structure of the task dependencies is
+simple and adheres to discenible patterns, even though the individual tasks
+and their durations are non-trivially distinct. It is a challenge
+to support the scalable execution of workflows on HPC resources due to the
+existing software ecosystem and runtime systems typically found.
+
+Many workflow systems have emerged over the years in response to the
+aforementioned problem. Each however typically introduces its own set of
+problems and challenges. In spite of the many successes of workflow systems,
+there is a perceived high barrier-to-entry, overhead and limited flexibility.
+
+Interestingly, many commonly used workflow systems in high-performance and
+distributed computing emerged from an era when the software landscape
+supporting distributed computing was fragile, missing features and services.
+Not surprisingly, initial workflow systems, had a monolithic design that
+included the end-to-end capabilities needed to execute workflows on
+heterogeneous and distributed cyberinfrastructures. Further, these workflow
+systems were typically designed by a set of specialists to support large "big
+science" projects such as those carried out at the LHC or LIGO. The fact that
+the same workflow would be used by thousands of scientists over many years
+justified if not amortized the large overhead of integrated workflows with
+monolithic workflow systems.
+
+However as the nature, number and usage of workflows has evolved so have the
+requirements: scale remains important but only when delivered with the ability
+to prototype quickly and flexibly. Furthermore, there are also new performance
+requirements that arise from the need to support concurrent execution of
+heterogeneous tasks. For example, when executing multiple homogeneous
+pipelines of heterogeneous tasks, for reasons of efficient resource
+utilization there is a need to ensure that the individual pipelines have
+similar execution times. The pipeline-to-pipeline fluctuation must be minimal
+while also managing the task-to-task runtime fluctuation across concurrently
+executing pipelines. 
+
+As workflows are increasingly exploratory in nature and adptive (i.e.,
+evolving) in a way that the full execution is not determinable/discernible in
+advance, it is important to consider these workflows as realtime evolution of
+computational experiment. Thus the flexibilty and reliable performance are
+concommitant requirement.
+
+\begin{itemize}
+	\item $N_T$ : Number of tasks
+	\item ${{n_C}^T}$: Number of cores per task
+	\item $N_c$	: Number of cores (total)
+	\item $t_x$ : Time durations of a task
+\end{itemize}
+
+
+
+
+
+
