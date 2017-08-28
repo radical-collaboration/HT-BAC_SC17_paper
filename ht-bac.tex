@@ -2,7 +2,34 @@
 
 (Stefan/Jumana)
 
-BAC uses the Ensemble Toolkit to create a high-throughput workflow which we refer to as HTBAC. The Ensemble Toolkit API exposes four components (‘Resource Handle’, ‘Pipeline’, ‘Stage’, and ‘Task') to the user which express the application logic of HTBAC. We describe these components for one of the HTBAC protocols, ESMACS. The ESMACS protocol contains a set of pipelines where each pipeline contains functions that operate on a given replica. The pattern of pipelines are identical and describes an ensemble of preprocessing and simulation stages as shown in figure control-flow. 
+% BAC uses the Ensemble Toolkit to create a high-throughput workflow which we
+% refer to as HTBAC. 
+
+HT-BAC is a workflow system that uses RADICAL-Cybertools to implement ESMACS,
+and similar protocols such as TIES. These workflows consist of pipelines with
+stages comprised of heterogeneous tasks. For example equilibration and
+production, followed by post processing steps. 
+
+Although ESMACS and TIES methods are similar at a high-level, viz., they are
+comprised of concurrent, multi-stage pipelines with synchronization (Fig.
+5(R)), The different protocols supported by HTBAC differ in the details of the
+pipelines, stages and synchronization.
+
+HTBAC uses the EnTK API to express these workflows. RADICAL-Cybertools
+provides advanced resource management capabilities and, thereby deliver the
+necessary high-throughput capabilities required. The framework is generic and
+can be simply expanded to run the MBAR protocol. EnTK provides a common API,
+execution and programming model to these different methods, and thus will
+minimize development effort and complexity.
+
+The Ensemble Toolkit API exposes four components (‘Resource
+Handle’, ‘Pipeline’, ‘Stage’, and ‘Task') to the user which express the
+application logic of HTBAC. We describe these components for one of the HTBAC
+protocols, ESMACS. The ESMACS protocol contains a set of pipelines where each
+pipeline contains functions that operate on a given replica. The pattern of
+pipelines are identical and describes an ensemble of preprocessing and
+simulation stages as shown in figure control-flow.
+
 
 
 \begin{figure}[tb]
