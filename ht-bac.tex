@@ -1,50 +1,48 @@
-\subsection{High throughput binding affinity calculator}
+\subsection{High throughput binding affinity calculator Workflow}
 
 (Stefan/Jumana)
 
-HT BAC is a workflow system that uses RADICAL-Cybertools to implement ESMACS protocol, consisting of concurrent multi-stage consecutive MD runs followed by post processing steps. HT BAC uses the EnTK API to express this workflow, which provides the required high-throughput capabilities. 
+BAC uses the Ensemble Toolkit to create a high-throughput workflow which we refer to as HTBAC. The Ensemble Toolkit API exposes four components (‘Resource Handle’, ‘Pipeline’, ‘Stage’, and ‘Task') to the user which express the application logic of HTBAC. We describe these components for one of the HTBAC protocols, ESMACS. The ESMACS protocol contains a set of pipelines where each pipeline contains functions that operate on a given replica. The pattern of pipelines are identical and describes an ensemble of preprocessing and simulation stages as shown in figure control-flow. 
+
 
 \begin{figure}[tb]
 \centering
-  \includegraphics[width=0.4\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
+  \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC-NAMD-pipelines-control-flow-only.pdf}
+  \caption{\bf ESMACS protocol indicating n-pipelines where each pipeline represents...}
+   \label{figure:ESMACS-pipelines}
+\end{figure}
+
+\begin{itemize}
+	\item 1) Untar configuration files
+	\item 2) Preprep
+	\item 3) Minimize with decreasing restraints
+	\item 4) Equilibration: NVT simulation at 50K, with restraints
+	\item 5) Equilibration: NPT simulation at 300K, with decreasing restraints 
+	\item 6) Equlibratin: NPT at 300k, no constraints
+	\item 7) Tarball output files 
+\end{itemize}
+
+Each stage is composed of a single unique task which is described by set of attributes that define the workload parameters such as the location of input files, the number of simulations and the MD engine to run the simulations. The task is appended to a stage and stages are appended to a pipeline to maintain temporal order. The workflow relies on a resource configuration which consists of the details required to use a resource where the application will be executed including runtime, queue, and account details. We capture the integration of the application (ESMACS protocol) and how it interfaces with EnTK in figures ht-bac-rp-integration and entk-htbac-integration. 
+
+\begin{figure}[tb]
+\centering
+  \includegraphics[width=0.5\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
   \caption{\bf Integration between HT-BAC workflow system and EnTK. Numbers indicate the temporal sequence of execution. RADICAL-Pilot (RP) database (DB) can be deployed on any host reachable from the resources.}
    \label{figure:ht-bac_rp}
 \end{figure}
 
 \begin{figure}[tb]
 \centering
-  \includegraphics[width=0.4\textwidth]{FIGURES/HT-BAC-NAMD-pipelines-control-flow-only.pdf}
-  \caption{\bf ESMACS protocol indicating n-pipelines where each pipeline represents a replica that follows an identical sequence of NAMD tasks.}
-   \label{figure:namd-pipelines}
+  \includegraphics[width=0.5\textwidth]{FIGURES/entk_htbac_integration.pdf}
+  \caption{\bf Integration between HT-BAC workflow system and EnTK that shows resource/application managers.}
+   \label{figure:ht-bac_entk}
 \end{figure}
-
-
-The ESMACS protocol in HT BAC defines a set of stages where each stage contains a single task. The order of stages and description of each stages is identical for each pipeline:
-
-1) Untar configuration files
-2) Preprep 
-3) Minimize with decreasing restraints
-4) Equilibration: NVT simulation at 50K, with restraints
-5) Equilibration: NPT simulation at 300K, with decreasing restraints 
-6) Equlibratin: NPT at 300k, no constraints
-7) Tar
-
-
-Each task requires the these base arguments which are defined as follows:
-
-* name of task
-* path to executable 
-* arguments to executable
-* number of cores 
-
-We build each stage by appending from task(s) and generate a pipeline by appending from stage(s). 
-
-Include diagram for pipeline ESMACS protocol (EnTK take a pipeline (new unit) to task translation layer in the EnTK box)
 
 Add code snippets 
 
 How to express ESMACS and how to execute ESMACS
 
-Each stage is a unique task and has a unique argument
+
 Remind the reader of the 7 stages of the ESMACS protocol, and how the stages are expressed, and how the pipelines are added 
+
 
