@@ -48,12 +48,12 @@ simulation stages as shown in figure control-flow.
 Each stage is composed of a single unique task which is described by set of attributes that define the workload parameters such as the location of input files, the number of simulations and the MD engine to run the simulations. The task is appended to a stage and stages are appended to a pipeline to maintain temporal order. The workflow relies on a resource configuration which consists of the details required to use a resource where the application will be executed including runtime, queue, and account details. We capture the integration of the application (ESMACS protocol) and how it interfaces with EnTK in figures ht-bac-rp-integration and entk-htbac-integration. 
 
 
-%\begin{figure}[tb]
-%\centering
-%  \includegraphics[width=0.5\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
-%  \caption{\bf Integration between HT-BAC workflow system and EnTK. Numbers indicate the temporal sequence of execution. RADICAL-Pilot (RP) database (DB) can be deployed on any host reachable from the resources.}
-%   \label{figure:ht-bac_rp}
-%\end{figure}
+\begin{figure}[tb]
+\centering
+  \includegraphics[width=0.5\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
+  \caption{\bf Integration between HT-BAC workflow system and EnTK. Numbers indicate the temporal sequence of execution. RADICAL-Pilot (RP) database (DB) can be deployed on any host reachable from the resources.}
+   \label{figure:ht-bac_rp}
+\end{figure}
 
 \begin{figure}[ht]
 \centering
