@@ -12,24 +12,22 @@ We perform weak scalability characterization of HTBAC for both null workload and
 
 \begin{figure}[!htbp]
   \centering
-  %\begin{minipage}[b]{0.6\textwidth}
-  \begin{minipage}[b]{0.55\textwidth}
+  \begin{minipage}[b]{0.49\textwidth}
   \centering
-  %\includegraphics[width=\textwidth, height=35mm]{FIGURES/entk_overview.pdf}
-%  \includegraphics[width=\textwidth, height=40mm]{FIGURES/entk_overview.pdf}
+  \includegraphics[width=\textwidth]{FIGURES/null_workload_overheads.pdf}
   \end{minipage}
-  %\begin{minipage}[b]{0.39\textwidth}
-  \begin{minipage}[b]{0.44\textwidth}
+  \begin{minipage}[b]{0.49\textwidth}
   \centering
-%  \includegraphics[width=\textwidth, height=35mm]{FIGURES/md_general.pdf}
-%  \includegraphics[width=\textwidth, height=40mm]{FIGURES/md_general.pdf}
+  \includegraphics[width=\textwidth]{FIGURES/namd_workload_overheads.pdf}
   \end{minipage}
 
-\caption{\textbf{Left:} Weak scaling of HTBAC using null workload. We observe similar behavior at each 	
-configuration in the simulation execution time showing that the RADICAL-Pilot is invariant to the
-workload and a steady increase in the RP overhead due to the increase in the number of stages. 
-\textbf{Right:} Weak scaling of HTBAC using NAMD workload. We observe higher simulation execution times than the null workload yet similar behaviour in all NAMD configurations.}
-\label{fig:htbac_perf}
+\caption{\textbf{Left:} Weak scaling of HTBAC using null workload. We observe
+similar behavior at each configuration in the simulation execution time
+showing that the RADICAL-Pilot is invariant to the workload and a steady
+increase in the RP overhead due to the increase in the number of stages.
+\textbf{Right:} Weak scaling of HTBAC using NAMD workload. We observe higher
+simulation execution times than the null workload yet similar behaviour in
+all NAMD configurations.}\label{fig:htbac_perf}
 \end{figure}
 
 
