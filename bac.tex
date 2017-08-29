@@ -5,8 +5,8 @@ The implementation of any physically realistic molecular simulation has, however
 The binding affinity calculator (BAC) \cite{Sadiq2008} tool has been developed to automate theses steps for the rapid, accurate and reproducible computation of binding free energies of small molecules to their target proteins.
 BAC is currently a partially automated workflow which comprises model building (including incorporation of mutations into patient specific protein sequences); run of ensembles of MD simulations, using a range of free energy techniques; and statistical analysis.
 
-Two protocols are encapsulated in BAC, ESMACS (enhanced sampling of molecular dynamics with approximation of continuum solvent) \cite{Wan2017brd4} and TIES (thermodynamic integration with enhanced sampling) \cite{Bhati2017}.
-The former is based on variants of the molecular mechanics Poisson-Boltzmann surface area (MMPBSA) end-point method and the latter the alchemical thermodynamic integration (TI) approach.
+Two protocols are currently encapsulated in BAC, ESMACS (enhanced sampling of molecular dynamics with approximation of continuum solvent) \cite{Wan2017brd4} and TIES (thermodynamic integration with enhanced sampling) \cite{Bhati2017}.
+The former is based on variants of the molecular mechanics Poisson-Boltzmann surface area (MMPBSA) end-point method and the latter the `alchemical' thermodynamic integration (TI) approach.
 In both cases ensembles of MD simulations are employed in order to perform averaging and to obtain tight control of error bounds in our estimates.
 We have demonstrated the lack of reproducibility of single trajectory approaches in both HIV-1 protease and MHC systems, with calculations for the same protein-ligand combination, with identical initial structure and force field, shown to produce binding affinities varying by up to 12 kcal mol $^{-1}$ for small ligands (flexible ligands can vary even more). \cite{Wan2015, Sadiq2010, Wright2014}
 Indeed, our work has revealed how completely unreliable single simulation based approaches are. 
