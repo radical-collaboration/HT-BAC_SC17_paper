@@ -1,16 +1,19 @@
-\subsection{RADICAL-Cybertools}
 
 We have designed RADICAL-Cybertools to address some of the challenges in
-developing and executing workflows on HPC platforms. We discuss the 
-RADICAL-Cybertools (RCT) software stack used support the flexible and scalable
-execution of pipelines and upon which HTBAC is built. RCT consists of three
-main components: Ensemble Toolkit~\cite{entk-icpp-2016} provides the ability
-to create and execute ensemble-based workflows/applications with complex
-coordination and communication but without the need for explicit resource
-management. It uses another RCT component --- 
-RADICAL-Pilot~\cite{review_radicalpilot} which provides resource management and task
-execution capabilities, which in turn uses RADICAL-SAGA~\cite{saga-x ,ogf-
-gfd-90} as an interoperability resource access layer.
+developing and executing workflows on HPC platforms. 
+
+
+\subsection{RADICAL-Cybertools}
+
+We discuss the RADICAL-Cybertools (RCT) software stack used support the
+flexible and scalable execution of pipelines and upon which HTBAC is built.
+RCT consists of three main components: Ensemble Toolkit~\cite{entk-icpp-2016}
+provides the ability to create and execute ensemble-based
+workflows/applications with complex coordination and communication but without
+the need for explicit resource management. It uses another RCT component ---
+RADICAL-Pilot~\cite{review_radicalpilot} which provides resource management
+and task execution capabilities, which in turn uses RADICAL-SAGA~\cite{saga-x
+,ogf- gfd-90} as an interoperability resource access layer.
 
 RCT eschew the concept of a monolithic workflow systems in favor of a fresh
 perspective to workflows using ``building blocks''. RCT provide scalable
@@ -19,7 +22,7 @@ scientific applications on high-performance and distributed systems. RCT has
 also been used extensively to support biomolecular sciences
 algorithms/methods, e.g., replica-exchange and adaptive sampling.
 
-\subsubsection{RADICAL-Pilot}\label{sec:pilot}
+\subsubsection*{RADICAL-Pilot}\label{sec:pilot}
 
 A primary challenge faced is the scalable execution of applications consisting
 of large ensembles of tasks.  Traditionally, each task is submitted as an
