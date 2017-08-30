@@ -1,0 +1,51 @@
+\subsection{Ensemble Molecular Dynamics Simulations}
+
+The strength of drug binding is determined by a thermodynamic property known
+as the binding free energy (or binding affinity). One promising technology for
+estimating binding free energies and the influence of protein composition on
+them is molecular dynamics (MD). In order to study the influence of mutations
+on drug binding atomistically detailed models of the drug and target protein
+can be used as the starting point for MD simulations. The chemistry of the
+system is encoded in what is known as a potential. \cite{Karplus2002} In the
+parameterization of the models each atom is assigned a mass and a charge, with
+the chemical bonds between them modelled as springs with varying stiffness.
+Using Newtonian mechanics the dynamics of the protein and drug can be tracked
+and using the principles of statistical mechanics estimates of thermodynamic
+properties obtained from simulations of single particles. The potentials used
+in the simulations are completely under the control of the user which allows
+the user to manipulate the system in ways which would not be possible in
+experiments. A particularly powerful example of this is so called `alchemical'
+simulations in which the potential used in the simulation changes from that
+representing one system to another during execution — allowing the calculation
+of free energy differences between the two systems (such as those induced by a
+protein mutation).
+
+MD simulations can reveal how interactions change as a result of mutations,
+and account for the molecular basis of drug efficacy. This understanding can
+form the basis for structure based drug design as well as helping to target
+existing therapies based on protein composition. Major challenges however
+exist in correctly capturing the system behaviour. Not only is it necessary
+that the approximations made in the potential are accurate enough
+representations of the real system chemistry but sufficient sampling of phase
+space is also required. 
+
+In order for MD simulations to be used as part of clinical decision support
+systems it is necessary that results can be obtained in a timely fashion.
+Typically interventions are made on a timescale of a few days or at most a
+week. This need for rapid turn around times places additional demands on
+simulation protocols which need to be optimised to gain results within a short
+turn around time.
+
+Further to the scientific and practical considerations outlined above, in
+order for simulations to provide actionable predictions it is vital that
+robust and reliable uncertainty estimates are provided alongside all
+quantitative results. We have developed a number of free energy calculation
+protocols based on the use of ensemble molecular dynamics simulations with the
+aim of meeting these requirements \cite{Sadiq2008, Sadiq2010, Wan2017brd4,
+Wan2017trk}. Basing these computations on the direct calculation of ensemble
+averages facilitates the determination of statistically meaningful results
+along with complete control of errors. The consequence of the use of the
+ensemble approach is the need to automate the simulation, analysis and data
+transfer of a large number of simulations. This computational pattern
+necessitates the use of middleware that provides reliable coordination and
+distribution mechanisms with low performance overheads.

@@ -1,18 +1,53 @@
+
+
 \subsection{Automated binding affinity calculations}
 
-Molecular dynamics is a well established computational methodology for studying the time-evolution and conformational dynamics of a diverse array of physicochemical systems at the molecular level, from which a whole host of physical and chemical properties can be determined \cite{Karplus2005}. 
-The implementation of any physically realistic molecular simulation has, however, always been an involved and multistage process, often requiring the scientist to overcome a large manual overhead in the construction, preparation, and execution protocols needed to complete a set of simulations as well as to invoke various analysis protocols for determining desired properties postproduction.
-The binding affinity calculator (BAC) \cite{Sadiq2008} tool has been developed to automate theses steps for the rapid, accurate and reproducible computation of binding free energies of small molecules to their target proteins.
-BAC is currently a partially automated workflow which comprises model building (including incorporation of mutations into patient specific protein sequences); run of ensembles of MD simulations, using a range of free energy techniques; and statistical analysis.
+Molecular dynamics is a well established computational methodology for
+studying the time-evolution and conformational dynamics of a diverse array of
+physicochemical systems at the molecular level, from which a whole host of
+physical and chemical properties can be determined \cite{Karplus2005}. The
+implementation of any physically realistic molecular simulation has, however,
+always been an involved and multistage process, often requiring the scientist
+to overcome a large manual overhead in the construction, preparation, and
+execution protocols needed to complete a set of simulations as well as to
+invoke various analysis protocols for determining desired properties post-
+production. Several tools have been been developed to automate theses steps
+for the rapid, accurate and reproducible computation of binding free energies
+of small molecules to their target proteins. For example, BAC\cite{Sadiq2008}
+is a partially automated workflow system which comprises model building
+(including incorporation of mutations into patient specific protein
+sequences); run of ensembles of MD simulations, using a range of free energy
+techniques; and statistical analysis.
 
-Two protocols are currently encapsulated in BAC, ESMACS (enhanced sampling of molecular dynamics with approximation of continuum solvent) \cite{Wan2017brd4} and TIES (thermodynamic integration with enhanced sampling) \cite{Bhati2017}.
-The former is based on variants of the molecular mechanics Poisson-Boltzmann surface area (MMPBSA) end-point method and the latter the `alchemical' thermodynamic integration (TI) approach.
-In both cases ensembles of MD simulations are employed in order to perform averaging and to obtain tight control of error bounds in our estimates.
-We have demonstrated the lack of reproducibility of single trajectory approaches in both HIV-1 protease and MHC systems, with calculations for the same protein-ligand combination, with identical initial structure and force field, shown to produce binding affinities varying by up to 12 kcal mol $^{-1}$ for small ligands (flexible ligands can vary even more). \cite{Wan2015, Sadiq2010, Wright2014}
-Indeed, our work has revealed how completely unreliable single simulation based approaches are. 
-While accuracy of force fields could be a source of error, we know from our work to date \cite{} that the very large fluctuations in trajectory-based calculations account for the lion’s share of the variance (hence also uncertainty) of the results.
-Almost all MMPBSA studies in the literature use the so-called 1-trajectory method, in which the energies of protein-inhibitor complexes, receptor proteins and ligands are extracted from the MD trajectories of the complexes alone. 
-ESMACS protocols can additionally use  separate ligand and receptor trajectories to account for adaptation energies. 
-Previous work has produced results in agreement with previously published experimental findings \cite{Sadiq2010, Wan2011, Wright2014, Bhati2017, Wan2017brd4, Wan2017trk}, and correctly predicted the results of experimental studies performed by colleagues in collaboration \cite{Bunney2015}.
+% Two protocols of particular importance for XXXX are ESMACS (enhanced sampling
+% of molecular dynamics with approximation of continuum
+% solvent)\cite{Wan2017brd4} and TIES (thermodynamic integration with enhanced
+% sampling) \cite{Bhati2017}. The former is based on variants of the molecular
+% mechanics Poisson-Boltzmann surface area (MMPBSA) end-point method and the
+% latter the `alchemical' thermodynamic integration (TI) approach. In both cases
+% ensembles of MD simulations are employed in order to perform averaging and to
+% obtain tight control of error bounds in our estimates. 
 
-In this work we demonstrate an enhancement of BAC, called high throughput BAC (HT-BAC), which builds upon the Ensemble Toolkit (and thus RADICAL-Pilot) to create a flexible software framework for runtime execution and performance.
+% We have demonstrated the lack of reproducibility of single trajectory
+% approaches in both HIV-1 protease and MHC systems, with calculations for the
+% same protein-ligand combination, with identical initial structure and force
+% field, shown to produce binding affinities varying by up to 12 kcal mol
+% $^{-1}$ for small ligands (flexible ligands can vary even more).
+% \cite{Wan2015, Sadiq2010, Wright2014} Indeed, our work has revealed how
+% completely unreliable single simulation based approaches are. While accuracy
+% of force fields could be a source of error, we know from our work to date
+% \cite{} that the very large fluctuations in trajectory-based calculations
+% account for the lion’s share of the variance (hence also uncertainty) of the
+% results. Almost all MMPBSA studies in the literature use the so-called
+% 1-trajectory method, in which the energies of protein-inhibitor complexes,
+% receptor proteins and ligands are extracted from the MD trajectories of the
+% complexes alone. ESMACS protocols can additionally use separate ligand and
+% receptor trajectories to account for adaptation energies. Previous work has
+% produced results in agreement with previously published experimental findings
+% \cite{Sadiq2010, Wan2011, Wright2014, Bhati2017, Wan2017brd4, Wan2017trk}, and
+% correctly predicted the results of experimental studies performed by
+% colleagues in collaboration \cite{Bunney2015}.
+
+In this work we demonstrate an enhancement of BAC, called high throughput BAC
+(HT-BAC), which builds upon the Ensemble Toolkit (and thus RADICAL-Pilot) to
+create a flexible software framework for runtime execution and performance.
