@@ -55,24 +55,25 @@ resources and the management of application execution (see
 \textbf{Figure~\ref{fig:entk_arch}}, right schematic of left panel).
 
 \begin{figure}[!htbp]
-  \centering
+  % \centering
   %\begin{minipage}[b]{0.6\textwidth}
-  \begin{minipage}[b]{0.55\textwidth}
+  \begin{minipage}[b]{0.49\textwidth}
   \centering
-  % \includegraphics[width=\textwidth, height=35mm]{FIGURES/entk_overview.pdf}
-  % \includegraphics[width=\textwidth, height=40mm]{FIGURES/entk_overview.pdf}
+  \includegraphics[width=\textwidth]{FIGURES/entk_overview.pdf}
   \end{minipage}
   % \begin{minipage}[b]{0.39\textwidth}
-  \begin{minipage}[b]{0.44\textwidth}
-  \centering
+  % \begin{minipage}[b]{0.49\textwidth}
+  % \centering
   % \includegraphics[width=\textwidth, height=35mm]{FIGURES/md_general.pdf}
   % \includegraphics[width=\textwidth, height=40mm]{FIGURES/md_general.pdf}
-  \end{minipage}
+  % \end{minipage}
   \caption{\textbf{Left:} Ensemble Toolkit overview, showing how the abstract
-  workflow execution system is mapped to specific components exposed to the
-  users and components internal to the toolkit \textbf{Right:} General MD
-  workflow overview that broadly describes the science methods to study the
-  physical systems}\label{fig:entk_arch}
+           workflow execution system is mapped to specific components exposed
+           to the users and components internal to the toolkit
+           % \textbf{Right:} General MD workflow overview that broadly
+           % describes the science methods to study the physical
+           % systems
+           }\label{fig:entk_arch}
 \end{figure}
 
 The \textbf{Resource Handle} component is used to describe the set of
@@ -134,31 +135,31 @@ restarted without loosing data about tasks that have been already executed.
 % EnTK is being re-designed, implemented and optimized to reach
 % $O(10^5-10^6)$ concurrent tasks, independent of the size and type of task.
 
-\begin{figure}[!htbp]
-\centering
-\begin{minipage}[b]{.49\textwidth}
-  \centering
+% \begin{figure}[!htbp]
+% \centering
+% \begin{minipage}[b]{.49\textwidth}
+%   \centering
   %  \includegraphics[width=\textwidth]{FIGURES/entk_perf_strong.pdf}
   %  \caption{Strong scaling behavior of Ensemble Toolkit. The
   %  total workload is kept constant at 1024 simulations and the amount of
   %  resources used are varied from 64 to 1024. We observe close to linear
   %  drop in the simulation execution time as the amount of resources are
   %  doubled}
-\end{minipage}
-\begin{minipage}[b]{.49\textwidth}
+% \end{minipage}
+% \begin{minipage}[b]{.49\textwidth}
     \centering
   %  \includegraphics[width=\textwidth]{FIGURES/entk_perf_weak.pdf}
   %  \caption{Weak scaling behavior of Ensemble Toolkit. The size of the
   %  workload is varied in proportion with the amount of resources such that
   %  all tasks are concurrently executed at all times. We observe similar
   %  simulation execution times at all configurations.}
-\end{minipage}
-\caption{\textbf{Left:} Strong scaling of EnTK. The total workload is kept
-        constant at 1024 simulations and the resources used are varied from
-        64 to 1024 cores. We observe essentially linear drop in the
-        simulation execution time. \textbf{Right:} Weak scaling of EnTK. The
-        size of the workload is varied in proportion with the amount of
-        resources such that all tasks are concurrently executed at all times.
-        We observe similar simulation execution times at all
-        configurations.}\label{fig:entk_perf}
-\end{figure}
+% \end{minipage}
+% \caption{\textbf{Left:} Strong scaling of EnTK\@. The total workload is
+%         kept constant at 1024 simulations and the resources used are varied
+%         from 64 to 1024 cores. We observe essentially linear drop in the
+%         simulation execution time. \textbf{Right:} Weak scaling of EnTK.
+%         The size of the workload is varied in proportion with the amount of
+%         resources such that all tasks are concurrently executed at all
+%         times. We observe similar simulation execution times at all
+%         configurations.}\label{fig:entk_perf}
+% \end{figure}
