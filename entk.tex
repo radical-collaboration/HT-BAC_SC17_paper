@@ -32,8 +32,8 @@ workflows in the seismology and climate science. Each use case requires
 different workflows, with different types of tasks, executed on specific HPC
 resources. EnTK supported the development of a simulation-analysis pattern
 for ExTASY, implementing two sampling algorithms for execution of both
-multithreaded and MPI tasks on ARCHER, Stampede and Blue Waters HPC machines.
-With the same code base, EnTK is being used to develop inversion of
+multithreading and MPI tasks on ARCHER, Stampede and Blue Waters HPC
+machines. With the same code base, EnTK is being used to develop inversion of
 full-waveform, wide-bandwidth data for seismic tomography, and a new
 downscaling methodology to quantify the photovoltaic (PV) energy potential in
 selected regions of the USA\@.
@@ -90,10 +90,10 @@ Pipeline components avoids the need to express explicitly relationship among
 tasks. These relationships are insured by design, depending on the
 partitioning of the set of tasks into stages and then pipelines. Further,
 EnTK enables an explicit definition of pre and post conditions on the
-execution of tasks, stages, and pipelines, enabling a fine graned adaptivity,
-both a local and global level. Conveniently, this does not require the
-codification of a DAG, a process that imposes a rigid repreentation model on
-the domain scientists.
+execution of tasks, stages, and pipelines, enabling a fine grained
+adaptivity, both a local and global level. Conveniently, this does not
+require the codification of a DAG, a process that imposes a rigid
+representation model on the domain scientists.
 
 Once the workflow of an ensemble-based application is completely described,
 one or more pipelines are submitted to the \textbf{Application Manager}
