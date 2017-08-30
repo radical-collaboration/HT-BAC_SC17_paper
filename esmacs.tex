@@ -1,15 +1,13 @@
+In order to demonstrate the scalability and performance of HT-BAC we will focus on the ESMACS protocol alone applied to a representative kinase system.
+
 \subsection{ESMACS}
-
-\jhanote{Generally not good style to have only 1 subsection in a section and best 
-to eliminate subsection heading}
-
 
 Each replica within the ESMACS protocol consists of a series of simulation steps followed by post production analysis.
 Generally an ESMACS replica will contain between 3 and 12 equilibration simulation steps followed by a production MD run all of which are conducted in the NAMD package \cite{Phillips2005}.
 The first step is system minimization, the following steps involve the gradual release of positional constraints upon the structure and the heating to a physiologically realistic temperature.
-Upon completion of the MD simulation, the MMPBSA analysis is performed using AmberTools \cite{amber14, Case2005, MillerIII2012}.
+Upon completion of the MD simulation, free energy computation (via MMPBSA and potentially normal mode analysis) is performed using AmberTools \cite{amber14, Case2005, MillerIII2012}.
 
-\subsubsection{Benchmark kinase system}
+\subsection{Benchmark kinase system}
 
 A common target of kinase inhibitors is the epidermal growth factor receptor (EGFR) which regulates important cellular processes including proliferation, differentiation and apoptosis.
 EGFR is frequently over expressed in a range of cancers, and is associated with disease progression and treatment. 
