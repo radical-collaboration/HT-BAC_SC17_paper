@@ -1,7 +1,5 @@
 \subsection{High throughput binding affinity calculator Workflow}
 
-(Stefan/Jumana)
-
 % BAC uses the Ensemble Toolkit to create a high-throughput workflow which we
 % refer to as HTBAC. 
 
@@ -15,10 +13,10 @@ comprised of concurrent, multi-stage pipelines with synchronization (Fig.
 5(R)), The different protocols supported by HTBAC differ in the details of the
 pipelines, stages and synchronization.
 
-HTBAC uses the EnTK API to express these workflows. RADICAL-Cybertools
-provides advanced resource management capabilities and, thereby deliver the
+HTBAC uses the Ensemble Toolkit (EnTK) API to express these workflows. RADICAL-Cybertools
+provides advanced resource management capabilities and, thereby delivers the
 necessary high-throughput capabilities required. The framework is generic and
-can be simply expanded to run the MBAR protocol. EnTK provides a common API,
+can be simply expanded to run the ESMACS protocol. EnTK provides a common API,
 execution and programming model to these different methods, and thus will
 minimize development effort and complexity.
 
@@ -27,13 +25,12 @@ Handle’, ‘Pipeline’, ‘Stage’, and ‘Task') to the user which express 
 application logic of HTBAC. We describe these components for one of the HTBAC
 protocols, ESMACS. The ESMACS protocol contains a set of pipelines where each
 pipeline contains functions that operate on a given replica. The pattern of
-pipelines are identical and describes an ensemble of preprocessing and
-simulation stages as shown in figure control-flow.
+pipelines are identical and describes an ensemble of simulation stages as shown in Fig~\ref{figure:ESMACS-pipelines}
 
 \begin{figure}[ht]
 \centering
   \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC-NAMD-pipelines-control-flow-only.pdf}
-  \caption{\bf ESMACS protocol indicating n-pipelines where each pipeline represents...}
+  \caption{\bf ESMACS protocol indicating n-pipelines where each pipeline represents a set of simulations which are captured as stages by EnTK}
    \label{figure:ESMACS-pipelines}
 \end{figure}
 
@@ -47,28 +44,22 @@ simulation stages as shown in figure control-flow.
 %	\item 7) Tarball output files 
 %\end{itemize}
 
-Each stage is composed of a single unique task which is described by set of attributes that define the workload parameters such as the location of input files, the number of simulations and the MD engine to run the simulations. The task is appended to a stage and stages are appended to a pipeline to maintain temporal order. The workflow relies on a resource configuration which consists of the details required to use a resource where the application will be executed including runtime, queue, and account details. We capture the integration of the application (ESMACS protocol) and how it interfaces with EnTK in figures ht-bac-rp-integration and entk-htbac-integration. 
+Each stage is composed of a single unique task which is described by a set of attributes that define the workload parameters such as the location of input files, the number of simulations and the MD engine(s) to launch simulations. The task is appended to a stage and stages are appended to a pipeline to maintain temporal order. The workflow relies on a resource configuration which consists of the details required to use a resource where the application will be executed including runtime, queue, and account details. We capture the integration of the application (ESMACS protocol) and how it interfaces with EnTK in Fig~\ref{figure:ht-bac_rp}. 
 
+We define the client resource in Fig~\ref{figure:ht-bac_rp} as the workload system-- HTBAC which describes a series of replicas with ordered functions as a pipelines with stages and tasks. EnTK interprets these pipelines as a functional set of tasks and generates the pilot description that contains the resource configuration of how to run the HTBAC workload. For the ESMACS protocol running on Blue Waters we define the runtime system, queue, and the pilot size. Once RADICAL-Pilot receives this new workload and generates a pilot that submits placeholders to the queue. Once the pilot is activated, the RP-Agent submits the tasks to the placeholders to begin execution.  
 
-%\begin{figure}[tb]
-%\centering
-%  \includegraphics[width=0.5\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
-%  \caption{\bf Integration between HT-BAC workflow system and EnTK. Numbers indicate the temporal sequence of execution. RADICAL-Pilot (RP) database (DB) can be deployed on any host reachable from the resources.}
-%   \label{figure:ht-bac_rp}
-%\end{figure}
 
 \begin{figure}[ht]
 \centering
-  \includegraphics[width=0.5\textwidth]{FIGURES/entk_htbac_integration.pdf}
-  \caption{\bf Integration between HT-BAC workflow system and EnTK that shows resource/application managers.}
-   \label{figure:ht-bac_entk}
+  \includegraphics[width=0.5\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
+  \caption{\bf Integration between HTBAC workflow and EnTK. Numbers indicate the temporal sequence of execution. RADICAL-Pilot (RP) database (DB) can be deployed on any host reachable from the resources.}
+   \label{figure:ht-bac_rp}
 \end{figure}
 
-Add code snippets 
-
-How to express ESMACS and how to execute ESMACS
-
-
-Remind the reader of the 7 stages of the ESMACS protocol, and how the stages are expressed, and how the pipelines are added 
-
+%\begin{figure}[ht]
+%\centering
+%  \includegraphics[width=0.5\textwidth]{FIGURES/entk_htbac_integration.pdf}
+ % \caption{\bf Integration between HT-BAC workflow system and EnTK that shows resource/application managers.}
+   %\label{figure:ht-bac_entk}
+%\end{figure}
 
