@@ -1,26 +1,31 @@
 \subsection{Ensemble Toolkit}
 
-An ensemble-based application is a {\bf workflow}, i.e., a set of tasks with
-dependencies that determine the order of their execution. Subsets of these
-tasks can be {\bf workloads}, i.e., tasks whose dependencies have been
-satisfied at a particular time and may be executed concurrently.
+An ensemble-based application is a \textbf{workflow}, i.e., a set of tasks
+with dependencies that determine the order of their execution. Subsets of
+these tasks can be \textbf{workloads}, i.e., tasks whose dependencies have
+been satisfied at a particular time and may be executed concurrently.
+Ensemble-based application vary in the type of coupling between tasks, the
+frequency and volume of exchange between these tasks, and the executable of
+each task. This type of applications requires specific coordination,
+orchestration and execution protocols, posing both domain-specific and
+engineering challenges.
 
 Ensemble Toolkit (EnTK), the topmost layer of RCT, simplifies the process of
 creating and executing ensemble-based applications with complex coordination
-and communication requirements.   A key objective of EnTK is to provide a
-solution to the execution of ensemble- based applications that is independent
-of the nature of tasks. EnTK  has been used to develop the
-ExTASY~\cite{extasy-2016} framework that enables the execution of MD based
-advanced sampling methods.  EnTK is being utilized to develop ensemble-based
+and communication requirements. A key objective of EnTK is to provide a
+solution to the execution of ensemble-based applications that is independent
+of the nature of tasks. EnTK has been used to develop the
+ExTASY~\cite{extasy-2016} framework that enables the execution of MD-based
+advanced sampling methods. EnTK is being utilized to develop ensemble-based
 applications to execute workflows in the seismology and climate science
 
 EnTK enables the execution of up to $O(10^4)$ tasks on thousands of CPU and
-GPU nodes. At this scale, multiple sources of failure affect execution
+GPU nodes. At this scale, multiple sources of failure affect execution,
 producing loss of information and compute time. Thus, fault tolerance and
-recovery capabilities are first order concerns of the design of EnTK.
+recovery capabilities are first order concerns of the design of EnTK\@.
 Currently, the implementation of EnTK can handle task execution failures,
 resource-level failures, and failures of its own subcomponents and
-subprocesses (including network connectivity issues).
+subprocesses, including network connectivity issues.
 
 EnTK exposes four components to the end-user: `Resource Handle', `Pipeline',
 `Stage', and `Task'. These enable users to create ensemble-based applications
@@ -34,21 +39,20 @@ resources and the management of application execution (see
   %\begin{minipage}[b]{0.6\textwidth}
   \begin{minipage}[b]{0.55\textwidth}
   \centering
-  %\includegraphics[width=\textwidth, height=35mm]{FIGURES/entk_overview.pdf}
-%  \includegraphics[width=\textwidth, height=40mm]{FIGURES/entk_overview.pdf}
+  % \includegraphics[width=\textwidth, height=35mm]{FIGURES/entk_overview.pdf}
+  % \includegraphics[width=\textwidth, height=40mm]{FIGURES/entk_overview.pdf}
   \end{minipage}
-  %\begin{minipage}[b]{0.39\textwidth}
+  % \begin{minipage}[b]{0.39\textwidth}
   \begin{minipage}[b]{0.44\textwidth}
   \centering
-%  \includegraphics[width=\textwidth, height=35mm]{FIGURES/md_general.pdf}
-%  \includegraphics[width=\textwidth, height=40mm]{FIGURES/md_general.pdf}
+  % \includegraphics[width=\textwidth, height=35mm]{FIGURES/md_general.pdf}
+  % \includegraphics[width=\textwidth, height=40mm]{FIGURES/md_general.pdf}
   \end{minipage}
-\caption{\textbf{Left:} Ensemble Toolkit overview, showing how the abstract 
-workflow execution system is mapped to specific components exposed to the users
-and components internal to the toolkit
-\textbf{Right:} General MD workflow overview that broadly describes the science
-methods to study the physical systems}
-\label{fig:entk_arch}
+  \caption{\textbf{Left:} Ensemble Toolkit overview, showing how the abstract
+  workflow execution system is mapped to specific components exposed to the
+  users and components internal to the toolkit \textbf{Right:} General MD
+  workflow overview that broadly describes the science methods to study the
+  physical systems}\label{fig:entk_arch}
 \end{figure}
 
 Specifically, the \textbf{Resource Handle} component is used to describe the
@@ -61,51 +65,50 @@ concurrently, while the \textbf{Pipeline} component is used to describe a
 sequence of stages, i.e., stages that need to be executed sequentially, not
 concurrently.
 
-
 Once the workflow of an ensemble-based application is completely described,
-one or more pipelines are submitted to the \textbf{Application Manager} module
-for execution. The Application Manager sets up a messaging infrastructure to
-enable fault tolerance and then processes each pipeline, identifying tasks
-which have their dependencies satisfied and can be executed concurrently.
-These tasks are then handed over to the \textbf{Execution Manager} that binds
-tasks to resources on the base of a set of heuristic-based decisions called
-`execution strategy'. The Execution Manager then uses the underlying runtime
-system, RADICAL-Pilot, to execute the tasks on the specific target resource.
+one or more pipelines are submitted to the \textbf{Application Manager}
+module for execution. The Application Manager sets up a messaging
+infrastructure to enable fault tolerance and then processes each pipeline,
+identifying tasks which have their dependencies satisfied and can be executed
+concurrently. These tasks are then handed over to the \textbf{Execution
+Manager} that binds tasks to resources on the base of a set of
+heuristic-based decisions called `execution strategy'. The Execution Manager
+then uses the underlying runtime system, RADICAL-Pilot, to execute the tasks
+on the specific target resource.
 
-EnTK is implemented as a multiprocess application. The number of
-processes can be tuned to match the throughput requirements of ensemble-based
+EnTK is implemented as a multiprocess application. The number of processes
+can be tuned to match the throughput requirements of ensemble-based
 applications and the capabilities of diverse target resources. All but the
 master process of the toolkit are stateless, enabling process-level fault
 tolerance. Upon failure of one or more stateless process, application tasks
 can be assigned to existing or newly created processes without blocking the
-overall execution. 
-
+overall execution.
 
 % Scalability results from an early version of EnTK are provided in
-% \textbf{Figure~\ref{fig:entk_perf}}. The number of simulations and the total
-% number of cores used are described on the abscissa with each simulation using
-% one core; the analysis task which uses one core). Thus,
+% \textbf{Figure~\ref{fig:entk_perf}}. The number of simulations and the
+% total number of cores used are described on the abscissa with each
+% simulation using one core; the analysis task which uses one core). Thus,
 % the simulation execution time corresponds to the time taken by all the
-% simulations to complete.  The analysis
-% execution time corresponds to the time taken to analyze the output of all the
-% simulations. Notice how both strong and weak scaling up to $O(10^3)$ are
-% linear. Although performance numbers are for Stampede (TACC), it is reasonable
-% to expect the weak and strong scaling of EnTK to hold firm on Titan as well.
-% The task launching and coordination system use the same underlying runtime
-% system --  RADICAL-Pilot, which has been tested for strong and weak
-% scalability on Titan~\cite{angius2017converging} up to $O(10^3)$ tasks.
-% Currently, EnTK and RADICAL-Pilot support the execution of ensemble-based
-% applications up to $O(10^4)$ tasks. At the next release, planned for Sep 2017,
-% EnTK will support $>$ $O(10^4)$ tasks. During the lifetime of this INCITE
-% project EnTK is being re-designed, implemented and optimized to reach
+% simulations to complete.  The analysis execution time corresponds to the
+% time taken to analyze the output of all the simulations. Notice how both
+% strong and weak scaling up to $O(10^3)$ are linear. Although performance
+% numbers are for Stampede (TACC), it is reasonable to expect the weak and
+% strong scaling of EnTK to hold firm on Titan as well. The task launching
+% and coordination system use the same underlying runtime system --
+% RADICAL-Pilot, which has been tested for strong and weak scalability on
+% Titan~\cite{angius2017converging} up to $O(10^3)$ tasks. Currently, EnTK
+% and RADICAL-Pilot support the execution of ensemble-based applications up
+% to $O(10^4)$ tasks. At the next release, planned for Sep 2017, EnTK will
+% support $>$ $O(10^4)$ tasks. During the lifetime of this INCITE project
+% EnTK is being re-designed, implemented and optimized to reach
 % $O(10^5-10^6)$ concurrent tasks, independent of the size and type of task.
 
 \begin{figure}[!htbp]
 \centering
 \begin{minipage}[b]{.49\textwidth}
   \centering
-%  \includegraphics[width=\textwidth]{FIGURES/entk_perf_strong.pdf}
-  %\caption{Strong scaling behavior of Ensemble Toolkit. The
+  %  \includegraphics[width=\textwidth]{FIGURES/entk_perf_strong.pdf}
+  %  \caption{Strong scaling behavior of Ensemble Toolkit. The
   %  total workload is kept constant at 1024 simulations and the amount of
   %  resources used are varied from 64 to 1024. We observe close to linear
   %  drop in the simulation execution time as the amount of resources are
@@ -113,22 +116,18 @@ overall execution.
 \end{minipage}
 \begin{minipage}[b]{.49\textwidth}
     \centering
-%    \includegraphics[width=\textwidth]{FIGURES/entk_perf_weak.pdf}
-  %  \caption{Weak scaling behavior of Ensemble Toolkit. The
-  %  size of the workload is varied in proportion with the amount of resources
-  %  such that all tasks are concurrently executed at all times. We observe
-  %  similar simulation execution times at all configurations.}
-
+  %  \includegraphics[width=\textwidth]{FIGURES/entk_perf_weak.pdf}
+  %  \caption{Weak scaling behavior of Ensemble Toolkit. The size of the
+  %  workload is varied in proportion with the amount of resources such that
+  %  all tasks are concurrently executed at all times. We observe similar
+  %  simulation execution times at all configurations.}
 \end{minipage}
-
-\caption{\textbf{Left:} Strong scaling of EnTK. The
-        total workload is kept constant at 1024 simulations and the 
-        resources used are varied from 64 to 1024 cores. We observe essentially linear
-        drop in the simulation execution time. 
-        \textbf{Right:} Weak scaling of EnTK. The
-        size of the workload is varied in proportion with the amount of resources
-        such that all tasks are concurrently executed at all times. We observe
-        similar simulation execution times at all configurations.}
-\label{fig:entk_perf}
-
+\caption{\textbf{Left:} Strong scaling of EnTK. The total workload is kept
+        constant at 1024 simulations and the resources used are varied from
+        64 to 1024 cores. We observe essentially linear drop in the
+        simulation execution time. \textbf{Right:} Weak scaling of EnTK. The
+        size of the workload is varied in proportion with the amount of
+        resources such that all tasks are concurrently executed at all times.
+        We observe similar simulation execution times at all
+        configurations.}\label{fig:entk_perf}
 \end{figure}
