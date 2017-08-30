@@ -1,4 +1,4 @@
-In order to demonstrate the scalability and performance of HT-BAC we will focus on the ESMACS protocol alone applied to a representative kinase system.
+%In order to demonstrate the scalability and performance of HTBAC we will focus on the ESMACS protocol alone applied to a representative kinase system.
 
 \subsection{Protocols for Binding Affinity Calculations}
 
@@ -25,7 +25,8 @@ colleagues in collaboration \cite{Bunney2015}.
 
 \subsubsection*{ESMACS}
 
-Two protocols of particular importance for XXXX are ESMACS (enhanced sampling
+We have designed two free energy calculation protocols with the demands of clinical 
+decision support and drug design applications in mind; ESMACS (enhanced sampling
 of molecular dynamics with approximation of continuum
 solvent)\cite{Wan2017brd4} and TIES (thermodynamic integration with enhanced
 sampling) \cite{Bhati2017}. The former is based on variants of the molecular
@@ -33,6 +34,12 @@ mechanics Poisson-Boltzmann surface area (MMPBSA) end-point method and the
 latter the `alchemical' thermodynamic integration (TI) approach. In both cases
 ensembles of MD simulations are employed in order to perform averaging and to
 obtain tight control of error bounds in our estimates.
+In addition the ability to run replica simulations concurrently means that as long 
+as sufficient compute resources are available turn around times can be significantly 
+reduced compared to the generation single long trajectories.
+The common philosophy behind the two protocols lead to similar middleware requirements, 
+consequently in this work we focus on the ESMACS protocol but all results are applicable 
+to both.
 
 Each replica within the ESMACS protocol consists of a series of simulation
 steps followed by post production analysis. Generally an ESMACS replica will
@@ -44,6 +51,19 @@ and the heating to a physiologically realistic temperature. Upon completion of
 the MD simulation, free energy computation (via MMPBSA and potentially normal
 mode analysis) is performed using AmberTools \cite{amber14, Case2005,
 MillerIII2012}.
+
+The ESMACS protocol is highly customizable and both the number of replica 
+simulations in the ensemble and the lengths of their runs can be varied to obtain 
+optimal performance for any given system.
+Using replicas that only vary in the initial velocities assigned to the atoms of 
+the system we have defined a standard protocol which prescribes a 25 replica ensemble, 
+each run consisting of 2 ns of equilibration and 4 ns of production simulation.
+For a varied range of systems including small molecules bound to kinases and
+more flexible peptide ligands binding to MHC proteins this has produced bootstrap 
+errors of below 1.5 kcal mol$^{-1}$ (despite replica values varying by more than 10 
+kcal mol$^{-1}$). More generally though there may be cases where it is important to 
+increase the sampling of phase space either through expanding the ensemble or considering 
+multiple initial configurations.
 
 \subsection{Benchmark kinase system}
 
