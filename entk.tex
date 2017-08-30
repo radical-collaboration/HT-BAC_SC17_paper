@@ -12,20 +12,40 @@ engineering challenges.
 
 Ensemble Toolkit (EnTK), the topmost layer of RCT, simplifies the process of
 creating and executing ensemble-based applications with complex coordination
-and communication requirements. A key objective of EnTK is to provide a
-solution to the execution of ensemble-based applications that is independent
-of the nature of tasks. EnTK has been used to develop the
-ExTASY~\cite{extasy-2016} framework that enables the execution of MD-based
-advanced sampling methods. EnTK is being utilized to develop ensemble-based
-applications to execute workflows in the seismology and climate science
+and communication requirements. EnTK decouples the description of
+ensemble-based applications from their execution by separating three orders
+of concern: specification of task and resource requirements; resource
+selection and acquisition; and execution management. Domain scientist retain
+full control of the implementation of their protocols by programming
+ensemble-based applications in terms of what should be executed, when and
+where. EnTK automates the process of acquiring the resources needed by those
+applications and managing their execution via a runtime system like
+RADICAL-Pilot.
 
-EnTK enables the execution of up to $O(10^4)$ tasks on thousands of CPU and
-GPU nodes. At this scale, multiple sources of failure affect execution,
-producing loss of information and compute time. Thus, fault tolerance and
-recovery capabilities are first order concerns of the design of EnTK\@.
-Currently, the implementation of EnTK can handle task execution failures,
-resource-level failures, and failures of its own subcomponents and
-subprocesses, including network connectivity issues.
+% A key objective of EnTK is to provide a solution to the execution of
+% ensemble-based applications that is independent of the nature of tasks.
+
+EnTK has been used to develop the ExTASY~\cite{balasubramanian2016extasy}
+framework for the execution of MD-based advanced sampling methods. EnTK is
+also being utilized to develop ensemble-based applications to execute
+workflows in the seismology and climate science. Each use case requires
+different workflows, with different types of tasks, executed on specific HPC
+resources. EnTK supported the development of a simulation-analysis pattern
+for ExTASY, implementing two sampling algorithms for execution of both
+multithreaded and MPI tasks on ARCHER, Stampede and Blue Waters HPC machines.
+With the same code base, EnTK is being used to develop inversion of
+full-waveform, wide-bandwidth data for seismic tomography, and a new
+downscaling methodology to quantify the photovoltaic (PV) energy potential in
+selected regions of the USA\@.
+
+Currently, EnTK enables the execution of up to \(O(10^4)\) tasks on thousands
+of CPU and GPU nodes on the resources of XSEDE, ORNL, NCSA, NWSC and UK NSS,
+for a total of eight HPC machines. At this scale, multiple sources of failure
+affect execution, producing loss of information and compute time. Thus, fault
+tolerance and recovery capabilities are first order concerns of the design of
+EnTK\@. As such, EnTK can handle task execution failures, resource-level
+failures, and failures of its own subcomponents and subprocesses, including
+network connectivity issues.
 
 EnTK exposes four components to the end-user: `Resource Handle', `Pipeline',
 `Stage', and `Task'. These enable users to create ensemble-based applications
@@ -55,15 +75,25 @@ resources and the management of application execution (see
   physical systems}\label{fig:entk_arch}
 \end{figure}
 
-Specifically, the \textbf{Resource Handle} component is used to describe the
-set of resources to be utilized. This includes properties like walltime,
-number of nodes, or credentials of resources. The \textbf{Task} component is
-used to indicate an executable alongside its input/output data and the
-requirements for its executing environment. The \textbf{Task} component is
-used to group tasks  that have the same dependencies and can be executed
-concurrently, while the \textbf{Pipeline} component is used to describe a
-sequence of stages, i.e., stages that need to be executed sequentially, not
-concurrently.
+The \textbf{Resource Handle} component is used to describe the set of
+resources to be utilized. This includes properties like walltime, number of
+nodes, or credentials of resources. The \textbf{Task} component is used to
+indicate an executable alongside its input/output data and the requirements
+for its executing environment. The \textbf{Stage} component is used to group
+tasks that have the same dependencies and can be executed concurrently, while
+the \textbf{Pipeline} component is used to describe a sequence of stages,
+i.e., stages that need to be executed sequentially, not concurrently.
+
+EnTK enables users to program ensemble-based applications directly in Python,
+without requires a domain-specific language. The use of the Task, Stage, and
+Pipeline components avoids the need to express explicitly relationship among
+tasks. These relationships are insured by design, depending on the
+partitioning of the set of tasks into stages and then pipelines. Further,
+EnTK enables an explicit definition of pre and post conditions on the
+execution of tasks, stages, and pipelines, enabling a fine graned adaptivity,
+both a local and global level. Conveniently, this does not require the
+codification of a DAG, a process that imposes a rigid repreentation model on
+the domain scientists.
 
 Once the workflow of an ensemble-based application is completely described,
 one or more pipelines are submitted to the \textbf{Application Manager}
@@ -82,7 +112,8 @@ applications and the capabilities of diverse target resources. All but the
 master process of the toolkit are stateless, enabling process-level fault
 tolerance. Upon failure of one or more stateless process, application tasks
 can be assigned to existing or newly created processes without blocking the
-overall execution.
+overall execution. Upon failure of the master process, execution can be
+restarted without loosing data about tasks that have been already executed.
 
 % Scalability results from an early version of EnTK are provided in
 % \textbf{Figure~\ref{fig:entk_perf}}. The number of simulations and the
