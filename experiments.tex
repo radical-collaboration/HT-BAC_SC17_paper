@@ -152,11 +152,44 @@ tasks of stage 4 and 6 are assigned 5000 timesteps while the task of stage 5
 requires 55000 timesteps. We ran both the null and MD workload for two trials at each pipeline configurations. 
 
 % ---------------------------------------------------------------------------
-\subsubsection{Results}
+\subsubsection{Results}\label{ssec:exp_results}
 
-First we characterize the overhead of RADICAL-Pilot and EnTK in the null workload, where we isolate any overhead introduced by the application. We see a steady increase in the RP and EnTK overheads as we grow the number of pipelines. Note that the RP overhead also captures the overhead introduced by the Blue Waters file system, network communication, time to stage the units and communication to the database. As we introduce the use-case workload we show that the RP overhead becomes insignificant to the total execution time (TTX) where we measure TTX as the time-to-completion (TTC) without queueing times. In both payloads, the RP and EnTK overheads showed an invariance to the type of payload. 
+First we characterize the overhead of RADICAL-Pilot (RP) and EnTK in the 
+null workload, where we isolate the % any 
+overhead introduced by the two % application
+systems (Figure~\ref{fig:htbac_perf}, top). We see a (slightly) superliner
+increase of EnTK overhead, between 0.1 and 1.8 seconds. This overhead depends
+on the number of tasks that need to be translated in-memory from a Python
+object to a compute unit (CU) description. As such, it is expected to grow
+proportionally to the number of tasks, barring some competition of resources
+on a shared workstation like the one used for our experiments.
 
-Moreover we validate the concurrency in the execution of tasks based on the performance of weak scaling in the use-case workload where the execution time (TTX) behaves similary as the pipeline configuration is increased. 
+RP overhead is also, on average, superlinear but with a much greater
+variance. This variance is due to mainly two factors: Network latency and
+filesystem latency on the HPC resource. EnTK submits CU descriptions to the
+MongoDB used by RP, and RP pilot pulls these descriptions from the same
+database. As described in Section~\ref{ssub:exp_setup}, this pull operation
+occurs between Germany and USA, introducing varying amount of latency.
+Further, RP pilot writes and reads the CU descriptions multiple time from to
+and from the shared filesystem of the HPC machine. Together, these two
+factors introduce delays in the scheduling of the CUs.
+
+% We see a steady superlinear increase in the RP and EnTK overheads as we
+% grow the number of pipelines. Note that the RP overhead also captures the
+% overhead introduced by the Blue Waters file system, network communication,
+% time to stage the units and communication to the database.
+
+\mtnote{Use decription of Experiment 1 as a base to introduce weak
+scalability in Figure~\ref{fig:htbac_perf}, bottom}
+
+As we introduce the use-case workload we show that the RP overhead becomes
+insignificant to the total execution time (TTX) where we measure TTX as the
+time-to-completion (TTC) without queuing times. In both payloads, the RP and
+EnTK overheads showed an invariance to the type of payload.
+
+Moreover we validate the concurrency in the execution of tasks based on the
+performance of weak scaling in the use-case workload where the execution time
+(TTX) behaves similary as the pipeline configuration is increased.
 
 % The RP overhead demonstrates the core overhead which is the
 % time-to-completion (TTC) as measured by RADICAL Pilot as well as the Blue
