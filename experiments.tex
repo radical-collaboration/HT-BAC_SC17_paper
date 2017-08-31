@@ -56,7 +56,7 @@ design. While an investigation of strong scalability would contribute to a
 better understanding of the behavior of both HTBAC and EnTK, it is of limited
 interest for the current use case. The driving goal of HTBAC is to increase
 throughput by means of concurrency, not of number of sequential execution per
-core. This is one of the reason because our project targets large HPC
+core. This is one of the reasons because our project targets large HPC
 machines instead of so-called HTC infrastructures.
 
 % We illustrate the high throughput capabilities of the HTBAC workflow using
@@ -139,6 +139,18 @@ simulation task specifies 8 cores per pipeline, therefore the pilot size is
 defined as 8 \(\times \) number of pipelines. We vary the number of pipelines
 to characterize weak scaling performance where the tasks are scheduled
 concurrently.''}
+
+\begin{table*}[t]
+\centering
+\caption{Experiment Setup}
+\label{my-label}
+\begin{tabular}{llllll}
+\hline
+\multicolumn{1}{l|}{Experiment ID \& Description} & \multicolumn{1}{l|}{Trials} & \multicolumn{1}{l|}{Pipelines} & \multicolumn{1}{l}{Stages} & \multicolumn{1}{l|}{Tasks} & \multicolumn{1}{l}{Total Number of Cores} \\ \hline
+1 (Null)                                           & 2                           & 8, 16, 32, 64, 128             & 7                           & 7                          & 64, 128, 256, 512, 1024                    \\ \hline
+2 (Use-Case)                                       & 2                           & 8, 16, 32, 64, 128             & 7                           & 7                          & 64, 128, 256, 512, 1024                    \\ \hline
+\end{tabular}
+\end{table*}
 
 \mtnote{The following should probably moved to the next subsection, when
 discussing the results of the experiments: ``For each of these
