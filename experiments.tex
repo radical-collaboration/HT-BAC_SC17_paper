@@ -1,46 +1,62 @@
-\subsection{Characterization of Performance}
+% \subsection{Characterization of Performance}
 
 Before embarking in a computational campaign that will consume 150M core
 hours on the NCSA Blue Waters machine, we study the scalability of the ESMACS
-protocol. The goal is twofold: (1) understanding the invariance of HTBAC
-execution time over the number of workflow pipelines executed; and (2)
-studying how EnTK---the RCT tool responsible for coordinating the distributed
-execution of the protocol---scales its performance in relation to the size of
-HTBAC\@.
+protocol to determine optimal workflow sizing and resource utilization. The
+goal is twofold: (1) understanding the invariance of HTBAC execution time
+over the number of workflow pipelines executed; and (2) studying how
+EnTK---the RCT tool responsible for coordinating the distributed execution of
+the protocol---scales its performance in relation to the size of HTBAC
+workflow.
 
-
+% ---------------------------------------------------------------------------
 \subsubsection{Experiment Design}
 
 We designed two experiments to measure HTBACK and EnTK weak scalability when
-executing an increasing number of concurrent workflow pipelines. According to
-the use case described in Section~\ref{...}, each pipeline consists of seven
+executing an increasing number of concurrent pipelines. According to the use
+case described in Section~\ref{sec:ht-bac}, each pipeline consists of seven
 stages, each stage with a single task. EnTK manages the queuing of the tasks
 in accordance with the order and concurrency mandated by stages and
 pipelines: For each pipeline, each stage is executed sequentially while
 pipelines are executed concurrently.
 
-Experiment 1 measures the baseline behavior of EnTK with a null workload. The
-goal is to isolate the overheads of EnTK from the specifics of the HTBAC
-workflow; of the runtime used to execute the workflow on the HPC resources;
-and of the resources themselves. The null workload does not require data
-staging, I/O on both memory and disk, or communication over network.
+\mtnote{PLease note: I converted the following paragraph eliminating
+references to RP\@. This is consistent with out decision of not showing RP
+overheads. The paragraph can be reused if we change our mind. ``
+We validate the performance of EnTK % the runtime system, RADICAL-Pilot, 
+using weak scalability to to show % demonstrate 
+that EnTK % RP 
+can schedule tasks concurrently, provided that sufficient resources are
+available.''}
+
+Experiment 1 measures the baseline behavior of EnTK with the HTBAC workflow
+and a null payload (\textmd{/bin/sleep 0}). The goal is to isolate the
+overheads of EnTK from the specifics of: (1) the executables of the HTBAC
+workflow; (2) the runtime used to execute the workflow on the HPC resources;
+and (3) the overheads of the resources. The null workload does not require
+data staging, I/O on both memory and disk, or communication over network.
 
 Experiment 2 replicates the design of Experiment 1 but it executes the HTBAC
-workflow instead of the null workload. The comparison between the two
+workflow with the use case payload. The comparison between the two
 experiments enables performance analysis of EnTK to understand whether and
 how the size of the executed workflow affects its overheads. Further,
 Experiment 2 shows also whether HTBAC is sensitive to the number of
 concurrent pipelines executed.
 
-Both experiments measure the weak scalability of both EnTK and HTBAC\@. This
-means that the ration between the number of pipelines and the number of cores
-utilized is constant by design. While an investigation of strong scalability
-would contribute to a better understanding of the behavior of both EnTK and
-HTBAC, in the context of the presented used case is of limited interest: The
-goal of HTBAC is to increase throughput by means of concurrency, not of
-number of sequential execution per core. This is one of the reason because
-our project targets a large HPC machine instead of a so-called HTC
-infrastructure.
+% In order to show % demonstrate 
+% that % RP 
+% EnTK is invariant to the type of workload, we run two types of experiments:
+% We ran the HTBAC workflow with null workload in which each task did no work
+% (/bin/sleep 0), the actual simulation workload. 
+
+Both experiments measure the weak scalability of HTBAC and EnTK\@. This means
+that the ratio between the number of pipelines and cores is kept constant by
+design. While an investigation of strong scalability would contribute to a
+better understanding of the behavior of both HTBAC and EnTK, it is of limited
+interest for the current use case. The driving goal of HTBAC is to increase
+throughput by means of concurrency, not of number of sequential execution per
+core. This is one of the reason because our project targets large HPC
+machines instead of so-called HTC infrastructures.
 
 % We illustrate the high throughput capabilities of the HTBAC workflow using
 % ESMACS protocol by examining scalability in the number of pipelines and
@@ -54,52 +70,78 @@ infrastructure.
 We perform both Experiment 1 and 2 % scalability experiments 
 on the Blue Waters HPC cluster---a 13.3 petaFLOPS Cray at NCSA and University
 of Illinois, with 32 Interlago cores/50 GB RAM per node, Cray Gemini, Lustre
-shared file system. Currently, we used exclusively Blue Waters CPUs as GPUs
-are not required by our use case. RCTs support the use of both types of
-architecture and we benchmarked the use of GPUs for later evaluation.
+shared file system. Currently, we exclusively use CPUs on Blue Waters as GPUs
+are not required by our use case. RCTs support the use of both type of
+architectures and we previously benchmarked the use of GPUs for later
+evaluation.
 
-Our experiments originates from a virtual machine hosted in Europe. This
+% We characterize the weak scalability of the ESMACS protocol using Ensemble
+% Toolkit running exclusively on Blue Waters CPUs.
+
+We perform our experiments from a virtual machine hosted in Europe. This
 helps to simulate the conditions in which the experimental campaign will be
 performed by the research group at UCL\@. This is relevant because, as most
-HPC resources, Blue Waters does not allow to execute applications on the
-login node of the cluster. To this end, RCT support gsissh connections, based
-on X509 authentication and authorization.
+HPC resources, Blue Waters does not allow for executing applications on the
+login node of the cluster. To this end, RCTs support \textmd{gsissh} for X509
+authentication and authorization.
 
-\mtnote{Locked by MT.}
+Table~\ref{tab:exp}\mtnote{to be done if we agree it would be useful} shows
+the setup for Experiment 1 and 2. Currently, the ESMACS protocol is executed
+with up to 25 concurrent pipelines. This number is suboptimal as pipelines
+are independent and therefore their concurrent execution does not entail
+communication overhead. Further, the system simulated can benefit for
+concurrency because \mtnote{Please explain why the more concurrent pipelines
+the better. Apologies, I do not know enough to write it myself}.
+Consistently, our experiments push the boundaries of current scale by
+executing 8, 16, 32, 64 and 128 concurrent pipelines.
 
-The amount of replicas required by ESMACS has an upper-bound of 25 replicas
-yet we extend the number replicas to 128 in order to demonstrate higher
-scalability with a greater degree of confidence for the potential HTBAC user.
+% requires The amount of replicas required by has an upper-bound of 25
+% replicas yet we extend the number replicas to 128 in order to show higher
+% scalability with a greater degree of confidence for the potential HTBAC
+% user.
 
+EnTK uses RADICAL-Pilot to acquire resources via a single pilot. 
+% In the pilot description of EnTK, 
+The size of the pilot is contingent upon characterization of performance, in
+this case, weak % or strong scaling
+scalability. % In the event of weak scaling we 
+Accordingly, we % provide 
+use the same number of cores in a pilot % the pilot size description 
+as % the number of cores 
+those required by the workload. 
+% The number of cores is varied 
+We use between 64 and 1024 cores in both Experiment 1 and 2, and we always
+keep the number of simulations % is kept 
+equal to the number of cores. % at all times. 
+We 
+% range the number of concurrent replicas % ranged
+% from 8 to 128, % running concurrently using 
+use either 1 or 8 cores per task % replica, 
+depending on the task requirements.
 
-We validate the performance of the runtime system, RADICAL-Pilot, using weak
-scalability to to demonstrate that RP can schedule tasks concurrently,
-provided that sufficient resources are available. We characterize the weak
-scalability of the ESMACS protocol using Ensemble Toolkit running exclusively
-on Blue Waters CPUs. In the pilot description of EnTK, the pilot size is
-contingent upon characterization of performance i.e., weak or strong scaling.
-In the event of weak scaling we provide the same number of cores in the pilot
-size description as the number of cores required by the workload.
+\mtnote{The following needs discussion: ``The size of the workload is varied
+in proportion to the amount of resources such that all tasks are concurrently
+executed at all times.'' I believe this is not necessary true: we do not
+execute all the tasks concurrently all the time but we always get enough
+cores to run at least one task from each concurrent pipeline. Alternatively,
+at every point in time, there are enough cores so that pipelines do not
+compete for the same core.}
 
-The number of cores is varied between 64--1024 while the number of
-simulations is kept equal to the number of cores at all times. For example,
-in the ESMACS protocol, the simulation task specifies 8 cores per pipeline,
-therefore the pilot size is defined as 8 $\times$ number of pipelines. We
-vary the number of pipelines to characterize weak scaling performance where
-the tasks are scheduled concurrently. For each of these configurations, the
-simulation execution time is observed to be constant.
+\mtnote{I would represent the following with a table. Please feel free to
+change it back if you disagree. ``For example, in the ESMACS protocol, the
+simulation task specifies 8 cores per pipeline, therefore the pilot size is
+defined as 8 \(\times\) number of pipelines. We vary the number of pipelines
+to characterize weak scaling performance where the tasks are scheduled
+concurrently.''}
 
-In order to demonstrate that RP is invariant to the type of workload we run
-two types of experiments: We ran the HTBAC workflow with null workload in
-which each task did no work (/bin/sleep 0), the actual simulation workload.
-The size of the workload is varied in proportion to the amount of resources
-such that all tasks are concurrently executed at all times. We range the
-number of replicas ranged from 8 to 128 running concurrently using either 1
-or 8 cores per replica, depending on the task. All the experiments use
-Ensemble Toolkit version 0.47 and RADICAL-Pilot version 0.42.
+\mtnote{The following should probably moved to the next subsection, when
+discussing the results of the experiments: ``For each of these
+configurations, the simulation execution time is observed to be constant.''}
 
-In the MD workload, the simulation tasks are executed using NAMD-MPI. The
-equilibration stages 4 and 6 are assigned 5000 timesteps while stage 5
+All the experiments use Ensemble Toolkit version 0.4.7 and RADICAL-Pilot
+version 0.42. In the MD workload of the HTBAC workflow, the simulation tasks
+are executed using NAMD-MPI\@. The equilibration % stages 
+tasks of stage 4 and 6 are assigned 5000 timesteps while the task of stage 5
 requires 55000 timesteps.
 
 % ---------------------------------------------------------------------------
