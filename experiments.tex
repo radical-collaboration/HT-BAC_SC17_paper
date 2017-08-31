@@ -160,7 +160,8 @@ All the experiments use Ensemble Toolkit version 0.4.7 and RADICAL-Pilot
 version 0.42. In the MD workload of the HTBAC workflow, the simulation tasks
 are executed using NAMD-MPI\@. The equilibration % stages 
 tasks of stage 4 and 6 are assigned 5000 timesteps while the task of stage 5
-requires 55000 timesteps. We ran both the null and MD workload for two trials at each pipeline configurations. 
+requires 55000 timesteps. We ran both the null and MD workload for two trials
+at each pipeline configurations.
 
 % ---------------------------------------------------------------------------
 \subsubsection{Results}\label{ssec:exp_results}
@@ -168,12 +169,23 @@ requires 55000 timesteps. We ran both the null and MD workload for two trials at
 First we characterize the overhead of RADICAL-Pilot (RP) and EnTK in the 
 null workload, where we isolate the % any 
 overhead introduced by the two % application
-systems (Figure~\ref{fig:htbac_perf}, top). We see a (slightly) superliner
+systems (Figure~\ref{fig:exp1}). We see a (slightly) superliner
 increase of EnTK overhead, between 0.1 and 1.8 seconds. This overhead depends
 on the number of tasks that need to be translated in-memory from a Python
 object to a compute unit (CU) description. As such, it is expected to grow
 proportionally to the number of tasks, barring some competition of resources
 on a shared workstation like the one used for our experiments.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{FIGURES/null_workload_overheads.pdf}
+  \caption{.}\label{fig:exp1}
+\end{figure}
+
+% Weak scaling of HTBAC using null workload. We observe similar behavior at
+% each configuration in the simulation execution time showing that the EnTK
+% is invariant to the workload and a steady increase in the RP overhead due
+% to the increase in the number of stages
 
 RP overhead is also, on average, superlinear but with a much greater
 variance. This variance is due to mainly two factors: Network latency and
@@ -190,17 +202,43 @@ factors introduce delays in the scheduling of the CUs.
 % overhead introduced by the Blue Waters file system, network communication,
 % time to stage the units and communication to the database.
 
-\mtnote{Use decription of Experiment 1 as a base to introduce weak
-scalability in Figure~\ref{fig:htbac_perf}, bottom}
+As we introduce the use-case NAMD and accessory payload
+(Figure~\ref{fig:exp1}), we show that the RP overhead becomes
+% insignificant 
+on average less than 10\% of the average total execution time (TTX), defined 
+as \(TTX = TTC - T_q\) where \(TTC\) is time-to-completion and \(T_q\)
+% where we measure TTX as 
+is time spent queuing on the HPC machine. We notice the TTX scales weakly
+across pipelines of different size and that, when accounting for variance, RP
+overheads also shows weak scaling behavior. As expected, EnTK overhead
+remains superlinear and comparable to the one measured in Experiment 1. This
+is because in both experiments EnTK overhead depends on the number of tasks
+translated to CU descriptions.
 
-As we introduce the use-case workload we show that the RP overhead becomes
-insignificant to the total execution time (TTX) where we measure TTX as the
-time-to-completion (TTC) without queuing times. In both payloads, the RP and
-EnTK overheads showed an invariance to the type of payload.
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{FIGURES/namd_workload_overheads.pdf}
+  \caption{.}\label{fig:exp2}
+\end{figure}
 
-Moreover we validate the concurrency in the execution of tasks based on the
-performance of weak scaling in the use-case workload where the execution time
-(TTX) behaves similary as the pipeline configuration is increased.
+% Weak scaling of HTBAC using use-case payload. We observe higher
+% time-to-completions for each  than the null workload yet similar
+% performance across pipelines indicating optimal weak scaling
+% characterization
+
+Experiments 1 and 2 show how the overheads of both EnTK and RP tend to be
+invariant across type of payload executed. Their scaling behavior and, to
+some approximation, their absolute values are comparable between
+Figure~\ref{fig:exp1} and~\ref{fig:exp2}. This is relevant because it shows
+that the systems used to coordinate and execute the ESMACS protocol add a
+constant and comparatively not relevant overhead to the execution of NAMD\@.
+
+% In both payloads, the RP and EnTK overheads showed an invariance to
+% the type of payload.
+
+% Moreover we validate the concurrency in the execution of tasks based on the
+% performance of weak scaling in the use-case workload where the execution
+% time (TTX) behaves similarly as the pipeline configuration is increased.
 
 % The RP overhead demonstrates the core overhead which is the
 % time-to-completion (TTC) as measured by RADICAL Pilot as well as the Blue
@@ -211,33 +249,14 @@ performance of weak scaling in the use-case workload where the execution time
 % the simulation execution time which corresponds to the time taken by all
 % the simulations to complete.
 
-\begin{figure}[!htbp]
-  \centering
-  \begin{minipage}[b]{0.49\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{FIGURES/null_workload_overheads.pdf}
-  \end{minipage}
-  \begin{minipage}[b]{0.49\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{FIGURES/namd_workload_overheads.pdf}
-  \end{minipage}
-  \caption{\textbf{Top:} Weak scaling of HTBAC using null workload. We
-          observe similar behavior at each configuration in the simulation
-          execution time showing that the EnTK is invariant to the
-          workload and a steady increase in the RP overhead due to the
-          increase in the number of stages. \textbf{Bottom:} Weak scaling of
-          HTBAC using use-case workload. We observe higher time-to-completions for each  than the null workload yet similar performance across pipelines indicating optimal weak scaling characterization.}\label{fig:htbac_perf}
-\end{figure}
-
-
-The fluctuation of the simulation execution times can be attributed to
-run-time system fluctuations within the workload including stragglers at
-higher pipeline and pipeline-to-pipeline fluctuations. In order to examine
-the fluctuations within stages we corrolate the overhead for each pipeline at
-the longest simulation duration in order to reconcile any fluctuations
-induced by NAMD\@. We calculate time-to-execution (Tx) of the largest
-pipeline size and compare the longest MD run within each pipeline. The NAMD
-logs indicate a mean and variance as\ldots
+% The fluctuation of the simulation execution times can be attributed to
+% run-time system fluctuations within the workload including stragglers at
+% higher pipeline and pipeline-to-pipeline fluctuations. In order to examine
+% the fluctuations within stages we correlate the overhead for each pipeline
+% at the longest simulation duration in order to reconcile any fluctuations
+% induced by NAMD\@. We calculate time-to-execution (Tx) of the largest
+% pipeline size and compare the longest MD run within each pipeline. The NAMD
+% logs indicate a mean and variance as\ldots
 
 % \begin{figure}[!htbp]
 %   \centering
