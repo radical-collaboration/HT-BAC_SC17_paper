@@ -31,16 +31,33 @@ likely that differences between the varied systems which might be investigated
 will demand different strategies can be employed as studies progress. For
 example in drug design programmes it is usual to need to rapidly screen
 thousands of candidate compounds to filter out the worst binders before more
-sensitive methods are required when refining the structure. In order for
-simulations technologies to become more widely employed it is necessary to
+sensitive methods are required when refining the structure. 
+Not all changes induced in proteins shape or behaviour are local to the drug binding 
+site and in some cases simulation protocols will need to adjust to account for 
+complex interactions between drugs and their targets within individual studies.
+
+
+Recent work that used molecular simulations to provide input to machine learning 
+models \cite{Ash2017} designed merely to distinguish the highly active from weak 
+inhibitors of the ERK2 kinase required simulations of 87 compounds.
+If we wish to build on such studies to help inform later stages of the drug 
+discovery pipeline, in which much more subtle alterations are involved, it is 
+likely a much larger number of simulations would be required.
+This is before we begin to consider the influence of mutations or the selectivity 
+of drugs to the more than five hundred different genes in the human kinome. 
+\cite{Li2016} In order to tackle these grand challenges using molecular simulation is 
+likely to require studies executing thousands of compute intensive runs.
+In order to contemplate such a programme of work it is necessary to
 have computational tools that facilitate the execution and coordination of
 varied workloads without incurring serious performance overheads.
 
-\jhanote{Is there a need for differentiation across these thousands of
-candiate compounds, or must they by design be treated and subject to the same
-protocols?}
 
-\jhanote{SJ to introduce extreme scale/exascale systems and provide stronger motivation for HTBAC}
+
+%\jhanote{Is there a need for differentiation across these thousands of
+%candiate compounds, or must they by design be treated and subject to the same
+%protocols?}
+
+%\jhanote{SJ to introduce extreme scale/exascale systems and provide stronger motivation for HTBAC}
 
 % The strength of drug binding is determined by a thermodynamic property known
 % as the binding free energy (or binding affinity). One promising technology for
