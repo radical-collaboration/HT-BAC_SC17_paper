@@ -1,6 +1,7 @@
-Cancer is recognized as a major public health problem throughout the world and is the second most common cause of death in the United States.
+Cancer is recognized as a major public health problem throughout the world and is the second most common cause of death in the United States. \cite{Siegel2016}
 In recent years chemotherapy based on targetted kinase inhibitors (TKIs) has played an increasingly prominent role in the treatment of cancer.
-The design of TKIs was inspired by modern genetic understanding of DNA, the cell cycle, and molecular signaling pathways and have been developed to selectively inhibit kinases involved in signaling pathways that control growth and proliferation, which often become dysregulated in cancers.
+The design of TKIs was inspired by modern genetic understanding of DNA, the cell cycle, and molecular signaling pathways and they have been developed to selectively inhibit kinases involved in signaling pathways 
+controling growth and proliferation which often become dysregulated in cancers.
 This targetting of specific cancers reduces the risk of damage to healthy cells and increases treatment success.
 Currently 35 FDA-approved small molecule TKIs are in clinical use, and for the past decade, they have represented a significant fraction of the \$37 billion U.S. market for oncology drugs \cite{FDA, Zhao2014}.
 Imatinib, the first of these of drugs, is partially credited for doubling survivorship rates in certain cancers \cite{Zhao2014, ACSreport}.
@@ -9,7 +10,8 @@ Resistance to therapeutics is responsible for more than 90\% of deaths in patien
 
 While drug resistance can emerge via multiple mechanisms, small changes to the chemical composition of the therapeutic target (known as mutations) drive drug resistance in many patients.
 In some commonly targeted kinases such as Abl, these changes account for as many as 90\% of treatment failure \cite{Shah2002}.
-There are two major strategies for countering this threat to treatment efficacy: tailoring the drug regimen received by a patient according to the mutations present in their particular cancer, and development of more advanced second- or third-line therapies that retain potency for known resistance mutations.
+There are two major strategies for countering this threat to treatment efficacy: tailoring the drug regimen received by a patient according to the mutations present in their particular cancer, and development of more advanced %second- or third-line
+therapies that retain potency for known resistance mutations.
 In both cases, future developments require insight into the molecular changes produced by mutations, as well as ways to predict their impact on drug binding on a timescale much shorter than is typically experimentally feasible.
 This represents a grand challenge for computational approaches.
 
@@ -19,11 +21,43 @@ Fortunately, concurrent improvements in computational power and algorithm design
 This provides the opportunity to use automated simulation workflows to supplement existing inductive (`Baconian') decision support systems with deductive (`Popperian') predictive modelling and drug ranking \cite{Marias2011, Sloot2009}.
 Where existing systems based on statistical inference are inherently limited in their range of applicability by the existence of data from previous similar cases the addition of modelling allows evidence based decision making even in the absence of direct past experience.
 
-The same molecular simulation technologies that can be employed to investigate the origins of drug resistance can also be used to design new therapeutics.
-Creating simulation protocols which meet the varying practical demands of different applications (such as the reapid turn around times needed for clinical decision support) whilst obtaining statistically meaningful results represents a significant computational challenge.
-Furthermore, it is highly likely that differences between the varied systems which might be investigated  will demand different strategies can be employed as studies progress.
-For example in drug design programmes it is usual to need to rapidly screen thousands of candidate compounds to filter out the worst binders before more sensitive methods are required when refining the structure.
-In order for simulations technologies to become more widely employed it is necessary to have computational tools that facilitate the execution and coordination of varied workloads without incurring serious performance overheads.
+The same molecular simulation technologies that can be employed to investigate
+the origins of drug resistance can also be used to design new therapeutics.
+Creating simulation protocols which meet the varying practical demands of
+different applications (such as the rapid turn around times needed for
+clinical decision support) whilst obtaining statistically meaningful results
+represents a significant computational challenge. Furthermore, it is highly
+likely that differences between the varied systems which might be investigated
+will demand different strategies can be employed as studies progress. For
+example in drug design programmes it is usual to need to rapidly screen
+thousands of candidate compounds to filter out the worst binders before more
+sensitive methods are required when refining the structure. 
+Not all changes induced in proteins shape or behaviour are local to the drug binding 
+site and in some cases simulation protocols will need to adjust to account for 
+complex interactions between drugs and their targets within individual studies.
+
+
+Recent work that used molecular simulations to provide input to machine learning 
+models \cite{Ash2017} designed merely to distinguish the highly active from weak 
+inhibitors of the ERK2 kinase required simulations of 87 compounds.
+If we wish to build on such studies to help inform later stages of the drug 
+discovery pipeline, in which much more subtle alterations are involved, it is 
+likely a much larger number of simulations would be required.
+This is before we begin to consider the influence of mutations or the selectivity 
+of drugs to the more than five hundred different genes in the human kinome. 
+\cite{Li2016} In order to tackle these grand challenges using molecular simulation is 
+likely to require studies executing thousands of compute intensive runs.
+In order to contemplate such a programme of work it is necessary to
+have computational tools that facilitate the execution and coordination of
+varied workloads without incurring serious performance overheads.
+
+
+
+%\jhanote{Is there a need for differentiation across these thousands of
+%candiate compounds, or must they by design be treated and subject to the same
+%protocols?}
+
+%\jhanote{SJ to introduce extreme scale/exascale systems and provide stronger motivation for HTBAC}
 
 % The strength of drug binding is determined by a thermodynamic property known
 % as the binding free energy (or binding affinity). One promising technology for

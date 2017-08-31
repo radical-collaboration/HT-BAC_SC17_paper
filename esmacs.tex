@@ -8,19 +8,22 @@ same protein-ligand combination, with identical initial structure and force
 field, shown to produce binding affinities varying by up to 12 kcal mol
 $^{-1}$ for small ligands (flexible ligands can vary even more).
 \cite{Wan2015, Sadiq2010, Wright2014}. Indeed, our work has revealed how
-completely unreliable single simulation based approaches are. While accuracy
-of force fields could be a source of error, we know from our work to date
+completely unreliable single simulation based approaches are. 
+Whilst our work using ensemble simulations have reliably produced results 
+in agreement with previously published experimental findings 
+\cite{Sadiq2010, Wan2011, Wright2014, Bhati2017, Wan2017brd4, Wan2017trk}, 
+and correctly predicted the results of experimental studies performed by
+colleagues in collaboration \cite{Bunney2015}.
+While accuracy of force fields could be a source of error, we know from our work to date
  that the very large fluctuations in trajectory-based calculations
 account for the lion’s share of the variance (hence also uncertainty) of the
-results. \cite{Sadiq2010, Wan2017brd4, Bhati2017} Almost all MMPBSA studies in the literature use the so-called
-1-trajectory method, in which the energies of protein-inhibitor complexes,
-receptor proteins and ligands are extracted from the MD trajectories of the
-complexes alone. ESMACS protocols can additionally use separate ligand and
-receptor trajectories to account for adaptation energies. Previous work has
-produced results in agreement with previously published experimental findings
-\cite{Sadiq2010, Wan2011, Wright2014, Bhati2017, Wan2017brd4, Wan2017trk}, and
-correctly predicted the results of experimental studies performed by
-colleagues in collaboration \cite{Bunney2015}.
+results. 
+%Almost all MMPBSA studies in the literature use the so-called
+%1-trajectory method, in which the energies of protein-inhibitor complexes,
+%receptor proteins and ligands are extracted from the MD trajectories of the
+%complexes alone. ESMACS protocols can additionally use separate ligand and
+%receptor trajectories to account for adaptation energies. 
+
 
 
 \subsubsection*{ESMACS}
@@ -68,6 +71,16 @@ improvements.
 More generally though there may be cases where it is important to 
 increase the sampling of phase space either through expanding the ensemble or considering 
 multiple initial configurations.
+
+The ESMACS protocol can also be extended to account for adaptation energies involved in 
+altering the conformation of the protein or ligand during binding.
+Almost all MMPBSA studies in the literature use the so-called
+1-trajectory method, in which the energies of protein-inhibitor complexes,
+receptor proteins and ligands are extracted from the MD trajectories of the
+complexes alone. 
+ESMACS protocols can additionally use separate ligand and
+receptor trajectories to account for adaptation energies, 
+providing further motivation to deploy the protocol via flexible and scalable middleware.
 
 \subsection{Benchmark kinase system}
 
