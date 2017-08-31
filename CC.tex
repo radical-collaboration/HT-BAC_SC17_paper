@@ -35,7 +35,8 @@ systems were typically designed by a set of specialists to support large ``big
 science'' projects such as those carried out at the LHC or LIGO. The fact that
 the same workflow would be used by thousands of scientists over many years
 justified, if not amortized the large overhead of integrating application
-workflows with monolithic workflow systems.
+workflows with monolithic workflow systems. This influenced the design and
+implementation of workflow system interfaces and programming models.
 
 However as the nature, number and usage of workflows has evolved so have the
 requirements: scale remains important but only when delivered with the ability
@@ -47,6 +48,16 @@ utilization there is a need to ensure that the individual pipelines have
 similar execution times. The pipeline-to-pipeline fluctuation must be minimal
 while also managing the task-to-task runtime fluctuation across concurrently
 executing pipelines.
+
+Thus the flexible execution of heterogeneous ensembles of MD simulations face
+both system software and middleware challenges: existing system software that
+is typically designed to support the execution of single large simulations on
+the one hand, and workflow systems that are designed to support monolithic
+workflows.  In the next section we will discuss how we have designed and
+implemented the necessary building blocks (RADICAL-Cybertools) that can be
+used to implement and execute at scale the domain specific workflows that have
+the necessary properties.
+
 
 % \begin{itemize}
 % 	\item $N_T$ : Number of tasks
