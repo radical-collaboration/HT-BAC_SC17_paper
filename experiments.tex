@@ -10,7 +10,7 @@ the protocol---scales its performance in relation to the size of HTBAC
 workflow.
 
 % ---------------------------------------------------------------------------
-\subsubsection{Experiment Design}
+\subsubsection{Experiment Design}\label{ssec:exp_design}
 
 We designed two experiments to measure HTBAC and EnTK weak scalability when
 executing an increasing number of concurrent pipelines. According to the use
@@ -66,7 +66,7 @@ machines instead of so-called HTC infrastructures.
 % EnTK\@.
 
 % ---------------------------------------------------------------------------
-\subsubsection{Experiment Setup}
+\subsubsection{Experiment Setup}\label{ssec:exp_setup}
 
 We perform both Experiment 1 and 2 % scalability experiments 
 on the Blue Waters HPC cluster---a 13.3 petaFLOPS Cray at NCSA and University
@@ -142,8 +142,7 @@ concurrently.''}
 
 \begin{table*}[t]
 \centering
-\caption{Experiment Setup}
-\label{my-label}
+\caption{Experiment Setup}\label{tab:exp}
 \begin{tabular}{llllll}
 \hline
 \multicolumn{1}{l|}{Experiment ID \& Description} & \multicolumn{1}{l|}{Trials} & \multicolumn{1}{l|}{Pipelines} & \multicolumn{1}{l}{Stages} & \multicolumn{1}{l|}{Tasks} & \multicolumn{1}{l}{Total Number of Cores} \\ \hline
@@ -180,7 +179,7 @@ RP overhead is also, on average, superlinear but with a much greater
 variance. This variance is due to mainly two factors: Network latency and
 filesystem latency on the HPC resource. EnTK submits CU descriptions to the
 MongoDB used by RP, and RP pilot pulls these descriptions from the same
-database. As described in Section~\ref{ssub:exp_setup}, this pull operation
+database. As described in Section~\ref{ssec:exp_setup}, this pull operation
 occurs between Germany and USA, introducing varying amount of latency.
 Further, RP pilot writes and reads the CU descriptions multiple time from to
 and from the shared filesystem of the HPC machine. Together, these two
