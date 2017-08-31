@@ -11,8 +11,28 @@
 \end{itemize}
 
 
+The tools presented in this work represent a vital step towards scaling the use of molecular
+dynamics based fee energy calculations to the point where they can produce actionable 
+results both in the clinic and industrial drug discovery.
+The first necessary step is to move beyond the current paradigm of running individual simulations, 
+which provide irreproducible results and cannot provide meaningful error bars.
+The ability to flexibly scale ensemble simulations and to adapt protocols to the systems of 
+interest is vital if the field is to be able to produce reliable and accurate results on 
+timescales which make it viable to influence real world decision making.
+In the short term the development of HTBAC will allow us to significantly increase the size of 
+study which is practicable.
+Much of the literature on MD based free energy calculations is limited to a few tens of systems, 
+usually of similar drugs bound to the same protein target.
+By facilitating investigations of much larger datasets, HTBAC also provides a step towards 
+tackling grand challenges in drug design and precision medicine where it is necessary to understand 
+the influences on binding strength for hundreds or thousands of drug-protein variant combinations.
+Only in aiming to meet this ambitious goals will we be able to reveal the limits of existing simulation 
+technology and the potentials used to approximate the chemistry of the real systems.
+
 As workflows are increasingly exploratory in nature and adaptive (i.e.,
-evolving) in a way that the full execution (i.e., task graph)is not
+evolving) in a way that the full execution (i.e., task graph) is not
 determinable or discernible in advance, it is important to consider 
 workflows as real time evolution of computational experiment. Thus the
 flexibilty and reliable performance are concomitant requirement.
+
+\textbf{Software and Data} Ensemble toolkit can be found at http://radicalensemblemd.readthedocs.io/en/latest/ and is released under the MIT license. Raw data and scripts to reproduce experiments can be found at https://github.com/radical-experiments/htbac-experiments.

@@ -27,7 +27,7 @@ We validate the performance of EnTK % the runtime system, RADICAL-Pilot,
 using weak scalability to to show % demonstrate 
 that EnTK % RP 
 can schedule tasks concurrently, provided that sufficient resources are
-available.''}
+available.''}\jhanote{+1}
 
 Experiment 1 measures the baseline behavior of EnTK with the HTBAC workflow
 and a null payload (\textmd{/bin/sleep 0}). The goal is to isolate the
@@ -90,7 +90,10 @@ the setup for Experiment 1 and 2. Currently, the ESMACS protocol is executed
 with up to 25 concurrent pipelines. This number is suboptimal as pipelines
 are independent and therefore their concurrent execution does not entail
 communication overhead. Further, the system simulated can benefit for
-concurrency because potential HTBAC users could benefit from running additional replicas beyond the current scale of ESMACS. Consistently, our experiments push the boundaries of current scale by executing 8, 16, 32, 64 and 128 concurrent pipelines.
+concurrency because potential HTBAC users could benefit from running
+additional replicas beyond the current scale of ESMACS\@. Consistently, our
+experiments push the boundaries of current scale by executing 8, 16, 32, 64
+and 128 concurrent pipelines.
 
 % requires The amount of replicas required by has an upper-bound of 25
 % replicas yet we extend the number replicas to 128 in order to show higher
@@ -122,20 +125,22 @@ executed at all times.'' I believe this is not necessary true: we do not
 execute all the tasks concurrently all the time but we always get enough
 cores to run at least one task from each concurrent pipeline. Alternatively,
 at every point in time, there are enough cores so that pipelines do not
-compete for the same core.}
+compete for the same core.}\jhanote{I agree we do not run all the tasks
+concurrently.}
 
 At every point in runtime, there are enough cores so that pipelines do not compete for the same core and hence allows consecutive stages to be able to start without delay due to a lack of resources. 
 
 \mtnote{I would represent the following with a table. Please feel free to
 change it back if you disagree. ``For example, in the ESMACS protocol, the
 simulation task specifies 8 cores per pipeline, therefore the pilot size is
-defined as 8 \(\times\) number of pipelines. We vary the number of pipelines
+defined as 8 \(\times \) number of pipelines. We vary the number of pipelines
 to characterize weak scaling performance where the tasks are scheduled
 concurrently.''}
 
 \mtnote{The following should probably moved to the next subsection, when
 discussing the results of the experiments: ``For each of these
 configurations, the simulation execution time is observed to be constant.''}
+\jhanote{yes}
 
 All the experiments use Ensemble Toolkit version 0.4.7 and RADICAL-Pilot
 version 0.42. In the MD workload of the HTBAC workflow, the simulation tasks
@@ -187,25 +192,25 @@ induced by NAMD\@. We calculate time-to-execution (Tx) of the largest
 pipeline size and compare the longest MD run within each pipeline. The NAMD
 logs indicate a mean and variance as\ldots
 
-\begin{figure}[!htbp]
-  \centering
-  %\begin{minipage}[b]{0.6\textwidth}
-  \begin{minipage}[b]{0.55\textwidth}
-  \centering
-  %\includegraphics[width=\textwidth, height=35mm]{FIGURES/entk_overview.pdf}
-%  \includegraphics[width=\textwidth, height=40mm]{FIGURES/entk_overview.pdf}
-  \end{minipage}
-  %\begin{minipage}[b]{0.39\textwidth}
-  \begin{minipage}[b]{0.44\textwidth}
-  \centering
-%  \includegraphics[width=\textwidth, height=35mm]{FIGURES/md_general.pdf}
-%  \includegraphics[width=\textwidth, height=40mm]{FIGURES/md_general.pdf}
-  \end{minipage}
-  \caption{Overview of time-to-execution (Tx) of each pipeline at the
-           longest simulation duration as measured by NAMD log files, showing
-           how the distribution shows no abnormal fluctuations across
-           pipelines.}\label{fig:namd_logs}
-\end{figure}
+% \begin{figure}[!htbp]
+%   \centering
+%   %\begin{minipage}[b]{0.6\textwidth}
+%   \begin{minipage}[b]{0.55\textwidth}
+%   \centering
+%   %\includegraphics[width=\textwidth, height=35mm]{FIGURES/entk_overview.pdf}
+% %  \includegraphics[width=\textwidth, height=40mm]{FIGURES/entk_overview.pdf}
+%   \end{minipage}
+%   %\begin{minipage}[b]{0.39\textwidth}
+%   \begin{minipage}[b]{0.44\textwidth}
+%   \centering
+% %  \includegraphics[width=\textwidth, height=35mm]{FIGURES/md_general.pdf}
+% %  \includegraphics[width=\textwidth, height=40mm]{FIGURES/md_general.pdf}
+%   \end{minipage}
+%   \caption{Overview of time-to-execution (Tx) of each pipeline at the
+%            longest simulation duration as measured by NAMD log files,
+%            showing how the distribution shows no abnormal fluctuations
+%            across pipelines.}\label{fig:namd_logs}
+% \end{figure}
 
 \begin{figure}[!htbp]
   \begin{minipage}[b]{0.49\textwidth}
