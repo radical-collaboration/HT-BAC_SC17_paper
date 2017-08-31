@@ -90,10 +90,7 @@ the setup for Experiment 1 and 2. Currently, the ESMACS protocol is executed
 with up to 25 concurrent pipelines. This number is suboptimal as pipelines
 are independent and therefore their concurrent execution does not entail
 communication overhead. Further, the system simulated can benefit for
-concurrency because \mtnote{Please explain why the more concurrent pipelines
-the better. Apologies, I do not know enough to write it myself}.
-Consistently, our experiments push the boundaries of current scale by
-executing 8, 16, 32, 64 and 128 concurrent pipelines.
+concurrency because potential HTBAC users could benefit from running additional replicas beyond the current scale of ESMACS. Consistently, our experiments push the boundaries of current scale by executing 8, 16, 32, 64 and 128 concurrent pipelines.
 
 % requires The amount of replicas required by has an upper-bound of 25
 % replicas yet we extend the number replicas to 128 in order to show higher
@@ -127,6 +124,8 @@ cores to run at least one task from each concurrent pipeline. Alternatively,
 at every point in time, there are enough cores so that pipelines do not
 compete for the same core.}
 
+At every point in runtime, there are enough cores so that pipelines do not compete for the same core and hence allows consecutive stages to be able to start without delay due to a lack of resources. 
+
 \mtnote{I would represent the following with a table. Please feel free to
 change it back if you disagree. ``For example, in the ESMACS protocol, the
 simulation task specifies 8 cores per pipeline, therefore the pilot size is
@@ -142,14 +141,14 @@ All the experiments use Ensemble Toolkit version 0.4.7 and RADICAL-Pilot
 version 0.42. In the MD workload of the HTBAC workflow, the simulation tasks
 are executed using NAMD-MPI\@. The equilibration % stages 
 tasks of stage 4 and 6 are assigned 5000 timesteps while the task of stage 5
-requires 55000 timesteps.
+requires 55000 timesteps. We ran both the null and MD workload for two trials at each pipeline configurations. 
 
 % ---------------------------------------------------------------------------
 \subsubsection{Results}
 
-We perform weak scalability characterization of HTBAC for both null workload
-and NAMD workload by measuring the overhead introduced by RP and the total
-time to completion (TTC).
+First we characterize the overhead of RADICAL-Pilot and EnTK in the null workload, where we isolate any overhead introduced by the application. We see a steady increase in the RP and EnTK overheads as we grow the number of pipelines. Note that the RP overhead also captures the overhead introduced by the Blue Waters file system, network communication, time to stage the units and communication to the database. As we introduce the use-case workload we show that the RP overhead becomes insignificant to the total execution time (TTX) where we measure TTX as the time-to-completion (TTC) without queueing times. In both payloads, the RP and EnTK overheads showed an invariance to the type of payload. 
+
+Moreover we validate the concurrency in the execution of tasks based on the performance of weak scaling in the use-case workload where the execution time (TTX) behaves similary as the pipeline configuration is increased. 
 
 % The RP overhead demonstrates the core overhead which is the
 % time-to-completion (TTC) as measured by RADICAL Pilot as well as the Blue
@@ -172,12 +171,10 @@ time to completion (TTC).
   \end{minipage}
   \caption{\textbf{Top:} Weak scaling of HTBAC using null workload. We
           observe similar behavior at each configuration in the simulation
-          execution time showing that the RADICAL-Pilot is invariant to the
+          execution time showing that the EnTK is invariant to the
           workload and a steady increase in the RP overhead due to the
           increase in the number of stages. \textbf{Bottom:} Weak scaling of
-          HTBAC using NAMD workload. We observe higher simulation execution
-          times than the null workload yet similar behavior in all NAMD
-          configurations.}\label{fig:htbac_perf}
+          HTBAC using use-case workload. We observe higher time-to-completions for each  than the null workload yet similar performance across pipelines indicating optimal weak scaling characterization.}\label{fig:htbac_perf}
 \end{figure}
 
 
@@ -232,7 +229,7 @@ logs indicate a mean and variance as\ldots
 %sim1.conf: NPT, 300k, no constraints
 
 
-Need system verification of timestamps (errors) 
+%Need system verification of timestamps (errors) 
 
 
 
