@@ -90,7 +90,10 @@ the setup for Experiment 1 and 2. Currently, the ESMACS protocol is executed
 with up to 25 concurrent pipelines. This number is suboptimal as pipelines
 are independent and therefore their concurrent execution does not entail
 communication overhead. Further, the system simulated can benefit for
-concurrency because potential HTBAC users could benefit from running additional replicas beyond the current scale of ESMACS. Consistently, our experiments push the boundaries of current scale by executing 8, 16, 32, 64 and 128 concurrent pipelines.
+concurrency because potential HTBAC users could benefit from running
+additional replicas beyond the current scale of ESMACS\@. Consistently, our
+experiments push the boundaries of current scale by executing 8, 16, 32, 64
+and 128 concurrent pipelines.
 
 % requires The amount of replicas required by has an upper-bound of 25
 % replicas yet we extend the number replicas to 128 in order to show higher
@@ -119,17 +122,18 @@ depending on the task requirements.
 \mtnote{The following needs discussion: ``The size of the workload is varied
 in proportion to the amount of resources such that all tasks are concurrently
 executed at all times.'' I believe this is not necessary true: we do not
-execute all the tasks concurrently all the time but we always get enough cores
-to run at least one task from each concurrent pipeline. Alternatively, at
-every point in time, there are enough cores so that pipelines do not compete
-for the same core.}\jhanote{I agree we do not run all the tasks concurrently.}
+execute all the tasks concurrently all the time but we always get enough
+cores to run at least one task from each concurrent pipeline. Alternatively,
+at every point in time, there are enough cores so that pipelines do not
+compete for the same core.}\jhanote{I agree we do not run all the tasks
+concurrently.}
 
 At every point in runtime, there are enough cores so that pipelines do not compete for the same core and hence allows consecutive stages to be able to start without delay due to a lack of resources. 
 
 \mtnote{I would represent the following with a table. Please feel free to
 change it back if you disagree. ``For example, in the ESMACS protocol, the
 simulation task specifies 8 cores per pipeline, therefore the pilot size is
-defined as 8 \(\times\) number of pipelines. We vary the number of pipelines
+defined as 8 \(\times \) number of pipelines. We vary the number of pipelines
 to characterize weak scaling performance where the tasks are scheduled
 concurrently.''}
 
