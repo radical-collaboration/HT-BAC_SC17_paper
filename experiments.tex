@@ -12,7 +12,7 @@ workflow.
 % ---------------------------------------------------------------------------
 \subsubsection{Experiment Design}
 
-We designed two experiments to measure HTBACK and EnTK weak scalability when
+We designed two experiments to measure HTBAC and EnTK weak scalability when
 executing an increasing number of concurrent pipelines. According to the use
 case described in Section~\ref{sec:ht-bac}, each pipeline consists of seven
 stages, each stage with a single task. EnTK manages the queuing of the tasks
@@ -28,6 +28,7 @@ using weak scalability to to show % demonstrate
 that EnTK % RP 
 can schedule tasks concurrently, provided that sufficient resources are
 available.''}\jhanote{+1}
+
 
 Experiment 1 measures the baseline behavior of EnTK with the HTBAC workflow
 and a null payload (\textmd{/bin/sleep 0}). The goal is to isolate the
@@ -89,9 +90,9 @@ Table~\ref{tab:exp}\mtnote{to be done if we agree it would be useful} shows
 the setup for Experiment 1 and 2. Currently, the ESMACS protocol is executed
 with up to 25 concurrent pipelines. This number is suboptimal as pipelines
 are independent and therefore their concurrent execution does not entail
-communication overhead. Further, the system simulated can benefit for
-concurrency because potential HTBAC users could benefit from running
-additional replicas beyond the current scale of ESMACS\@. Consistently, our
+communication overhead. Further, the system simulated can benefit from
+concurrency because potential HTBAC users may require their use-case protocols extend 
+the number of replicas beyond the current scale of ESMACS\@. Consistently, our
 experiments push the boundaries of current scale by executing 8, 16, 32, 64
 and 128 concurrent pipelines.
 
@@ -119,6 +120,8 @@ We
 use either 1 or 8 cores per task % replica, 
 depending on the task requirements.
 
+
+
 \mtnote{The following needs discussion: ``The size of the workload is varied
 in proportion to the amount of resources such that all tasks are concurrently
 executed at all times.'' I believe this is not necessary true: we do not
@@ -128,7 +131,7 @@ at every point in time, there are enough cores so that pipelines do not
 compete for the same core.}\jhanote{I agree we do not run all the tasks
 concurrently.}
 
-At every point in runtime, there are enough cores so that pipelines do not compete for the same core and hence allows consecutive stages to be able to start without delay due to a lack of resources. 
+\jdnote{in reference to above: This is not the case, we've determined that pipelines are indeed competing for resources because we have a round robin scheduler not the first-in-first-out scheduler. Therefore I'm amending this section: As we increase the number of pipelines, we increase the amount of resources by the same proportion for a given workload.}
 
 \mtnote{I would represent the following with a table. Please feel free to
 change it back if you disagree. ``For example, in the ESMACS protocol, the
