@@ -1,19 +1,19 @@
-Cancer is recognized as a major public health problem throughout the world
-and is the second most common cause of death in the United
-States~\cite{Siegel2016}. In recent years, chemotherapy based on targeted
-kinase inhibitors (TKIs) has played an increasingly prominent role in the
-treatment of cancer. The design of TKIs was inspired by modern genetic
-understanding of DNA, the cell cycle, and molecular signaling pathways.
+% Cancer is recognized as a major public health problem throughout the world
+% and is the second most common cause of death in the United
+% States~\cite{Siegel2016}. 
 
-TKIs have been developed to selectively inhibit kinases involved in the
-signaling pathways that control growth and proliferation, which often become
-dysregulated in cancers. This targeting of specific cancers reduces the risk
-of damage to healthy cells and increases treatment success. Currently, 35
-FDA-approved small molecule TKIs are in clinical use, and for the past
-decade, they have represented a significant fraction of the \$37 billion U.S.
-market for oncology drugs~\cite{FDA, Zhao2014}. Imatinib, the first of these
-of drugs, is partially credited for doubling survivorship rates in certain
-cancers~\cite{Zhao2014, ACSreport}. 
+In recent years, chemotherapy based on targeted kinase inhibitors (TKIs) has
+played an increasingly prominent role in the treatment of cancer. The design
+of TKIs was inspired by modern genetic understanding of DNA, the cell cycle,
+and molecular signaling pathways. TKIs have been developed to selectively
+inhibit kinases involved in the signaling pathways that control growth and
+proliferation, which often become dysregulated in cancers. This targeting of
+specific cancers reduces the risk of damage to healthy cells and increases
+treatment success. Currently, 35 FDA-approved small molecule TKIs are in
+clinical use, and for the past decade, they have represented a significant
+fraction of the \$37 billion U.S. market for oncology drugs~\cite{FDA,
+Zhao2014}. Imatinib, the first of these of drugs, is partially credited for
+doubling survivorship rates in certain cancers~\cite{Zhao2014, ACSreport}.
 
 Unfortunately, the development of resistance to these drugs limits the amount
 of time that patients can derive benefits from their treatment. Resistance to
@@ -58,33 +58,38 @@ individual patient tumors by using catalog-building alone.
 
 Fortunately, concurrent improvements in computational power and algorithm
 design are enabling the use of molecular simulations to reliably quantify
-differences in binding strength.
-% Fortunately, concurrent improvements in computational power and algorithm
-% design mean that reliably quantifying differences in binding strength from
-% molecular simulation is now becoming a genuine possibility.
-This provides the opportunity to use automated simulation workflows to
-supplement existing inductive (`Baconian') decision support systems with
-deductive (`Popperian') predictive modeling and drug
-ranking~\cite{Marias2011, Sloot2009}. Where existing systems based on
-statistical inference are inherently limited in their range of applicability
-by the existence of data from previous similar cases, the addition of
-modeling allows evidence based decision making even in the absence of direct
-past experience.
+differences in binding strength. This provides the opportunity to use advances
+in molecular simulations to supplement existing inductive decision support
+systems with deductive predictive modeling and drug ranking~\cite{Marias2011,
+Sloot2009}. Where existing systems based on statistical inference are
+inherently limited in their range of applicability by the existence of data
+from previous similar cases, the addition of modeling allows evidence based
+decision making even in the absence of direct past experience.
+
+% This provides the opportunity to use automated simulation workflows to
+% supplement existing inductive (`Baconian') decision support systems with
+% deductive (`Popperian') predictive modeling and drug
+% ranking~\cite{Marias2011, Sloot2009}. Where existing systems based on
+% statistical inference are inherently limited in their range of applicability
+% by the existence of data from previous similar cases, the addition of
+% modeling allows evidence based decision making even in the absence of direct
+% past experience.
 
 The same molecular simulation technologies that can be employed to
 investigate the origins of drug resistance can also be used to design new
-therapeutics. Creating simulation protocols which meet the varying demands of
-different applications and produce
+therapeutics. Creating simulation protocols which 
+% meet the varying demands of different applications and 
+have well defined uncertainty and produce
 % (such as the rapid turn around times needed for clinical decision support)
 % whilst obtaining
 statistically meaningful results represents a significant
 computational challenge. Furthermore, it is highly likely that differences
 among % the varied 
 investigated systems % which might be investigated 
-will demand to deploy different
-strategies as studies progress. For example, % in 
+will demand different protocols
+as studies progress. For example, % in 
 drug design programmes % it is usual to need 
-often require to rapidly screen thousands of candidate compounds to filter
+often require the rapid screening of thousands of candidate compounds to filter
 out the worst binders before using more sensitive methods 
 % are required when refining 
 to refine the structure. Not all changes induced in proteins shape or
@@ -100,7 +105,10 @@ inform later stages of the drug discovery pipeline, in which much more subtle
 alterations are involved, it is likely a much larger number of simulations
 will be required. This is before we begin to consider the influence of
 mutations or the selectivity of drugs to the more than five hundred different
-genes in the human kinome~\cite{Li2016}. Tackling these grand challenges by
+genes in the human kinome~\cite{Li2016}.
+
+
+Tackling these grand challenges by
 using molecular simulation is likely to require studies executing thousands
 of concurrent, compute intensive runs. In order to contemplate such a
 programme of work, it is necessary to have computational tools that
