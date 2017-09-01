@@ -24,7 +24,7 @@ a set of pipelines in EnTK, where each pipeline contains functions that operate
 on a given replica. EnTK interprets these replicas as independent pipelines. 
 Each pipeline consists of multiple stages representing a well-defined execution 
 order; each stage can contain heterogeneous workloads. Although each stage of a 
-pipeline depends on its predecessor, the pipelines execute independent of each 
+pipeline depends on its predecessor, the pipelines execute independently of each 
 other. The pattern within pipelines are identical and describes an ensemble of replica
 simulations as shown in Fig~\ref{figure:ESMACS-pipelines}.
 
@@ -82,8 +82,10 @@ placeholders to begin execution.
   \caption{\bf Integration between HTBAC workflow and EnTK\@. Numbers
   indicate the temporal sequence of execution. RADICAL-Pilot (RP) database
   (DB) can be deployed on any host reachable from the
-  resources.}\label{figure:ht-bac_rp}
+  resources.\dwwnote{I think CU needs to be defined here}}\label{figure:ht-bac_rp}
 \end{figure}
+
+
 
 %\begin{figure}[ht]
 %\centering
