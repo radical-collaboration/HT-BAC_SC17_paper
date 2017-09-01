@@ -20,25 +20,18 @@ in accordance with the order and concurrency mandated by stages and
 pipelines: For each pipeline, each stage is executed sequentially while
 pipelines are executed concurrently.
 
-\mtnote{PLease note: I converted the following paragraph eliminating
-references to RP\@. This is consistent with out decision of not showing RP
-overheads. The paragraph can be reused if we change our mind. ``
-We validate the performance of EnTK % the runtime system, RADICAL-Pilot, 
-using weak scalability to to show % demonstrate 
-that EnTK % RP 
-can schedule tasks concurrently, provided that sufficient resources are
-available.''}\jhanote{+1}
+%\mtnote{PLease note: I converted the following paragraph eliminating references to RP\@. This is consistent with out decision of not showing RP overheads. The paragraph can be reused if we change our mind. `` We validate the performance of EnTK % the runtime system, RADICAL-Pilot, using weak scalability to to show % demonstrate that EnTK % RP can schedule tasks concurrently, provided that sufficient resources areavailable.''}\jhanote{+1}
 
 
 Experiment 1 measures the baseline behavior of EnTK with the HTBAC workflow
-and a null payload (\textmd{/bin/sleep 0}). The goal is to isolate the
+and a null workload (\textmd{/bin/sleep 0}). The goal is to isolate the
 overheads of EnTK from the specifics of: (1) the executables of the HTBAC
 workflow; (2) the runtime used to execute the workflow on the HPC resources;
 and (3) the overheads of the resources. The null workload does not require
 data staging, I/O on both memory and disk, or communication over network.
 
 Experiment 2 replicates the design of Experiment 1 but it executes the HTBAC
-workflow with the use case payload. The comparison between the two
+workflow with the use-case workload. The comparison between the two
 experiments enables performance analysis of EnTK to understand whether and
 how the size of the executed workflow affects its overheads. Further,
 Experiment 2 shows also whether HTBAC is sensitive to the number of
@@ -55,7 +48,7 @@ that the ratio between the number of pipelines and cores is kept constant by
 design. While an investigation of strong scalability would contribute to a
 better understanding of the behavior of both HTBAC and EnTK, it is of limited
 interest for the current use case. The driving goal of HTBAC is to increase
-throughput by means of concurrency, not of number of sequential execution per
+throughput by a means of concurrency, not in the number of sequential execution per
 core. This is one of the reasons because our project targets large HPC
 machines instead of so-called HTC infrastructures.
 
@@ -86,63 +79,34 @@ HPC resources, Blue Waters does not allow for executing applications on the
 login node of the cluster. To this end, RCTs support \textmd{gsissh} for X509
 authentication and authorization.
 
-Table~\ref{tab:exp}\mtnote{to be done if we agree it would be useful} shows
-the setup for Experiment 1 and 2. Currently, the ESMACS protocol is executed
-with up to 25 concurrent pipelines. This number is suboptimal as pipelines
-are independent and therefore their concurrent execution does not entail
+Table~\ref{tab:exp} shows the setup for Experiment 1 and 2. Currently, the ESMACS protocol is executed with up to 25 concurrent pipelines. This number is suboptimal as pipelines are independent and therefore their concurrent execution does not entail
 communication overhead. Further, the system simulated can benefit from
-concurrency because potential HTBAC users may require their use-case protocols extend 
-the number of replicas beyond the current scale of ESMACS\@. Consistently, our
-experiments push the boundaries of current scale by executing 8, 16, 32, 64
-and 128 concurrent pipelines.
+concurrency because potential HTBAC users may wish to extend their protocols beyond the current scale of ESMACS\@. Consistently, our experiments push the boundaries of current scale by executing 8, 16, 32, 64 and 128 concurrent pipelines.
 
 % requires The amount of replicas required by has an upper-bound of 25
 % replicas yet we extend the number replicas to 128 in order to show higher
 % scalability with a greater degree of confidence for the potential HTBAC
 % user.
 
-EnTK uses RADICAL-Pilot to acquire resources via a single pilot. 
-% In the pilot description of EnTK, 
+EnTK uses RADICAL-Pilot to acquire resources via a single pilot.  
 The size of the pilot is contingent upon characterization of performance, in
-this case, weak % or strong scaling
-scalability. % In the event of weak scaling we 
-Accordingly, we % provide 
-use the same number of cores in a pilot % the pilot size description 
-as % the number of cores 
-those required by the workload. 
+this case, weak scalability. Accordingly, we use the same number of cores in a pilot 
+as those required by the workload. 
 % The number of cores is varied 
 We use between 64 and 1024 cores in both Experiment 1 and 2, and we always
-keep the number of simulations % is kept 
-equal to the number of cores. % at all times. 
-We 
-% range the number of concurrent replicas % ranged
-% from 8 to 128, % running concurrently using 
-use either 1 or 8 cores per task % replica, 
+keep the number of simulations equal to the number of cores. % at all times. 
+We use either 1 or 8 cores per task % replica, 
 depending on the task requirements.
 
 
+%\mtnote{The following needs discussion: ``The size of the workload is varied in proportion to the amount of resources such that all tasks are concurrently executed at all times.'' I believe this is not necessary true: we do not execute all the tasks concurrently all the time but we always get enough cores to run at least one task from each concurrent pipeline. Alternatively, at every point in time, there are enough cores so that pipelines do not compete for the same core.}\jhanote{I agree we do not run all the tasks concurrently.}
 
-\mtnote{The following needs discussion: ``The size of the workload is varied
-in proportion to the amount of resources such that all tasks are concurrently
-executed at all times.'' I believe this is not necessary true: we do not
-execute all the tasks concurrently all the time but we always get enough
-cores to run at least one task from each concurrent pipeline. Alternatively,
-at every point in time, there are enough cores so that pipelines do not
-compete for the same core.}\jhanote{I agree we do not run all the tasks
-concurrently.}
-
-\jdnote{in reference to above: This is not the case, we've determined that pipelines are indeed competing for resources because we have a round robin scheduler not the first-in-first-out scheduler. Therefore I'm amending this section: As we increase the number of pipelines, we increase the amount of resources by the same proportion for a given workload.}
-
-\mtnote{I would represent the following with a table. Please feel free to
-change it back if you disagree. ``For example, in the ESMACS protocol, the
-simulation task specifies 8 cores per pipeline, therefore the pilot size is
-defined as 8 \(\times \) number of pipelines. We vary the number of pipelines
-to characterize weak scaling performance where the tasks are scheduled
-concurrently.''}
+%\mtnote{I would represent the following with a table. Please feel free to change it back if you disagree. ``For example, in the ESMACS protocol, the simulation task specifies 8 cores per pipeline, therefore the pilot size is defined as 8 \(\times \) number of pipelines. We vary the number of pipelines to characterize weak scaling performance where the tasks are scheduled concurrently.''}
 
 \begin{table*}[t]
 \centering
-\caption{Experiment Setup}\label{tab:exp}
+\caption{\bf Experiment 1 executes all 7 stages with the null workload, Experiment 2 uses the actual workload}
+\label{tab:exp}
 \begin{tabular}{llllll}
 \hline
 \multicolumn{1}{l|}{Experiment ID \& Description} & \multicolumn{1}{l|}{Trials} & \multicolumn{1}{l|}{Pipelines} & \multicolumn{1}{l}{Stages} & \multicolumn{1}{l|}{Tasks} & \multicolumn{1}{l}{Total Number of Cores} \\ \hline
@@ -151,10 +115,7 @@ concurrently.''}
 \end{tabular}
 \end{table*}
 
-\mtnote{The following should probably moved to the next subsection, when
-discussing the results of the experiments: ``For each of these
-configurations, the simulation execution time is observed to be constant.''}
-\jhanote{yes}
+%\mtnote{The following should probably moved to the next subsection, when discussing the results of the experiments: ``For each of these configurations, the simulation execution time is observed to be constant.''} \jhanote{yes}
 
 All the experiments use Ensemble Toolkit version 0.4.7 and RADICAL-Pilot
 version 0.42. In the MD workload of the HTBAC workflow, the simulation tasks
@@ -179,7 +140,7 @@ on a shared workstation like the one used for our experiments.
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{FIGURES/null_workload_overheads.pdf}
-  \caption{.}\label{fig:exp1}
+  \caption{Results of HTBAC using null workload to show the base RP/EnTK overhead without the application workload across two trials per pipeline configuration.}\label{fig:exp1}
 \end{figure}
 
 % Weak scaling of HTBAC using null workload. We observe similar behavior at
@@ -202,7 +163,7 @@ factors introduce delays in the scheduling of the CUs.
 % overhead introduced by the Blue Waters file system, network communication,
 % time to stage the units and communication to the database.
 
-As we introduce the use-case NAMD and accessory payload
+As we introduce the use-case NAMD and accessory workload
 (Figure~\ref{fig:exp1}), we show that the RP overhead becomes
 % insignificant 
 on average less than 10\% of the average total execution time (TTX), defined 
@@ -218,7 +179,7 @@ translated to CU descriptions.
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{FIGURES/namd_workload_overheads.pdf}
-  \caption{.}\label{fig:exp2}
+  \caption{Introducing the use-case workload, we observe the similar RP/EnTK overhead behavior as the null workload with higher values as the number of pipelines increases. Across pipeline configurations, TTX shows a correct trend in weak scaling performance.}\label{fig:exp2}
 \end{figure}
 
 % Weak scaling of HTBAC using use-case payload. We observe higher
@@ -227,7 +188,7 @@ translated to CU descriptions.
 % characterization
 
 Experiments 1 and 2 show how the overheads of both EnTK and RP tend to be
-invariant across type of payload executed. Their scaling behavior and, to
+invariant across type of workload executed. Their scaling behavior and, to
 some approximation, their absolute values are comparable between
 Figure~\ref{fig:exp1} and~\ref{fig:exp2}. This is relevant because it shows
 that the systems used to coordinate and execute the ESMACS protocol add a
