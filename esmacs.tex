@@ -32,9 +32,9 @@ the variance (hence also uncertainty) of the results.
 % ---------------------------------------------------------------------------
 % \subsubsection*{ESMACS}
 
-We designed two free energy calculation protocols with the demands of
-clinical decision support and drug design applications in mind: ESMACS
-(enhanced sampling of molecular dynamics with approximation of continuum
+We designed two free energy calculation protocols with the demands of clinical
+decision support and drug design applications in mind: ESMACS (enhanced
+sampling of molecular dynamics with approximation of continuum
 solvent)~\cite{Wan2017brd4} and TIES (thermodynamic integration with enhanced
 sampling)~\cite{Bhati2017}. The former protocol is based on variants of the
 molecular mechanics Poisson-Boltzmann surface area (MMPBSA) end-point method,
@@ -45,10 +45,8 @@ ability to run replica simulations concurrently means that, as long as
 sufficient compute resources are available, turn around times can be
 significantly reduced compared to the generation of single long trajectories.
 The common philosophy behind the two protocols entails similar middleware
-requirements: % consequently 
-In this work we focus on the ESMACS protocol but all results are applicable
-% to both.
-also to TIES.
+requirements: In this work we focus on the ESMACS protocol but all results are
+applicable also to TIES.
 
 Each replica within the ESMACS protocol consists of a series of simulation
 steps followed by post production analysis. Generally, an ESMACS replica will
@@ -89,15 +87,25 @@ motivation to deploy the protocol via flexible and scalable middleware.
 % ---------------------------------------------------------------------------
 \subsection{Benchmark kinase system}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.60\columnwidth]{FIGURES/egfr.png}
+  \caption{Cartoon representation of the EGFR kinase bound to the inhibitor
+  AEE788 shown in chemical representation (based on PDB:2J6M). Two residues
+  implicated in modulating drug efficacy are highlights; in pink T790 and in
+  orange L858. Mutations to either of these residues significantly alter the
+  sensitivity to TKIs.}\label{fig:egfr}
+\end{figure}
+
+
 A common target of kinase inhibitors is the epidermal growth factor receptor
 (EGFR) which regulates important cellular processes including proliferation,
-differentiation and apoptosis. EGFR is frequently over expressed in a range
-of cancers, and is associated with disease progression and treatment.
-Clinical studies have shown that EGFR mutations confer tumor sensitivity to
-tyrosine kinase inhibitors in patients with non-small-cell lung cancer
-(examples shown in Figure~\ref{fig:egfr})\mtnote{Do we have this figure?}.
-The tyrosine kinase domain of EGFR contains 288 residues, the full simulation
-system including solvent and the AEE788 inhibitor contains approximately 50
-thousand atoms. The well established AMBER ff99SBildn and GAFF force
-fields~\cite{Maier2015, Wang2004} were used to parameterize the system for
-this work.
+differentiation and apoptosis. EGFR is frequently over expressed in a range of
+cancers, and is associated with disease progression and treatment. Clinical
+studies have shown that EGFR mutations confer tumor sensitivity to tyrosine
+kinase inhibitors in patients with non-small-cell lung cancer (examples shown
+in Figure~\ref{fig:egfr}) The tyrosine kinase domain of EGFR contains 288
+residues, the full simulation system including solvent and the AEE788
+inhibitor contains approximately 50 thousand atoms. The well established AMBER
+ff99SBildn and GAFF force fields~\cite{Maier2015, Wang2004} were used to
+parameterize the system for this work.
