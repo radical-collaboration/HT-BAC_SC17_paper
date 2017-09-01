@@ -1,18 +1,21 @@
 \mtnote{Should we open with a paragraph so to avoid to start the section with
 a subsection?}
 
+In this Section we discuss the advantages to ensemble based approach to
+binding affinity calculations and the ESMACS protocol used to compute them.
+
 % ---------------------------------------------------------------------------
 \subsection{Ensemble Molecular Dynamics Simulations}
 
 The strength of drug binding is determined by a thermodynamic property known
-as the binding free energy (or binding affinity). One promising technology
-for estimating binding free energies and the influence of protein composition
-on them is molecular dynamics (MD). Atomistically detailed models of the drug
-and target protein can be used as the starting point for MD simulations to
-study the influence of mutations on drug binding. The chemistry of the system
-is encoded in what is known as a potential~\cite{Karplus2002}. In the
-parameterization of the models, each atom is assigned a mass and a charge,
-with the chemical bonds between them modeled as springs with varying
+as the binding free energy (or binding affinity). One promising technology for
+estimating binding free energies and the influence of protein composition on
+them is molecular dynamics (MD)~\cite{Karplus2005}. Atomistically detailed
+models of the drug and target protein can be used as the starting point for MD
+simulations to study the influence of mutations on drug binding. The chemistry
+of the system is encoded in what is known as a potential~\cite{Karplus2002}.
+In the parameterization of the models, each atom is assigned a mass and a
+charge, with the chemical bonds between them modeled as springs with varying
 stiffness. Using Newtonian mechanics the dynamics of the protein and drug can
 be followed and, using the principles of statistical mechanics, estimates of
 thermodynamic properties obtained from simulations of single particles.
