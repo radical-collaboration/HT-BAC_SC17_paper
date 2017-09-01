@@ -8,18 +8,24 @@ free energy and the residence time of a ligand. Using molecular simulation we
 can gain insights into both of these quantities, which can inform both
 stratified or personal treatment regimes and drug development. The level of
 sampling required to obtain accurate and reproducible binding affinities and
-kinetic information can only efficiently be obtained in a timely fashion
-through the use of ensembles of many simulations executed on HPC resources. In
-state of the art calculation techniques each simulation may, in fact, consist
-of a complex multi-stage workflow. The resulting trajectories reveal in atomic
-detail how interactions and protein behaviour change as a result of mutations,
-and account for the molecular basis of drug efficacy. There is a need to study
-a wide range of cancer drugs and candidate ligands in order to support
-personalised clinical decision making based on genome sequencing and drug
-discovery, using automated workflows underpinned by ensemble-based high
-performance computing methods running at unprecedented scales. To support such
-scalable and automated execution of workflows on leadership class resources,
-this paper introduces the High-throughput Binding Affinity Calculator (HTBAC).
+kinetic information often require the use of an ensemble of a complex multi-
+stage pipeline of simulations. The resulting trajectories reveal in atomic
+detail how interactions and protein behavior change as a result of mutations,
+and account for the molecular basis of drug efficacy. Further, there is a need
+to study a wide range of cancer drugs and candidate ligands in order to
+support personalized clinical decision making based on genome sequencing and
+drug discovery. To support the scalable, adaptive and automated calculation of
+the binding free energy on high-performance computing resources, we introduce
+the High-throughput Binding Affinity Calculator (HTBAC). HTBAC uses a building
+block approach to workflow systems in order to provide a trade-off between
+flexibility and performance. We demonstrate close to perfect weak scaling to
+hundreds of concurrent multi-stage pipelines. This permits the rapid time-to-
+solution that is essentially invariant of the calculation protocol, size of
+candidate ligands and number of ensemble simulations. As such, HTBAC advances
+the state of the art of binding affinity calculation methods and protocols.
+
+% using automated workflows underpinned by ensemble-based high performance
+% computing methods running at unprecedented scales.
 
 % HTBAC allows the investigation ....
 % ... HTBAC provides the ability to separate the "setting-up" (i.e., defining) of a
