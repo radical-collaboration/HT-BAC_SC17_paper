@@ -5,7 +5,7 @@ developing and executing workflows on HPC platforms.
 % ---------------------------------------------------------------------------
 \subsection{RADICAL-Cybertools}
 
-We discuss the RADICAL-Cybertools (RCT) software stack used support the
+We discuss the RADICAL-Cybertools (RCT) software stack used to support the
 flexible and scalable execution of pipelines and upon which HTBAC is built.
 RCT consists of three main components: Ensemble Toolkit
 (EnTK)~\cite{balasubramanian2016ensemble}, RADICAL-Pilot
@@ -14,14 +14,16 @@ provides the ability to create and execute ensemble-based
 workflows/applications with complex coordination and communication but
 without the need for explicit resource management. EnTK uses RP which
 provides resource management and task execution capabilities, and RP uses RS
-as an interoperability resource access interface. % layer.
+as an interoperable resource access  interface. % layer.
 
-RCT eschew the concept of a monolithic workflow systems in favor of a fresh
-perspective to workflows using ``building blocks''. RCT provide scalable
-implementations of building blocks in Python that are used to support dozens
-of scientific applications on high-performance and distributed systems. RCT
-has also been used extensively to support biomolecular sciences
-algorithms/methods, e.g., replica-exchange and adaptive sampling.
+RCT eschew the concept of a monolithic workflow systems and uses ``building
+blocks''. RCT provide scalable implementations of building blocks in Python
+that are used to support dozens of scientific applications on high-performance
+and distributed systems. 
+
+% RCT has also been used extensively to support
+% biomolecular sciences algorithms/methods, e.g., replica-exchange and adaptive
+% sampling.
 
 % ---------------------------------------------------------------------------
 % \subsubsection*{RADICAL-Pilot}\label{sec:pilot}
