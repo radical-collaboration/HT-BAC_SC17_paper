@@ -168,8 +168,9 @@ systems (Figure~\ref{fig:exp1}). We see a (slightly) superliner
 increase of EnTK overhead, between 0.1 and 1.8 seconds. This overhead depends
 on the number of tasks that need to be translated in-memory from a Python
 object to a compute unit (CU) description. As such, it is expected to grow
-proportionally to the number of tasks, barring some competition of resources
-on a shared workstation like the one used for our experiments.
+proportionally to the number of tasks, barring some competition of resources.
+
+% on a shared workstation like the one used for our experiments.
 
 \begin{figure}
   \centering
@@ -190,8 +191,8 @@ variance. This variance is due to mainly two factors: Network latency and
 filesystem latency on the HPC resource. EnTK submits CU descriptions to the
 MongoDB used by RP, and RP pilot pulls these descriptions from the same
 database. As described in Section~\ref{ssec:exp_setup}, this pull operation
-occurs between Germany and USA, introducing varying amount of latency.
-Further, RP pilot writes and reads the CU descriptions multiple time from to
+occurs over a wide area network, introducing varying amount of latency.
+Further, RP pilot writes and reads the CU descriptions multiple times to
 and from the shared filesystem of the HPC machine. Together, these two
 factors introduce delays in the scheduling of the CUs.
 
@@ -200,15 +201,14 @@ factors introduce delays in the scheduling of the CUs.
 % overhead introduced by the Blue Waters file system, network communication,
 % time to stage the units and communication to the database.
 
-As we introduce the use-case NAMD and supporting workload
-(Figure~\ref{fig:exp1}), we show that the RP overhead becomes
-% insignificant 
-on average less than 10\% of the average total execution time (TTX), defined 
-as \(TTX = TTC - T_q\) where \(TTC\) is time-to-completion and \(T_q\)
-% where we measure TTX as 
-is time spent queuing on the HPC machine. We notice the TTX scales weakly
+When the workload is the EGFR kinase, we see (Figure~\ref{fig:exp2}) that the RP
+overhead becomes on average less than 10\% of the average total execution time
+(TTX), defined as \(TTX = TTC - T_q\) where \(TTC\) is time-to-completion and
+\(T_q\)% where we measure TTX as 
+is time spent queuing on the HPC machine. We notice the TTX is essentially
+invariant 
 across pipelines of different size and that, when accounting for variance, RP
-overheads also shows weak scaling behavior. As expected, EnTK overhead
+overheads also shows linear weak scaling behavior. As expected, EnTK overhead
 remains superlinear and comparable to the one measured in Experiment 1. This
 is because in both experiments EnTK overhead depends on the number of tasks
 translated to CU descriptions.
