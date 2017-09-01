@@ -1,14 +1,23 @@
 \mtnote{Should we open with a paragraph so to avoid to start the section with
 a subsection?}
-
-% ---------------------------------------------------------------------------
-\subsection{Ensemble Molecular Dynamics Simulations}
+\dwwnote{Agreed - also attempted to define ensembles here in response to latter comment}
 
 The strength of drug binding is determined by a thermodynamic property known
 as the binding free energy (or binding affinity). One promising technology
 for estimating binding free energies and the influence of protein composition
-on them is molecular dynamics (MD). Atomistically detailed models of the drug
-and target protein can be used as the starting point for MD simulations to
+on them is molecular dynamics (MD). Our previous work \cite{Sadiq2010, Wan2011} has 
+demonstrated that running multiple MD simulations based on the same system and varying 
+only in initial velocities offers a highly efficient method of gaining accurate and 
+reproducible estimates of the binding affinity. We term this approach ensemble 
+molecular dynamics, ``ensemble'' here referring to the set of individual (replica) 
+simulations conducted for the same physical system. In this section we outline in detail 
+how this approach is employed in HTBAC.
+
+% ---------------------------------------------------------------------------
+\subsection{Ensemble Molecular Dynamics Simulations}
+
+Atomistically detailed models of the drug and target protein can be used as the 
+starting point for MD simulations to
 study the influence of mutations on drug binding. The chemistry of the system
 is encoded in what is known as a potential~\cite{Karplus2002}. In the
 parameterization of the models, each atom is assigned a mass and a charge,
