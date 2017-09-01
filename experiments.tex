@@ -79,29 +79,14 @@ HPC resources, Blue Waters does not allow for executing applications on the
 login node of the cluster. To this end, RCTs support \textmd{gsissh} for X509
 authentication and authorization.
 
-Table~\ref{tab:exp} shows the setup for Experiment 1 and 2. Currently, the ESMACS protocol is executed with up to 25 concurrent pipelines. This number is suboptimal as pipelines are independent and therefore their concurrent execution does not entail
-communication overhead. Further, the system simulated can benefit from
-concurrency because potential HTBAC users may wish to extend their protocols beyond the current scale of ESMACS\@. Consistently, our experiments push the boundaries of current scale by executing 8, 16, 32, 64 and 128 concurrent pipelines.
-
-% requires The amount of replicas required by has an upper-bound of 25
-% replicas yet we extend the number replicas to 128 in order to show higher
-% scalability with a greater degree of confidence for the potential HTBAC
-% user.
-
-EnTK uses RADICAL-Pilot to acquire resources via a single pilot.  
-The size of the pilot is contingent upon characterization of performance, in
-this case, weak scalability. Accordingly, we use the same number of cores in a pilot 
-as those required by the workload. 
-% The number of cores is varied 
-We use between 64 and 1024 cores in both Experiment 1 and 2, and we always
-keep the number of simulations equal to the number of cores. % at all times. 
-We use either 1 or 8 cores per task % replica, 
-depending on the task requirements.
-
-
-%\mtnote{The following needs discussion: ``The size of the workload is varied in proportion to the amount of resources such that all tasks are concurrently executed at all times.'' I believe this is not necessary true: we do not execute all the tasks concurrently all the time but we always get enough cores to run at least one task from each concurrent pipeline. Alternatively, at every point in time, there are enough cores so that pipelines do not compete for the same core.}\jhanote{I agree we do not run all the tasks concurrently.}
-
-%\mtnote{I would represent the following with a table. Please feel free to change it back if you disagree. ``For example, in the ESMACS protocol, the simulation task specifies 8 cores per pipeline, therefore the pilot size is defined as 8 \(\times \) number of pipelines. We vary the number of pipelines to characterize weak scaling performance where the tasks are scheduled concurrently.''}
+Table~\ref{tab:exp} shows the setup for Experiment 1 and 2. Currently, the
+ESMACS protocol is executed with up to 25 concurrent pipelines. This number
+is suboptimal as pipelines are independent and therefore their concurrent
+execution does not entail communication overhead. Further, the system
+simulated can benefit from concurrency because potential HTBAC users may wish
+to extend their protocols beyond the current scale of ESMACS\@. Consistently,
+our experiments push the boundaries of current scale by executing 8, 16, 32,
+64 and 128 concurrent pipelines.
 
 \begin{table*}[t]
 \centering
@@ -115,7 +100,42 @@ depending on the task requirements.
 \end{tabular}
 \end{table*}
 
-%\mtnote{The following should probably moved to the next subsection, when discussing the results of the experiments: ``For each of these configurations, the simulation execution time is observed to be constant.''} \jhanote{yes}
+
+% requires The amount of replicas required by has an upper-bound of 25
+% replicas yet we extend the number replicas to 128 in order to show higher
+% scalability with a greater degree of confidence for the potential HTBAC
+% user.
+
+EnTK uses RADICAL-Pilot to acquire resources via a single pilot. The size of
+the pilot is contingent upon characterization of performance, in this case,
+weak scalability. Accordingly, we use the same number of cores in a pilot as
+those required by the workload.% The number of cores is varied 
+We use between 64 and 1024 cores in both Experiment 1 and 2, and we always
+keep the number of simulations equal to the number of cores. % at all times. 
+We use either 1 or 8 cores per task % replica, 
+depending on the task requirements.
+
+% \mtnote{The following needs discussion: ``The size of the workload is
+% varied in proportion to the amount of resources such that all tasks are
+% concurrently executed at all times.'' I believe this is not necessary true:
+% we do not execute all the tasks concurrently all the time but we always get
+% enough cores to run at least one task from each concurrent pipeline.
+% Alternatively, at every point in time, there are enough cores so that
+% pipelines do not compete for the same core.}\jhanote{I agree we do not run
+% all the tasks concurrently.}
+
+% \mtnote{I would represent the following with a table. Please feel free to
+% change it back if you disagree. ``For example, in the ESMACS protocol, the
+% simulation task specifies 8 cores per pipeline, therefore the pilot size is
+% defined as 8 \(\times \) number of pipelines. We vary the number of
+% pipelines to characterize weak scaling performance where the tasks are
+% scheduled concurrently.''}
+
+% \mtnote{The following should probably moved to the next subsection, when
+% discussing the results of the experiments: ``For each of these
+% configurations, the simulation execution time is observed to be
+% constant.''}
+% \jhanote{yes}
 
 All the experiments use Ensemble Toolkit version 0.4.7 and RADICAL-Pilot
 version 0.42. In the MD workload of the HTBAC workflow, the simulation tasks
@@ -140,7 +160,10 @@ on a shared workstation like the one used for our experiments.
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{FIGURES/null_workload_overheads.pdf}
-  \caption{Results of HTBAC using null workload to show the base RP/EnTK overhead without the application workload across two trials per pipeline configuration.}\label{fig:exp1}
+  \caption{Overheads of Ensemble Toolkit (EnTK) and RADICAL-Pilot (RP) when
+           executing HTBAC using a null workload. We plot the baseline
+           EnTK/RP overheads without the application workload across two
+           trials per pipeline configuration.}\label{fig:exp1}
 \end{figure}
 
 % Weak scaling of HTBAC using null workload. We observe similar behavior at
@@ -163,7 +186,7 @@ factors introduce delays in the scheduling of the CUs.
 % overhead introduced by the Blue Waters file system, network communication,
 % time to stage the units and communication to the database.
 
-As we introduce the use-case NAMD and accessory workload
+As we introduce the use-case NAMD and supporting workload
 (Figure~\ref{fig:exp1}), we show that the RP overhead becomes
 % insignificant 
 on average less than 10\% of the average total execution time (TTX), defined 
@@ -179,7 +202,11 @@ translated to CU descriptions.
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{FIGURES/namd_workload_overheads.pdf}
-  \caption{Introducing the use-case workload, we observe the similar RP/EnTK overhead behavior as the null workload with higher values as the number of pipelines increases. Across pipeline configurations, TTX shows a correct trend in weak scaling performance.}\label{fig:exp2}
+  \caption{Introducing the use-case NAMD and supporting workload, we observe
+  similar EnTK/RP overhead behavior as with the null workload with higher
+  values as the number of pipelines increases. Across pipeline
+  configurations, TTX and RP overheads (accounting for the error bars) show % a correct trend in 
+  weak scaling performance.}\label{fig:exp2}
 \end{figure}
 
 % Weak scaling of HTBAC using use-case payload. We observe higher
