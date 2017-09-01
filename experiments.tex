@@ -150,7 +150,7 @@ variance. This variance is due to mainly two factors: Network latency and
 filesystem latency on the HPC resource. EnTK submits CU descriptions to the
 MongoDB used by RP, and the RP pilot pulls these descriptions from the same
 database. As described in Section~\ref{ssec:exp_setup}, this pull operation
-occurs over a wide area network, introducing varying amount of latency.
+occurs over a wide area network, introducing varying amounts of latency.
 Further, RP pilot writes and reads the CU descriptions multiple times to and
 from the shared filesystem of the HPC machine. Together, these two factors
 introduce delays in the scheduling of the CUs.
