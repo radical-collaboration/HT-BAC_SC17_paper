@@ -3,17 +3,19 @@
 % States~\cite{Siegel2016}. 
 
 In recent years, chemotherapy based on targeted kinase inhibitors (TKIs) has
-played an increasingly prominent role in the treatment of cancer. The design
-of TKIs was inspired by modern genetic understanding of DNA, the cell cycle,
-and molecular signaling pathways. TKIs have been developed to selectively
-inhibit kinases involved in the signaling pathways that control growth and
-proliferation, which often become dysregulated in cancers. This targeting of
-specific cancers reduces the risk of damage to healthy cells and increases
-treatment success. Currently, 35 FDA-approved small molecule TKIs are in
-clinical use, and for the past decade, they have represented a significant
-fraction of the \$37 billion U.S. market for oncology drugs~\cite{FDA,
-Zhao2014}. Imatinib, the first of these of drugs, is partially credited for
-doubling survivorship rates in certain cancers~\cite{Zhao2014, ACSreport}.
+played an increasingly prominent role in the treatment of cancer. 
+% The design
+% of TKIs was inspired by modern genetic understanding of DNA, the cell cycle,
+% and molecular signaling pathways. 
+TKIs have been developed to selectively inhibit kinases involved in the
+signaling pathways that control growth and proliferation, which often become
+dysregulated in cancers. This targeting of specific cancers reduces the risk
+of damage to healthy cells and increases treatment success. Currently, 
+35 FDA-approved small molecule TKIs are in clinical use, and they represent a
+significant fraction of the \$37 billion U.S. market for oncology
+drugs~\cite{FDA, Zhao2014}. Imatinib, the first of these of drugs, is
+partially credited for doubling survivorship rates in certain
+cancers~\cite{Zhao2014, ACSreport}.
 
 Unfortunately, the development of resistance to these drugs limits the amount
 of time that patients can derive benefits from their treatment. Resistance to
@@ -104,23 +106,24 @@ inhibitors of the ERK2 kinase. If we wish to build on such studies to help
 inform later stages of the drug discovery pipeline, in which much more subtle
 alterations are involved, it is likely a much larger number of simulations
 will be required. This is before we begin to consider the influence of
-mutations or the selectivity of drugs to the more than five hundred different
+mutations or the selectivity of drugs to the more than 500 different
 genes in the human kinome~\cite{Li2016}.
 
-For molecular simulations to make an impact, we will need to tackle the dual
-challenge of scale (thousands of concurrent multi-stage pipelines) and
-sophistication (adaptive selection of binding affinity calculation protocols
-based upon statistical errors and uncertainty). In order to contemplate such
-capabilities, it is necessary to have tools that facilitate the scalable and
-automated computation of varied binding free energy calculations on high-
-performance computing resources. To achieve that goal, we introduce the High-
-throughput Binding Affinity Calculator (HTBAC). HTBAC translates recent
-advances in building block to workflow systems to the application of rapid and
-accurate calculation of  binding affinities. We demonstrate how HTBAC scales
-almost perfectly to hundreds of concurrent pipelines of binding affinity
-calculations on a leadership class machine. This permits the rapid time-to-
-solution that is essentially invariant of the size of candidate ligands as
-well as the type and number of protocols concurrently employed.
+For molecular simulations to make the necessary impact, the dual challenge of
+scale (thousands of concurrent multi-stage pipelines) and sophistication
+(adaptive selection of binding affinity calculation protocols based upon
+statistical errors and uncertainty) will need to be tackled. 
+Thus, it is necessary to have tools that facilitate
+the scalable and automated computation of varied binding free energy
+calculations on high-performance computing resources. To achieve that goal,
+we introduce the High-throughput Binding Affinity Calculator (HTBAC). HTBAC
+translates recent advances in building block to workflow systems to the
+application of rapid and accurate calculation of  binding affinities. We
+demonstrate how HTBAC scales almost perfectly to hundreds of concurrent
+pipelines of binding affinity calculations on a leadership class machine. This
+permits the rapid time-to- solution that is essentially invariant of the size
+of candidate ligands as well as the type and number of protocols concurrently
+employed.
 
 In the next Section, we provide details of ensemble molecular dynamics
 approach and its advantages (i.e., greater accuracy) over single trajectory
