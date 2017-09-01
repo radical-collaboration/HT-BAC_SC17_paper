@@ -3,7 +3,7 @@
 Before embarking on a computational campaign that will consume 150M core
 hours on the NCSA Blue Waters machine, we study the scalability of HTBAC so
 as to determine optimal workflow sizing and resource utilization for the
-ESMAC protocol. The goal is twofold: (1) understanding the invariance of
+ESMACS protocol. The goal is twofold: (1) understanding the invariance of
 HTBAC execution time over the number of workflow pipelines executed; and (2)
 studying how the performance of EnTK and RP varies in relation to the size of
 workflow.
@@ -27,8 +27,8 @@ workload does not require data staging, I/O on both memory and disk, or
 communication over network.
 
 Experiment 2 replicates the design of Experiment 1 but it executes the
-workflow of the ESMAC protocol with the actual simulation and data EGFR
-kinase workload. The comparison between the two experiments enables
+workflow of the ESMACS protocol with the actual simulation and data for the
+EGFR kinase workload. The comparison between the two experiments enables
 performance analysis of EnTK and RP to understand whether and how the size of
 the executed workflow affects its overheads. Further, Experiment 2 shows also
 whether HTBAC execution time is sensitive to the number of concurrent
@@ -62,10 +62,10 @@ authentication and authorization.
 Table~\ref{tab:exp} shows the setup for Experiment 1 and 2. The ESMACS
 protocol is executed with up to 25 concurrent but independent pipelines and
 therefore their concurrent execution does not entail communication overhead.
-Further, the system simulated can benefit from concurrency because potential
-HTBAC users may wish to extend their protocols beyond the current scale of
-ESMACS\@. Consistently, our experiments push the boundaries of current scale
-by executing 8, 16, 32, 64 and 128 concurrent pipelines.
+Further, the EGFR kinase studies can benefit from greater concurrency because
+potential HTBAC users may wish to extend their protocols beyond the current
+scale of ESMACS\@. Consistently, our experiments push the boundaries of
+current scale by executing 8, 16, 32, 64 and 128 concurrent pipelines.
 
 \begin{table*}[t]
 \centering
@@ -109,22 +109,21 @@ EGFR kinase Workload        &
 \end{tabular}
 \end{table*}
 
-EnTK uses RP to acquire resources via a single pilot. The size of the pilot
-is contingent upon characterization of performance, in this case, weak
+EnTK uses RP to acquire resources via a single pilot. The size of the pilot is
+contingent upon characterization of performance, in this case, weak
 scalability. Accordingly, we request the maximum number of cores required by
 the workload as the number of cores in a pilot. We use between 64 and 1024
 cores in Experiment 2 as the NAMD executable used in stages 3, 4, 5, and 6
 requires 8 cores. Stages 1, 2 and 7 require instead 1 core. The null workload
 of Experiment 1 requires only 1 core per stage but we request the same number
 of cores as for Experiment 2 to be able to compare the overheads of both EnTK
-and RP across experiments.\jhanote{Following needs fixing before it can be
-reinserted: and we always keep the number of simulations equal to the number
-of cores.}\mtnote{Better?}
+and RP across experiments.
 
-All the experiments use EnTK version 0.4.7 and RP version 0.42. The MD engine
-used is NAMD-MPI\@. The equilibration tasks of stage 4 and 6 are assigned
-5000 timesteps while the task of stage 5 requires 55000 timesteps. We ran
-both the null and MD workload for two trials at each pipeline configurations.
+
+All experiments use EnTK version 0.4.7 and RP version 0.42. The MD engine used
+is NAMD-MPI\@. The equilibration tasks of stage 4 and 6 are assigned 5000
+timesteps while the task of stage 5 requires 55000 timesteps. We ran two
+trials of both the null and MD workload at each pipeline configurations.
 
 % ---------------------------------------------------------------------------
 \subsubsection{Results}\label{ssec:exp_results}
