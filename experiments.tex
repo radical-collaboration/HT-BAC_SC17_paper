@@ -102,10 +102,12 @@ configuration files; (2) Preprep; (3) Minimize with decreasing restraints;
 (4) Equilibration: NVT simulation at 50K, with restraints; (5) Equilibration:
 NPT simulation at 300K, with decreasing restraints; (6) Equilibration: NPT at
 300k, no constraints; (7) Tarball output files.}\label{tab:exp}
-\begin{tabular}{llllll}
+\begin{tabular}{lrrrrr}
 \hline
-\multicolumn{1}{l|}{Experiment ID \& Description} & \multicolumn{1}{l|}{Trials} & \multicolumn{1}{l|}{Pipelines} & \multicolumn{1}{l}{Stages} & \multicolumn{1}{l|}{Tasks} & \multicolumn{1}{l}{Total Number of Cores} \\ \hline
-1 (Null workload)                                           & 2                           & 8, 16, 32, 64, 128             & 7                           & 7                          & 64, 128, 256, 512, 1024                    \\ \hline
+%\multicolumn{1}{l|}{Experiment ID \& Description} & \multicolumn{1}{l|}{Trials} & \multicolumn{1}{l|}{Pipelines} & \multicolumn{1}{l}{Stages} & \multicolumn{1}{l|}{Tasks} & \multicolumn{1}{l}{Total Number of Cores} \\ \hline
+\multicolumn{1}{l}{\textbf{Experiment ID \& Description}} & \multicolumn{1}{r}{\textbf{Trials}} & \multicolumn{1}{c}{\textbf{Pipelines}} & \multicolumn{1}{r}{\textbf{Stages}} & \multicolumn{1}{r}{\textbf{Tasks}} & \multicolumn{1}{r}{\textbf{Total Number of Cores}} \\ 
+\hline
+1 (Null workload)                                           & 2                           & 8, 16, 32, 64, 128             & 7                           & 7                          & 64, 128, 256, 512, 1024                    \\ %\hline
 2 (NAMD and Supporting Workload)                                       & 2                           & 8, 16, 32, 64, 128             & 7                           & 7                          & 64, 128, 256, 512, 1024                    \\ \hline
 \end{tabular}
 \end{table*}
