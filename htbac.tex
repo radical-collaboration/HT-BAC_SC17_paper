@@ -1,27 +1,22 @@
-%\subsection{High throughput binding affinity calculator Workflow}
 
-%\jhanote{Generally not good style to have only 1 subsection in a section and best 
-%to eliminate subsection heading}
-
-% BAC uses the Ensemble Toolkit to create a high-throughput workflow which we
-% refer to as HTBAC. 
-
-HTBAC is a workflow system that uses RADICAL-Cybertools to implement ESMACS,
-and similar protocols such as TIES\@. These workflows consist of pipelines
-with stages comprised of heterogeneous tasks. For example equilibration and
-production, followed by post processing steps.
+HTBAC is a workflow system that uses RTC to implement ESMACS, and similar
+protocols such as TIES\@. These workflows consist of pipelines with stages
+comprised of heterogeneous tasks. For example, equilibration and production,
+followed by post processing steps.
 
 Although ESMACS and TIES methods are similar at a high-level, viz., they are
 comprised of concurrent, multi-stage pipelines with synchronization. The
 different protocols supported by HTBAC differ in the details of the
-pipelines, stages and synchronization~\cite{Bhati2017}.
+pipelines, stages and synchronization~\cite{Bhati2017}.\mtnote{I am not able
+to understand this paragraph so I am not able to propose an alternative. I
+believe it should be rewritten.}
 
-HTBAC uses the Ensemble Toolkit (EnTK) API to express these workflows.
-RADICAL-Cybertools provides advanced resource management capabilities and,
-thereby delivers the necessary high-throughput capabilities required. The
-framework is generic and can be simply expanded to run the ESMACS protocol.
-EnTK provides a common API, execution and programming model to these
-different methods, and thus will minimize development effort and complexity.
+HTBAC uses the EnTK API to express these workflows. RADICAL-Cybertools
+provides advanced resource management capabilities and, thereby delivers the
+necessary high-throughput capabilities required. The framework is generic and
+can be simply expanded to run the ESMACS protocol. EnTK provides a common
+API, execution and programming model to these different methods, and thus
+will minimize development effort and complexity.
 
 The Ensemble Toolkit API exposes four components (\textbf{Resource Handle},
 \textbf{Pipeline}, \textbf{Stage}, and \textbf{Task}) to the user which
@@ -35,7 +30,7 @@ a pipeline depends on its predecessor, the pipelines execute independent of
 each other. The pattern within pipelines are identical and describes a set of
 simulations as shown in Fig~\ref{figure:ESMACS-pipelines}.
 
-\begin{figure}[ht]
+\begin{figure}
 \centering
   \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_control_flow_only.pdf}
   \caption{ESMACS protocol indicating n-pipelines where each pipeline
@@ -78,12 +73,13 @@ pilot that submits placeholders to the queue. Once the pilot is activated,
 the RP-Agent submits the tasks in the form of compute units to the
 placeholders to begin execution.
 
-\begin{figure}[ht]
+\begin{figure}
 \centering
   \includegraphics[width=0.5\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
-  \caption{\bf Integration between HTBAC workflow and EnTK. Numbers indicate
-  the temporal sequence of execution. RADICAL-Pilot (RP) database (DB) can be
-  deployed on any host reachable from the resources.}\label{figure:ht-bac_rp}
+  \caption{\bf Integration between HTBAC workflow and EnTK\@. Numbers
+  indicate the temporal sequence of execution. RADICAL-Pilot (RP) database
+  (DB) can be deployed on any host reachable from the
+  resources.}\label{figure:ht-bac_rp}
 \end{figure}
 
 %\begin{figure}[ht]
