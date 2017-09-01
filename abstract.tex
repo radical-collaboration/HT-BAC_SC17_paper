@@ -1,45 +1,27 @@
 Resistance to chemotherapy and molecularly targeted therapies is a major
-factor in limiting the effectiveness of cancer therapies. In many cases
-resistance can be linked to genetic changes in target proteins, either 
-pre-existing or evolutionarily selected during treatment. Key to overcoming this
-challenge is the understanding of the molecular determinants of drug binding.
-The key physical parameters determining drug effectiveness are the binding
-free energy and the residence time of a ligand. Using molecular simulation we
-can gain insights into both of these quantities, which can inform both
-stratified or personal treatment regimes and drug development. The level of
-sampling required to obtain accurate and reproducible binding affinities and
-kinetic information often require the use of an ensemble of a complex multi-
-stage pipeline of simulations. The resulting trajectories reveal in atomic
-detail how interactions and protein behavior change as a result of mutations,
-and account for the molecular basis of drug efficacy. Further, there is a need
-to study a wide range of cancer drugs and candidate ligands in order to
-support personalized clinical decision making based on genome sequencing and
-drug discovery. To support the scalable, adaptive and automated calculation of
-the binding free energy on high-performance computing resources, we introduce
-the High-throughput Binding Affinity Calculator (HTBAC). HTBAC uses a building
+factor in limiting the effectiveness of cancer therapies. In many cases,
+resistance can be linked to genetic changes in target proteins, either
+pre-existing or evolutionarily selected during treatment. Key to overcoming
+this challenge is the understanding of the molecular determinants of drug
+binding. Using multi-stage pipelines of molecular simulations we can gain
+insights into the binding free energy and the residence time of a ligand,
+which can inform both stratified and personal treatment regimes and drug
+development.
+% The level of sampling required to obtain accurate and reproducible binding
+% affinities and kinetic information often require the use of an ensemble of
+% a complex multi-stage pipeline of simulations. The resulting trajectories
+% reveal in atomic detail how interactions and protein behavior change as a
+% result of mutations, and account for the molecular basis of drug efficacy.
+% Further, there is a need to study a wide range of cancer drugs and
+% candidate ligands in order to support personalized clinical decision making
+% based on genome sequencing and drug discovery.
+To support the scalable, adaptive and automated calculation of the binding
+free energy on high-performance computing resources, we introduce the
+High-throughput Binding Affinity Calculator (HTBAC). HTBAC uses a building
 block approach to workflow systems in order to provide a trade-off between
 flexibility and performance. We demonstrate close to perfect weak scaling to
 hundreds of concurrent multi-stage binding affinity calculation pipelines.
-This permits the rapid time-to- solution that is essentially invariant of the
+This permits the rapid time-to-solution that is essentially invariant of the
 calculation protocol, size of candidate ligands and number of ensemble
 simulations. As such, HTBAC advances the state of the art of binding affinity
 calculations and protocols.
-
-% using automated workflows underpinned by ensemble-based high performance
-% computing methods running at unprecedented scales.
-
-% HTBAC allows the investigation ....
-% ... HTBAC provides the ability to separate the "setting-up" (i.e., defining) of a
-% workflow from its "execution".
-
-
-% which is the integration of the BAC -- Binding Affinity Calculator --
-% developed by the Centre for Computational Science at UCL, and RADICAL-
-% Cybertools (in particular EnTK). H
-
-% HTBAC represents the state-of-the-art in expressing biomedically
-% important workflows for rapid, accurate, precise and reliable free energy
-% based binding affinity calculations. RADICAL-Cybertools are a suite of
-% functional components that support the interoperable and scalable execution of
-% multiple simulations. 
-
