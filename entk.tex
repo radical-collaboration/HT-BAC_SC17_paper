@@ -32,10 +32,10 @@ advanced sampling methods. EnTK is also being utilized to develop ensemble-based
 applications to execute workflows in the seismology and climate science domains.
 Each application requires different workflows, with different types of tasks, 
 executed on specific HPC resources. EnTK supported the development of a 
-simulation-analysis pattern for ExTASY, implementing two sampling algorithms for
-execution of both multithreaded and MPI tasks on ARCHER, Stampede and Blue 
-Waters HPC machines. With the same code base, EnTK is being used to develop 
-inversion of full-waveform, wide-bandwidth data for seismic tomography, and a 
+simulation-analysis execution pattern for ExTASY, implementing two sampling 
+algorithms for execution of both multithreaded and MPI tasks on ARCHER, 
+Stampede and Blue Waters HPC machines. EnTK is being used to develop inversion 
+of full-waveform, wide-bandwidth data for seismic tomography, and a 
 new downscaling methodology to quantify the photovoltaic (PV) energy potential 
 in selected regions of the USA\@.
 
@@ -49,14 +49,16 @@ failures, and failures of its own subcomponents and subprocesses, including
 network connectivity issues.
 
 EnTK exposes four components to the end-user: \textbf{Pipeline},\textbf{Stage},
-\textbf{Task} and 
-`Application Manager`'. These components enable users to create ensemble-based 
-applications and specify target resources for their execution. The 
-`Application Manager` and `WF Processor` are responsible for the transformation
-of the application workflow into a sequence of workloads. Internally the 
-`Resource Manager' and `Execution Manager' components enable the acquisition of
-resources and the management of execution of these workloads.(see
-\textbf{Figure~\ref{fig:entk_arch}}, right schematic of left panel).
+\textbf{Task}. These components enable users to create ensemble-based 
+applications. The \textbf{Application Manager} plays dual role: enables the user
+to specify target resources for the execution and execution setup 
+parameters such as the number of processes or messaging queues to be used. The 
+Application Manager along with the  \textbf{WF Processor} is responsible for the
+transformation of the application workflow into a sequence of workloads. 
+Internally the \textbf{Resource Manager} and \textbf{Execution Manager} 
+components enable the acquisition of resources and the management of execution 
+of these workloads.(see \textbf{Figure~\ref{fig:entk_arch}}, right schematic of
+left panel).
 
 \begin{figure}[!htbp]
   % \centering
@@ -84,14 +86,15 @@ A description of the set of resources to be utilized is provided to the
 \textbf{Application Manager}. This includes properties like walltime, number of
 nodes and credentials for resource acess. The \textbf{Task} component is used to
 indicate an executable along with its input/output data, resource and 
-environment requirements. The \textbf{Stage} component is used to group
+software environment requirements. The \textbf{Stage} component is used to group
 tasks that have the same dependencies and can be executed concurrently, while
 the \textbf{Pipeline} component is used to describe a sequence of stages,
 i.e., stages that need to be executed sequentially, not concurrently.
 
 EnTK enables users to program ensemble-based applications directly in Python,
-without requires a domain-specific language. The use of the Task, Stage, and
-Pipeline components avoids the need to express explicitly relationship among
+without requiring knowledge of a domain-specific language. The use of the Task, 
+Stage, and Pipeline components, which are based on well known data structures:
+sets and lists, avoids the need to express explicitly relationship among
 tasks. These relationships are insured by design, depending on the
 partitioning of the set of tasks into stages and then pipelines. Further,
 EnTK enables an explicit definition of pre and post conditions on the
@@ -102,14 +105,14 @@ representation model on the domain scientists.
 
 Once the workflow of an ensemble-based application is completely described,
 one or more pipelines are submitted to the \textbf{Application Manager}
-module for execution. The Application Manager sets up a messaging
-infrastructure for communication and then processes each pipeline,
-identifying tasks which have their dependencies satisfied and can be executed
-concurrently. These tasks are then handed over to the \textbf{Execution
-Manager} that binds tasks to resources on the basis of a set of
-heuristic-based decisions called ``execution strategy''. The Execution Manager
-then uses the underlying runtime system, RADICAL-Pilot, to execute the tasks
-on the specific target resource.
+module for execution. The Application Manager sets up multiple processes, 
+threads and a messaging infrastructure for communication. The
+\textbf{WF Processor} then processes each pipeline, identifying tasks which have
+their dependencies satisfied and can be executed concurrently. These tasks are 
+then handed over to the \textbf{Execution Manager} that binds tasks to resources
+on the basis of a set of heuristic-based decisions called `
+`execution strategy''. The Execution Manager then uses the underlying runtime 
+system, RADICAL-Pilot, to execute the tasks on the specific target resource.
 
 EnTK is implemented as a multiprocess application. The number of processes
 can be tuned to match the throughput requirements of ensemble-based
