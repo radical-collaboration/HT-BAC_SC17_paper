@@ -19,22 +19,25 @@ effort and complexity.
 The Ensemble Toolkit API exposes four components (\textbf{Resource Handle},
 \textbf{Pipeline}, \textbf{Stage}, and \textbf{Task}) to express the
 application logic of HTBAC\@. We describe these components for the ESMACS
-protocol\@. The ESMACS protocol contains a set of pipelines where each
-pipeline contains functions that operate on a given replica. EnTK
-interprets these replicas as independent pipelines. Each pipeline consists of
-multiple stages representing a well-defined execution order; each stage can
-contain heterogeneous workloads. Although each stage of a pipeline depends on
-its predecessor, the pipelines execute independent of each other. The pattern
-within pipelines are identical and describes a set of simulations as shown in
-Fig~\ref{figure:ESMACS-pipelines}.
+protocol\@. The concept of an ensemble in the ESMACS protocol maps directly to 
+a set of pipelines in EnTK. Where each pipeline contains functions that operate 
+on a given replica. EnTK interprets these replicas as independent pipelines. 
+Each pipeline consists of multiple stages representing a well-defined execution 
+order; each stage can contain heterogeneous workloads. Although each stage of a 
+pipeline depends on its predecessor, the pipelines execute independent of each 
+other. The pattern within pipelines are identical and describes an ensemble of replica
+simulations as shown in Fig~\ref{figure:ESMACS-pipelines}.
 
 \jhanote{DWW, should we not use replica?}
+\dwwnote{Shantenu, I have tried to make a consistent mapping above 
+         and in the figure caption. Does this work for you?}
 
 \begin{figure}
 \centering
   \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_control_flow_only.pdf}
-  \caption{ESMACS protocol indicating n-pipelines where each pipeline
-  represents a set of simulations which are captured as stages by
+  \caption{ESMACS protocol indicating how an N replica ensemble is implemented in HTBAC.
+  Each replica is mapped to a single EnTK pipeline. 
+  Each pipeline is equivalent and represents a set of simulations which are captured as stages by
   EnTK.}\label{figure:ESMACS-pipelines}
 \end{figure}
 
