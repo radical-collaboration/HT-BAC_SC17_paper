@@ -2,46 +2,49 @@
 We have designed RADICAL-Cybertools to address some of the challenges in
 developing and executing workflows on HPC platforms. 
 
-
+% ---------------------------------------------------------------------------
 \subsection{RADICAL-Cybertools}
 
 We discuss the RADICAL-Cybertools (RCT) software stack used support the
 flexible and scalable execution of pipelines and upon which HTBAC is built.
-RCT consists of three main components: Ensemble Toolkit~\cite{entk-icpp-2016}
+RCT consists of three main components: Ensemble Toolkit
+(EnTK)~\cite{balasubramanian2016ensemble}, RADICAL-Pilot
+(RP)~\cite{merzky2015radical} and RADICAL-SAGA (RS)~\cite{saga-x}. EnTK
 provides the ability to create and execute ensemble-based
-workflows/applications with complex coordination and communication but without
-the need for explicit resource management. It uses another RCT component ---
-RADICAL-Pilot~\cite{review_radicalpilot} which provides resource management
-and task execution capabilities, which in turn uses RADICAL-SAGA~\cite{saga-x
-,ogf- gfd-90} as an interoperability resource access layer.
+workflows/applications with complex coordination and communication but
+without the need for explicit resource management. EnTK uses RP which
+provides resource management and task execution capabilities, and RP uses RS
+as an interoperability resource access interface. % layer.
 
 RCT eschew the concept of a monolithic workflow systems in favor of a fresh
 perspective to workflows using ``building blocks''. RCT provide scalable
-implementations of building blocks in Python and are used to support dozens of
-scientific applications on high-performance and distributed systems. RCT has
-also been used extensively to support biomolecular sciences
+implementations of building blocks in Python that are used to support dozens
+of scientific applications on high-performance and distributed systems. RCT
+has also been used extensively to support biomolecular sciences
 algorithms/methods, e.g., replica-exchange and adaptive sampling.
 
-\subsubsection*{RADICAL-Pilot}\label{sec:pilot}
+% ---------------------------------------------------------------------------
+% \subsubsection*{RADICAL-Pilot}\label{sec:pilot}
 
-A primary challenge faced is the scalable execution of applications consisting
-of large ensembles of tasks.  Traditionally, each task is submitted as an
-individual job, or MPI capabilities are used to  execute multiple tasks as
-part of a multi-node single job. The former method suffers from unpredictable
-queue time for each job; the latter is suitable to execute tasks that are
-homogeneous and have no dependencies, and relies on the fault tolerance of
-MPI.
+A primary challenge faced is the scalable execution of applications
+consisting of large ensembles of tasks.  Traditionally, each task is
+submitted as an individual job, or MPI capabilities are used to  execute
+multiple tasks as part of a multi-node single job. The former method suffers
+from unpredictable queue time for each job; the latter is suitable to execute
+tasks that are homogeneous and have no dependencies, and relies on the fault
+tolerance of MPI\@.
 
-The Pilot abstraction~\cite{review_pilotreview} solves these issues:  The
-pilot abstraction, (i) uses a placeholder job without any tasks assigned to
-it, so as to acquire resources via the local resource management system (LRMS)
-and, (ii) to decouple the initial resource acquisition from task-to-resource
-assignment. Once the pilot (container-job) is scheduled via the LRMS, it can
-then directly be populated with the computational tasks. This functionality
+The Pilot abstraction~\cite{turilli2017comprehensive} solves these issues:
+The pilot abstraction: (i) uses a placeholder job without any tasks assigned
+to it, so as to acquire resources via the local resource management system
+(LRMS); and, (ii) decouples the initial resource acquisition from
+task-to-resource assignment. Once the pilot (container-job) is scheduled via
+the LRMS, it can pull computational tasks for execution. This functionality
 allows all the computational tasks to be executed directly on the resources,
-without being queued at the LRMS individually. This approach thus supports the
-requirements of task-level parallelism and high-throughput as needed by
-science drivers.
+without being queued via the LRMS\@. % individually. 
+The pilot abstraction thus supports the requirements of task-level
+parallelism and high-throughput as needed by science drivers, without
+affecting or circumventing the queue policies of HPC resources.
 
 RADICAL-Pilot is an implementation of the pilot abstraction, engineered to
 support scalable and efficient launching of heterogeneous tasks across
