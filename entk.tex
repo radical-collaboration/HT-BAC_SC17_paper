@@ -5,39 +5,38 @@ with dependencies that determine the order of their execution. Subsets of
 these tasks can be \textbf{workloads}, i.e., tasks whose dependencies have
 been satisfied at a particular time and may be executed concurrently.
 Ensemble-based application vary in the type of coupling between tasks, the
-frequency and volume of information exchanged 
-between these tasks, and the executable of
-each task. This type of applications requires specific coordination,
-orchestration and execution protocols, posing both domain-specific and
-engineering challenges.
+frequency and volume of information exchanged between these tasks, and the
+executable of each task. This type of applications requires specific
+coordination, orchestration and execution protocols, posing both
+domain-specific and engineering challenges.
 
 Ensemble Toolkit (EnTK), the topmost layer of RCT, simplifies the process of
 creating and executing ensemble-based applications with complex coordination
 and communication requirements. EnTK decouples the description of
 ensemble-based applications from their execution by separating three orders
 of concern: specification of task and resource requirements; resource
-selection and acquisition; and task execution management. Domain scientists 
+selection and acquisition; and task execution management. Domain scientists
 retain full control of the implementation of their algorithms by programming
 ensemble-based applications by describing what should be executed, when it
-should be executed and where it should be executed. EnTK automates the process 
-of acquiring the resources needed by those applications and managing the task 
-execution via a runtime system like RADICAL-Pilot.
+should be executed and where it should be executed. EnTK automates the
+process of acquiring the resources needed by those applications and managing
+the task execution via a runtime system like RADICAL-Pilot.
 
 % A key objective of EnTK is to provide a solution to the execution of
 % ensemble-based applications that is independent of the nature of tasks.
 
-EnTK has been previously used to develop the 
-ExTASY~\cite{balasubramanian2016extasy} framework for the execution of MD-based 
-advanced sampling methods. EnTK is also being utilized to develop ensemble-based
-applications to execute workflows in the seismology and climate science domains.
-Each application requires different workflows, with different types of tasks, 
-executed on specific HPC resources. EnTK supported the development of a 
-simulation-analysis execution pattern for ExTASY, implementing two sampling 
-algorithms for execution of both multithreaded and MPI tasks on ARCHER, 
-Stampede and Blue Waters HPC machines. EnTK is being used to develop inversion 
-of full-waveform, wide-bandwidth data for seismic tomography, and a 
-new downscaling methodology to quantify the photovoltaic (PV) energy potential 
-in selected regions of the USA\@.
+EnTK has been previously used to develop the
+ExTASY~\cite{balasubramanian2016extasy} framework for the execution of
+MD-based advanced sampling methods. EnTK is also being utilized to develop
+ensemble-based applications to execute workflows in the seismology and
+climate science domains. Each application requires different workflows, with
+different types of tasks, executed on specific HPC resources. EnTK supported
+the development of a simulation-analysis execution pattern for ExTASY,
+implementing two sampling algorithms for execution of both multithreaded and
+MPI tasks on ARCHER, Stampede and Blue Waters HPC machines. EnTK is being
+used to develop inversion of full-waveform, wide-bandwidth data for seismic
+tomography, and a new downscaling methodology to quantify the photovoltaic
+(PV) energy potential in selected regions of the USA\@.
 
 Currently, EnTK enables the execution of up to \(O(10^4)\) tasks on thousands
 of CPU and GPU nodes on the resources of XSEDE, ORNL, NCSA, NWSC and UK NSS,
@@ -48,54 +47,35 @@ EnTK\@. As such, EnTK can handle task execution failures, resource-level
 failures, and failures of its own subcomponents and subprocesses, including
 network connectivity issues.
 
-EnTK exposes four components to the end-user: \textbf{Pipeline},\textbf{Stage},
-\textbf{Task}. These components enable users to create ensemble-based 
-applications. The \textbf{Application Manager} plays dual role: enables the user
-to specify target resources for the execution and execution setup 
-parameters such as the number of processes or messaging queues to be used. The 
-Application Manager along with the  \textbf{WF Processor} is responsible for the
-transformation of the application workflow into a sequence of workloads. 
-Internally the \textbf{Resource Manager} and \textbf{Execution Manager} 
-components enable the acquisition of resources and the management of execution 
-of these workloads.(see \textbf{Figure~\ref{fig:entk_arch}}, right schematic of
-left panel).
+EnTK exposes to the end-user three components called \textbf{Pipeline},
+\textbf{Stage} and \textbf{Task} to create ensemble-based applications. Users
+also use the \textbf{Application Manager} component to specify resources for
+the execution of their ensemble-based application. Two internal components
+called \textbf{WF Processor} and \textbf{Execution Manager} are instead used
+to coordinate and enact the execution of the application (see
+Figure~\ref{fig:entk_arch}).
 
-\begin{figure}[!htbp]
-  % \centering
-  %\begin{minipage}[b]{0.6\textwidth}
-  \begin{minipage}[b]{0.49\textwidth}
+\begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{FIGURES/entk_overview.pdf}
-  \end{minipage}
-  % \begin{minipage}[b]{0.39\textwidth}
-  % \begin{minipage}[b]{0.49\textwidth}
-  % \centering
-  % \includegraphics[width=\textwidth, height=35mm]{FIGURES/md_general.pdf}
-  % \includegraphics[width=\textwidth, height=40mm]{FIGURES/md_general.pdf}
-  % \end{minipage}
+  \includegraphics[width=\columnwidth]{FIGURES/entk_overview.pdf}
   \caption{\textbf{Left:} Ensemble Toolkit overview, showing how the abstract
            workflow execution system is mapped to specific components exposed
-           to the users and components internal to the toolkit
-           % \textbf{Right:} General MD workflow overview that broadly
-           % describes the science methods to study the physical
-           % systems
-           }\label{fig:entk_arch}
+           to the users and components internal to the
+           toolkit.}\label{fig:entk_arch}
 \end{figure}
 
-A description of the set of resources to be utilized is provided to the 
-\textbf{Application Manager}. This includes properties like walltime, number of
-nodes and credentials for resource acess. The \textbf{Task} component is used to
-indicate an executable along with its input/output data, resource and 
-software environment requirements. The \textbf{Stage} component is used to group
-tasks that have the same dependencies and can be executed concurrently, while
-the \textbf{Pipeline} component is used to describe a sequence of stages,
-i.e., stages that need to be executed sequentially, not concurrently.
+The Task component is used to indicate an executable along with its
+input/output data, resource and software environment requirements. The Stage
+component is used to group tasks that have the same dependencies and can be
+executed concurrently, while the Pipeline component is used to describe a
+sequence of stages, i.e., stages that need to be executed sequentially, not
+concurrently.
 
 EnTK enables users to program ensemble-based applications directly in Python,
-without requiring knowledge of a domain-specific language. The use of the Task, 
-Stage, and Pipeline components, which are based on well known data structures:
-sets and lists, avoids the need to express explicitly relationship among
-tasks. These relationships are insured by design, depending on the
+without requiring knowledge of a domain-specific language. The use of the
+Task, Stage, and Pipeline components, which are based on the well known set
+and list data structures, avoids the need to express explicitly relationship
+among tasks. These relationships are insured by design, depending on the
 partitioning of the set of tasks into stages and then pipelines. Further,
 EnTK enables an explicit definition of pre and post conditions on the
 execution of tasks, stages, and pipelines, enabling a fine grained
@@ -103,16 +83,32 @@ adaptivity, both a local and global level. Conveniently, this does not
 require the codification of a DAG, a process that imposes a rigid
 representation model on the domain scientists.
 
-Once the workflow of an ensemble-based application is completely described,
-one or more pipelines are submitted to the \textbf{Application Manager}
-module for execution. The Application Manager sets up multiple processes, 
-threads and a messaging infrastructure for communication. The
-\textbf{WF Processor} then processes each pipeline, identifying tasks which have
-their dependencies satisfied and can be executed concurrently. These tasks are 
-then handed over to the \textbf{Execution Manager} that binds tasks to resources
-on the basis of a set of heuristic-based decisions called `
-`execution strategy''. The Execution Manager then uses the underlying runtime 
-system, RADICAL-Pilot, to execute the tasks on the specific target resource.
+% The \textbf{Application Manager} component of EnTK enables users to specify
+% target resources for the execution of the ensemble-based application. This
+% includes properties like walltime, number of nodes and credentials for
+% resource access. Users can also define execution setup parameters such as
+% the number of processes or messaging queues that should be used by EnTK\@.
+% This allow to size and tune the performance of EnTK, depending on the
+% number of tasks, stages and pipelines, but also on the resources available
+% to the toolkit.
+
+% The Application Manager along with the \textbf{WF Processor} is responsible
+% for the transformation of the application workflow into a sequence of tasks
+% that can be submitted to the indicated resources for execution. Internally,
+% the \textbf{Resource Manager} and \textbf{Execution Manager} components
+% enable the acquisition of resources and the management of execution of
+% these workloads (see \textbf{Figure~\ref{fig:entk_arch}}, right schematic
+% of left panel).
+
+Once the workflow of an ensemble-based application is described, one or more
+pipelines are submitted to the Application Manager module for execution. The
+Application Manager sets up multiple processes, threads and a messaging
+infrastructure for communication. The WF Processor processes each pipeline,
+identifying tasks which have their dependencies satisfied and can be executed
+concurrently. These tasks are handed over to the Execution Manager that binds
+tasks to resources on the basis of a set of heuristics called ``execution
+strategies''. The Execution Manager uses the underlying runtime system,
+RADICAL-Pilot, to execute the tasks on the specific target resource.
 
 EnTK is implemented as a multiprocess application. The number of processes
 can be tuned to match the throughput requirements of ensemble-based
@@ -123,50 +119,5 @@ can be assigned to existing or newly created processes without blocking the
 overall execution. Upon failure of the master process, execution can be
 restarted without loosing data about tasks that have been already executed.
 
-% Scalability results from an early version of EnTK are provided in
-% \textbf{Figure~\ref{fig:entk_perf}}. The number of simulations and the
-% total number of cores used are described on the abscissa with each
-% simulation using one core; the analysis task which uses one core). Thus,
-% the simulation execution time corresponds to the time taken by all the
-% simulations to complete.  The analysis execution time corresponds to the
-% time taken to analyze the output of all the simulations. Notice how both
-% strong and weak scaling up to $O(10^3)$ are linear. Although performance
-% numbers are for Stampede (TACC), it is reasonable to expect the weak and
-% strong scaling of EnTK to hold firm on Titan as well. The task launching
-% and coordination system use the same underlying runtime system --
-% RADICAL-Pilot, which has been tested for strong and weak scalability on
-% Titan~\cite{angius2017converging} up to $O(10^3)$ tasks. Currently, EnTK
-% and RADICAL-Pilot support the execution of ensemble-based applications up
-% to $O(10^4)$ tasks. At the next release, planned for Sep 2017, EnTK will
-% support $>$ $O(10^4)$ tasks. During the lifetime of this INCITE project
-% EnTK is being re-designed, implemented and optimized to reach
-% $O(10^5-10^6)$ concurrent tasks, independent of the size and type of task.
-
-% \begin{figure}[!htbp]
-% \centering
-% \begin{minipage}[b]{.49\textwidth}
-%   \centering
-  %  \includegraphics[width=\textwidth]{FIGURES/entk_perf_strong.pdf}
-  %  \caption{Strong scaling behavior of Ensemble Toolkit. The
-  %  total workload is kept constant at 1024 simulations and the amount of
-  %  resources used are varied from 64 to 1024. We observe close to linear
-  %  drop in the simulation execution time as the amount of resources are
-  %  doubled}
-% \end{minipage}
-% \begin{minipage}[b]{.49\textwidth}
-%    \centering
-  %  \includegraphics[width=\textwidth]{FIGURES/entk_perf_weak.pdf}
-  %  \caption{Weak scaling behavior of Ensemble Toolkit. The size of the
-  %  workload is varied in proportion with the amount of resources such that
-  %  all tasks are concurrently executed at all times. We observe similar
-  %  simulation execution times at all configurations.}
-% \end{minipage}
-% \caption{\textbf{Left:} Strong scaling of EnTK\@. The total workload is
-%         kept constant at 1024 simulations and the resources used are varied
-%         from 64 to 1024 cores. We observe essentially linear drop in the
-%         simulation execution time. \textbf{Right:} Weak scaling of EnTK.
-%         The size of the workload is varied in proportion with the amount of
-%         resources such that all tasks are concurrently executed at all
-%         times. We observe similar simulation execution times at all
-%         configurations.}\label{fig:entk_perf}
-% \end{figure}
+% A description of the set of resources to be utilized is provided to the
+% \textbf{Application Manager}.
