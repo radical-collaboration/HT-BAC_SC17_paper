@@ -14,14 +14,19 @@ workflow.
 
 We designed two experiments to measure HTBAC and EnTK weak scalability when
 executing an increasing number of concurrent pipelines. According to the use
-case described in Section~\ref{sec:ht-bac}, each pipeline consists of seven
+case described in Section~\ref{sec:htbac}, each pipeline consists of seven
 stages, each stage with a single task. EnTK manages the queuing of the tasks
 in accordance with the order and concurrency mandated by stages and
 pipelines: For each pipeline, each stage is executed sequentially while
 pipelines are executed concurrently.
 
-%\mtnote{PLease note: I converted the following paragraph eliminating references to RP\@. This is consistent with out decision of not showing RP overheads. The paragraph can be reused if we change our mind. `` We validate the performance of EnTK % the runtime system, RADICAL-Pilot, using weak scalability to to show % demonstrate that EnTK % RP can schedule tasks concurrently, provided that sufficient resources areavailable.''}\jhanote{+1}
-
+%\mtnote{PLease note: I converted the following paragraph eliminating
+%references to RP\@. This is consistent with out decision of not showing RP
+%overheads. The paragraph can be reused if we change our mind. `` We validate
+%the performance of EnTK % the runtime system, RADICAL-Pilot, using weak
+%scalability to to show % demonstrate that EnTK % RP can schedule tasks
+%concurrently, provided that sufficient resources
+%areavailable.''}\jhanote{+1}
 
 Experiment 1 measures the baseline behavior of EnTK with the HTBAC workflow
 and a null workload (\textmd{/bin/sleep 0}). The goal is to isolate the
@@ -90,8 +95,13 @@ our experiments push the boundaries of current scale by executing 8, 16, 32,
 
 \begin{table*}[t]
 \centering
-\caption{\bf Experiment 1 executes all 7 stages with the null workload, Experiment 2 uses the actual workload}
-\label{tab:exp}
+\caption{\bf Experiment 1 executes the 7 stages of the ESMACS protocol with
+a null workload; Experiment 2 uses the actual workload of the ESMACS
+protocol. ESMACS protocol with NAMD and supporting workload: (1) Untar
+configuration files; (2) Preprep; (3) Minimize with decreasing restraints;
+(4) Equilibration: NVT simulation at 50K, with restraints; (5) Equilibration:
+NPT simulation at 300K, with decreasing restraints; (6) Equlibratin: NPT at
+300k, no constraints; (7) Tarball output files.}\label{tab:exp}
 \begin{tabular}{llllll}
 \hline
 \multicolumn{1}{l|}{Experiment ID \& Description} & \multicolumn{1}{l|}{Trials} & \multicolumn{1}{l|}{Pipelines} & \multicolumn{1}{l}{Stages} & \multicolumn{1}{l|}{Tasks} & \multicolumn{1}{l}{Total Number of Cores} \\ \hline
