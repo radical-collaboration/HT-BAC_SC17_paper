@@ -107,17 +107,38 @@ will be required. This is before we begin to consider the influence of
 mutations or the selectivity of drugs to the more than five hundred different
 genes in the human kinome~\cite{Li2016}.
 
+For molecular simulations to make an impact, we will need to tackle the dual
+challenge of scale (thousands of concurrent multi-stage pipelines) and
+sophistication (adaptive selection of binding affinity calculation protocols
+based upon statistical errors and uncertainty). In order to contemplate such
+capabilities, it is necessary to have tools that facilitate the scalable and
+automated computation of varied binding free energy calculations on high-
+performance computing resources. To achieve that goal, we introduce the High-
+throughput Binding Affinity Calculator (HTBAC). HTBAC translates recent
+advances in building block to workflow systems to the application of rapid and
+accurate calculation of  binding affinities. We demonstrate how HTBAC scales
+almost perfectly to hundreds of concurrent pipelines of binding affinity
+calculations on a leadership class machine. This permits the rapid time-to-
+solution that is essentially invariant of the size of candidate ligands as
+well as the type and number of protocols concurrently employed.
 
-Tackling these grand challenges by
-using molecular simulation is likely to require studies executing thousands
-of concurrent, compute intensive runs. In order to contemplate such a
-programme of work, it is necessary to have computational tools that
-facilitate the execution and coordination of varied workflows without
-incurring serious performance overheads.
+In the next Section, we provide details of ensemble molecular dynamics
+approach and its advantages (i.e., greater accuracy) over single trajectory
+approach. We also introduce the ESMACS and related protocols to compute
+binding affinities using ensemble based approaches. In Section 3, we discuss
+the computational challenges associated with the scalable execution of
+multiple, and possibly concurrently executing protocols. Section 4 introduces
+RADICAL-Cybertools -- a suite of building blocks to address the challenges
+outlined in Section 3. In Section 5 we introduce HTBAC and describe how it
+uses RADICAL-Cybertools to support the needs of binding affinity calculations
+at extreme scales. Experiments to characterize the performance and scalability
+of HTBAC on the Blue Waters supercomputer are discussed in Section 6. We
+conclude with a discussion of the impact of HTBAC, implication for binding
+affinity calculations and near-term future work.
 
 \mtnote{I would add a paragraph explaining how our paper contributes to the
 problem of offering computational tools that facilitate the execution and
-coordination of varied workflows without relevant overheads.}
+coordination of varied workflows without relevant overheads.}\jhanote{OK?}
 
 %\jhanote{Is there a need for differentiation across these thousands of
 %candiate compounds, or must they by design be treated and subject to the
