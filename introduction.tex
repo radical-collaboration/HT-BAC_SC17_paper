@@ -1,16 +1,16 @@
 % Cancer is recognized as a major public health problem throughout the world
 % and is the second most common cause of death in the United
-% States~\cite{Siegel2016}. 
+% States~\cite{Siegel2016}.
 
 In recent years, chemotherapy based on targeted kinase inhibitors (TKIs) has
-played an increasingly prominent role in the treatment of cancer. 
+played an increasingly prominent role in the treatment of cancer.
 % The design
 % of TKIs was inspired by modern genetic understanding of DNA, the cell cycle,
-% and molecular signaling pathways. 
+% and molecular signaling pathways.
 TKIs have been developed to selectively inhibit kinases involved in the
 signaling pathways that control growth and proliferation, which often become
 dysregulated in cancers. This targeting of specific cancers reduces the risk
-of damage to healthy cells and increases treatment success. Currently, 
+of damage to healthy cells and increases treatment success. Currently,
 35 FDA-approved small molecule TKIs are in clinical use, and they represent a
 significant fraction of the \$37 billion U.S. market for oncology
 drugs~\cite{FDA, Zhao2014}. Imatinib, the first of these of drugs, is
@@ -79,21 +79,21 @@ decision making even in the absence of direct past experience.
 
 The same molecular simulation technologies that can be employed to
 investigate the origins of drug resistance can also be used to design new
-therapeutics. Creating simulation protocols which 
-% meet the varying demands of different applications and 
+therapeutics. Creating simulation protocols which
+% meet the varying demands of different applications and
 have well defined uncertainty and produce
 % (such as the rapid turn around times needed for clinical decision support)
 % whilst obtaining
 statistically meaningful results represents a significant
 computational challenge. Furthermore, it is highly likely that differences
-among % the varied 
-investigated systems % which might be investigated 
+among % the varied
+investigated systems % which might be investigated
 will demand different protocols
-as studies progress. For example, % in 
-drug design programmes % it is usual to need 
+as studies progress. For example, % in
+drug design programmes % it is usual to need
 often require the rapid screening of thousands of candidate compounds to filter
-out the worst binders before using more sensitive methods 
-% are required when refining 
+out the worst binders before using more sensitive methods
+% are required when refining
 to refine the structure. Not all changes induced in protein shape or
 behavior are local to the drug binding site and, in some cases, simulation
 protocols will need to adjust to account for complex interactions between
@@ -120,19 +120,19 @@ translates recent advances in building block to workflow systems to the
 application of rapid and accurate calculation of  binding affinities. We
 demonstrate how HTBAC scales almost perfectly to hundreds of concurrent
 pipelines of binding affinity calculations on a leadership class machine. This
-permits the rapid time-to- solution that is essentially invariant of the size
+permits the rapid time-to-solution that is essentially invariant of the size
 of candidate ligands as well as the type and number of protocols concurrently
 employed.
 
 In the next Section, we provide details of ensemble molecular dynamics
-approach and its advantages (i.e., greater accuracy) over single trajectory
+approach and its advantages over the single trajectory
 approach. We also introduce the ESMACS and related protocols to compute
 binding affinities using ensemble based approaches. In Section 3, we discuss
 the computational challenges associated with the scalable execution of
 multiple, and possibly concurrently executing protocols. Section 4 introduces
 RADICAL-Cybertools -- a suite of building blocks to address the challenges
 outlined in Section 3. In Section 5 we introduce HTBAC and describe how it
-uses RADICAL-Cybertools to support the needs of binding affinity calculations
+uses RADICAL-Cybertools to manage the execution of binding affinity calculations
 at extreme scales. Experiments to characterize the performance and scalability
 of HTBAC on the Blue Waters supercomputer are discussed in Section 6. We
 conclude with a discussion of the impact of HTBAC, implication for binding

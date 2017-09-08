@@ -1,7 +1,7 @@
 % \subsection{Characterization of Performance}
 
 Before embarking on a computational campaign that will consume 150M core
-hours on the NCSA Blue Waters machine, we study the scalability of HTBAC so
+hours on the NCSA Blue Waters machine, we studied the scalability of HTBAC so
 as to determine optimal workflow sizing and resource utilization for the
 ESMACS protocol. The goal is twofold: (1) understanding the invariance of
 HTBAC execution time over the number of workflow pipelines executed; and (2)
@@ -9,7 +9,7 @@ studying how the performance of EnTK and RP varies in relation to the size of
 workflow.
 
 % ---------------------------------------------------------------------------
-\subsubsection{Experiment Design}\label{ssec:exp_design}
+\subsection{Experiment Design}\label{ssec:exp_design}
 
 We designed two experiments to measure HTBAC, EnTK and RP weak scalability
 when executing an increasing number of concurrent pipelines. According to the
@@ -44,7 +44,7 @@ number of sequential executions per core. This is a driving motivation to
 target large HPC machines instead of so-called HTC infrastructures.
 
 % ---------------------------------------------------------------------------
-\subsubsection{Experiment Setup}\label{ssec:exp_setup}
+\subsection{Experiment Setup}\label{ssec:exp_setup}
 
 We perform both Experiment 1 and 2 on NCSA's Blue Waters---a 13.3 petaFLOPS
 Cray, with 32 Interlago cores/50 GB RAM per node, Cray Gemini, Lustre shared
@@ -78,33 +78,33 @@ simulation at 300K, with decreasing restraints; (6) Equilibration: NPT at
 300k, no constraints; (7) Tarball output files.}\label{tab:exp}
 \begin{tabular}{llllllll}
 \toprule
-\textbf{Experiment ID}      & 
-\textbf{Protocol}           & 
-\textbf{Workload}           & 
-\textbf{\# Trials}          & 
-\textbf{\# Pipelines}       & 
-\textbf{\# Stages}          & 
-\textbf{\# Tasks}           & 
-\textbf{\# Cores per pilot} \\ 
+\textbf{Experiment ID}      &
+\textbf{Protocol}           &
+\textbf{Workload}           &
+\textbf{\# Trials}          &
+\textbf{\# Pipelines}       &
+\textbf{\# Stages}          &
+\textbf{\# Tasks}           &
+\textbf{\# Cores per pilot} \\
 \toprule
 %
-1                           & 
-ESMACS                      & 
-Null workload               & 
-2                           & 
-8, 16, 32, 64, 128          & 
-7                           & 
-7                           & 
-64, 128, 256, 512, 1024     \\  
+1                           &
+ESMACS                      &
+Null workload               &
+2                           &
+8, 16, 32, 64, 128          &
+7                           &
+7                           &
+64, 128, 256, 512, 1024     \\
 %
-2                           & 
-ESMACS                      & 
-EGFR kinase Workload        & 
-2                           & 
-8, 16, 32, 64, 128          & 
-7                           & 
-7                           & 
-64, 128, 256, 512, 1024     \\ 
+2                           &
+ESMACS                      &
+EGFR kinase Workload        &
+2                           &
+8, 16, 32, 64, 128          &
+7                           &
+7                           &
+64, 128, 256, 512, 1024     \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -126,7 +126,7 @@ timesteps while the task of stage 5 requires 55000 timesteps. We ran two
 trials of both the null and MD workload at each pipeline configurations.
 
 % ---------------------------------------------------------------------------
-\subsubsection{Results}\label{ssec:exp_results}
+\subsection{Results}\label{ssec:exp_results}
 
 First we characterize the overhead of EnTK and RP in the null workload, where
 we isolate the overhead introduced by the two systems

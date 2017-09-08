@@ -1,7 +1,7 @@
 % \subsection{Computational Challenges}
 
-High-performance computing (HPC) environments were designed to support
-primarily the execution of single simulations. Current HPC platforms enable
+High-performance computing (HPC) environments were designed to primarily support
+the execution of single simulations. Current HPC platforms enable
 the strong and weak scaling of single tasks (hitherto mostly simulations),
 with limited software and systems support for the concurrent execution of
 multiple heterogeneous tasks as part of a single application (or workflow). As
@@ -38,7 +38,7 @@ systems were typically designed by a set of specialists to support large
 fact that the same workflow would be used by thousands of scientists over
 many years justified, if not amortized, the large overhead of integrating
 application workflows with monolithic workflow systems. This influenced the
-design and implementation of % workflow system 
+design and implementation of % workflow system
 interfaces and programming models.
 
 However as the nature, number and usage of workflows has evolved so have the
@@ -56,7 +56,7 @@ Thus the flexible execution of heterogeneous ensembles\mtnote{Should we
 define what an ensemble is?} of MD simulations face both system software and
 middleware challenges: existing system software that is typically designed to
 support the execution of single large simulations on the one hand, and
-workflow systems that are designed to support specific use cases or `locked-in' end-to-end executions. % monolithic workflows.  
+workflow systems that are designed to support specific use cases or `locked-in' end-to-end executions. % monolithic workflows.
 In the next section, we discuss the design and implementation of the
 RADICAL-Cybertools, a set of software building blocks that can be easily
 composed to design, implement and execute domain specific workflows rapidly

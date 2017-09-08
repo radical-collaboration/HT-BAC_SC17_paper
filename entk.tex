@@ -33,7 +33,7 @@ climate science domains. Each application requires different workflows, with
 different types of tasks, executed on specific HPC resources. EnTK supported
 the development of a simulation-analysis execution pattern for ExTASY,
 implementing two sampling algorithms for execution of both multithreaded and
-MPI tasks on ARCHER, Stampede and Blue Waters HPC machines. 
+MPI tasks on ARCHER, Stampede and Blue Waters HPC machines.
 
 % EnTK is being
 % used to develop inversion of full-waveform, wide-bandwidth data for seismic
@@ -42,18 +42,18 @@ MPI tasks on ARCHER, Stampede and Blue Waters HPC machines.
 
 Currently, EnTK enables the execution of up to \(O(10^4)\) tasks on thousands
 of CPU and GPU nodes on the resources of XSEDE, ORNL, NCSA, NWSC and UK NSS,
-for a total of eight HPC machines. At this scale, multiple sources of failure
+comprising a total of eight HPC machines. At this scale, multiple sources of failure
 affect execution, producing loss of information and compute time. Thus, fault
 tolerance and recovery capabilities are first order concerns of the design of
 EnTK\@. As such, EnTK can handle task execution failures, resource-level
 failures, and failures of its own subcomponents and subprocesses, including
 network connectivity issues.
 
-EnTK exposes to the end-user three components called \textbf{Pipeline},
-\textbf{Stage} and \textbf{Task} to create ensemble-based applications. Users
+EnTK exposes to the end-user three components, namely \textbf{Pipeline},
+\textbf{Stage} and \textbf{Task}, to create ensemble-based applications. Users
 also use the \textbf{Application Manager} component to specify resources for
 the execution of their ensemble-based application. Two internal components
-called \textbf{WF Processor} and \textbf{Execution Manager} are instead used
+called \textbf{WF Processor} and \textbf{Execution Manager} are used
 to coordinate and enact the execution of the application (see
 Figure~\ref{fig:entk_arch}).
 
@@ -66,11 +66,11 @@ Figure~\ref{fig:entk_arch}).
            toolkit.}\label{fig:entk_arch}
 \end{figure}
 
-The Task component is used to indicate an executable  and its input/output
+The Task component is used to encapsulate an executable  and its input/output
 data, resource and software environment requirements. The Stage component is
 used to group tasks that have the same dependencies and can be executed
 concurrently. The Pipeline component is used to describe a sequence of
-stages, i.e., stages that need to be executed sequentially, not concurrently.
+stages, i.e., operations that need to be executed sequentially, not concurrently.
 
 EnTK enables users to program ensemble-based applications directly in Python,
 without requiring knowledge of a domain-specific language. The use of the
@@ -81,7 +81,7 @@ partitioning of the set of tasks into stages and then pipelines. Further,
 EnTK enables an explicit definition of pre and post conditions on the
 execution of tasks, stages, and pipelines, enabling a fine grained
 adaptivity, both a local and global level. Conveniently, this does not
-require the codification of a DAG, a process that imposes a rigid
+require the codification of a directed acyclic graph (DAG), a process that imposes a rigid
 representation model on the domain scientists.
 
 % The \textbf{Application Manager} component of EnTK enables users to specify
