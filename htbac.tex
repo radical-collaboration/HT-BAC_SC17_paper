@@ -1,9 +1,9 @@
 
-HTBAC is a workflow system that uses RCT to implement ESMACS, and similar
+HTBAC uses RCT to implement ESMACS, and similar
 protocols such as TIES\@. These protocols consist of pipelines with stages
 comprised of heterogeneous tasks. For example, equilibration and production,
 followed by post processing steps. The different protocols differ in the details of the pipelines, stages and
-synchronization~\cite{Bhati2017}.
+synchronization~\cite{Bhati2017} they are made up of.
 
 \mtnote{I am not able to understand this paragraph so I am not able to propose
 an alternative. I believe it should be rewritten.}\jhanote{OK?}
@@ -18,24 +18,24 @@ effort and complexity.
 The Ensemble Toolkit API exposes four components (\textbf{Resource Handle},
 \textbf{Pipeline}, \textbf{Stage}, and \textbf{Task}) to express the
 application logic of HTBAC\@. We describe these components for the ESMACS
-protocol\@. The concept of an ensemble in the ESMACS protocol maps directly to 
-a set of pipelines in EnTK, where each pipeline contains functions that operate 
-on a given replica. EnTK interprets these replicas as independent pipelines. 
-Each pipeline consists of multiple stages representing a well-defined execution 
-order; each stage can contain heterogeneous workloads. Although each stage of a 
-pipeline depends on its predecessor, the pipelines execute independently of each 
-other. The pattern within pipelines are identical and describes an ensemble of replica
-simulations as shown in Fig~\ref{figure:ESMACS-pipelines}.
+protocol\@. The concept of an ensemble in the ESMACS protocol maps directly to
+a set of pipelines in EnTK, where each pipeline contains functions that operate
+on a given replica. EnTK interprets these replicas as independent pipelines.
+Each pipeline consists of multiple stages representing a well-defined execution
+order; each stage can contain heterogeneous workloads. Although each stage of a
+pipeline depends on its predecessor, the pipelines execute independently of each
+other. The patterns within pipelines are identical and describe an ensemble of replica
+simulations, as shown in Fig~\ref{figure:ESMACS-pipelines}.
 
 \jhanote{DWW, should we not use replica?}
-\dwwnote{Shantenu, I have tried to make a consistent mapping above 
+\dwwnote{Shantenu, I have tried to make a consistent mapping above
          and in the figure caption. Does this work for you?}\jhanote{cool!}
 
 \begin{figure}
 \centering
   \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_control_flow_only.pdf}
   \caption{ESMACS protocol indicating how an N replica ensemble is implemented in HTBAC.
-  Each replica is mapped to a single EnTK pipeline. 
+  Each replica is mapped to a single EnTK pipeline.
   Each pipeline is equivalent and represents a set of simulations which are captured as stages by
   EnTK.}\label{figure:ESMACS-pipelines}
 \end{figure}
@@ -48,14 +48,14 @@ simulations as shown in Fig~\ref{figure:ESMACS-pipelines}.
 %	\item 5) Equilibration: NPT simulation at 300K, with decreasing
 %	restraints
 %	\item 6) Equlibratin: NPT at 300k, no constraints
-%	\item 7) Tarball output files 
+%	\item 7) Tarball output files
 %\end{itemize}
 
 Each stage is composed of a single unique task which is described by a set of
 attributes that define the workload parameters such as the location of input
 files, the number of simulations and the MD engine(s) to launch simulations.
-The ESMACS protocol defines 7 stages, in which the preliminary and last
-stages perform staging the input/output data. The middle stages indicate
+The ESMACS protocol defines 7 stages, in which the first and last
+stages perform staging of the input/output data. The middle stages indicate
 simulation tasks as shown in Fig~\ref{figure:ESMACS-pipelines}. The task is
 appended to a stage and stages are appended to a pipeline to maintain
 temporal order. The workflow relies on a resource configuration which
@@ -92,4 +92,3 @@ placeholders to begin execution.
  % \caption{\bf Integration between HT-BAC workflow system and EnTK that shows resource/application managers.}
    %\label{figure:ht-bac_entk}
 %\end{figure}
-
