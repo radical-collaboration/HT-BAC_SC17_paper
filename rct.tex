@@ -1,25 +1,21 @@
 
-We have designed RADICAL-Cybertools to address some of the challenges in
-developing and executing workflows on HPC platforms. 
-
-% ---------------------------------------------------------------------------
-\subsection{RADICAL-Cybertools}
-
-We discuss the RADICAL-Cybertools (RCT) software stack used to support the
-flexible and scalable execution of pipelines and upon which HTBAC is built.
-RCT consists of three main components: Ensemble Toolkit
-(EnTK)~\cite{balasubramanian2016ensemble}, RADICAL-Pilot
-(RP)~\cite{merzky2015radical} and RADICAL-SAGA (RS)~\cite{saga-x}. EnTK
-provides the ability to create and execute ensemble-based
-workflows/applications with complex coordination and communication but
-without the need for explicit resource management. EnTK uses RP which
-provides resource management and task execution capabilities, and RP uses RS
-as an interoperable resource access  interface. % layer.
+We have designed RADICAL-Cybertools (RCT) to address some of the challenges in
+developing and executing workflows on HPC platforms. RCT consists of three
+main components: Ensemble Toolkit (EnTK)~\cite{balasubramanian2016ensemble},
+RADICAL-Pilot (RP)~\cite{merzky2015radical} and RADICAL-SAGA
+(RS)~\cite{saga-x}. EnTK provides the ability to create and execute ensemble-
+based workflows/applications with complex coordination and communication but
+without the need for explicit resource management. EnTK uses RP which provides
+resource management and task execution capabilities, and RP uses RS as an
+interoperable resource access  interface. 
 
 RCT eschew the concept of a monolithic workflow systems and uses ``building
 blocks''. RCT provide scalable implementations of building blocks in Python
 that are used to support dozens of scientific applications on high-performance
-and distributed systems. 
+and distributed systems. In this section we discuss details of RP and EnTK,
+and understand how these components have been used to support the flexible and
+scalable execution of pipelines, which will permit a deeper understanding of
+HTBAC in the next section.
 
 % RCT has also been used extensively to support
 % biomolecular sciences algorithms/methods, e.g., replica-exchange and adaptive
@@ -27,6 +23,8 @@ and distributed systems.
 
 % ---------------------------------------------------------------------------
 % \subsubsection*{RADICAL-Pilot}\label{sec:pilot}
+
+\subsection{RADICAL-Pilot}
 
 A primary challenge faced is the scalable execution of applications
 consisting of large ensembles of tasks.  Traditionally, each task is
