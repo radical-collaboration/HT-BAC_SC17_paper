@@ -1,31 +1,32 @@
 % \subsection{Computational Challenges}
 
-High-performance computing (HPC) environments were designed to primarily support
-the execution of single simulations. Current HPC platforms enable
-the strong and weak scaling of single tasks (hitherto mostly simulations),
-with limited software and systems support for the concurrent execution of
-multiple heterogeneous tasks as part of a single application (or workflow). As
-the nature of scientific inquiry and the applications to support that inquiry
+High-performance computing (HPC) environments were designed to primarily
+support the execution of single simulations. Current HPC platforms enable the
+strong and weak scaling of single tasks (hitherto mostly simulations), with
+limited software and systems support for the concurrent execution of multiple
+heterogeneous tasks as part of a single application (or workflow). As the
+nature of scientific inquiry and the applications to support that inquiry
 evolve, there is a critical need to support the scalable and concurrent
 execution of a large number of heterogeneous tasks.
 
-%  each of which is
-% typically smaller than the traditional single simulations supported by HPC\@.
+%  each of which is typically smaller than the traditional single simulations
+% supported by HPC\@.
 
-The aggregation of multiple tasks alongside their dependencies are usually
-referred to as ``workflows''. Often times, the structure of the task
-dependencies is simple and adheres to discernible patterns, even though the
-individual tasks and their duration are non-trivially distinct. Put together,
-it is a challenge to support the scalable execution of workflows on HPC
-resources due to the existing software ecosystem and runtime systems
+% The aggregation of multiple tasks alongside their dependencies are usually
+% referred to as ``workflows''.
+Sets of tasks with dependencies that determine the order of their execution
+are usually referred to as ``workflows''. Often times, the structure of the
+task dependencies is simple and adheres to discernible patterns, even though
+the individual tasks and their duration are non-trivially distinct. Put
+together, it is a challenge to support the scalable execution of workflows on
+HPC resources due to the existing software ecosystem and runtime systems
 typically found.
 
-Many workflow systems have emerged in response to the
-aforementioned problem. Each workflow system has its strengths and unique
-capability, however each system typically introduces its problems
-and challenges. In spite of the many successes of workflow systems, there is
-a perceived high barrier-to-entry, integration overhead and limited
-flexibility.
+Many workflow systems have emerged in response to the aforementioned problem.
+Each workflow system has its strengths and unique capability, however each
+system typically introduces its problems and challenges. In spite of the many
+successes of workflow systems, there is a perceived high barrier-to-entry,
+integration overhead and limited flexibility.
 
 Interestingly, many commonly used workflow systems in high-performance and
 distributed computing emerged from an era when the software landscape
@@ -57,7 +58,8 @@ Thus the flexible execution of heterogeneous ensembles\mtnote{Should we
 define what an ensemble is?} of MD simulations face both system software and
 middleware challenges: existing system software that is typically designed to
 support the execution of single large simulations on the one hand, and
-workflow systems that are designed to support specific use cases or `locked-in' end-to-end executions. % monolithic workflows.
+workflow systems that are designed to support specific use cases or
+`locked-in' end-to-end executions. % monolithic workflows.
 In the next section, we discuss the design and implementation of the
 RADICAL-Cybertools, a set of software building blocks that can be easily
 composed to design, implement and execute domain specific workflows rapidly
