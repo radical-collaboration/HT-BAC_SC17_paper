@@ -1,41 +1,41 @@
 
-We have designed RADICAL-Cybertools to address some of the challenges in
-developing and executing workflows on HPC platforms. 
-
-% ---------------------------------------------------------------------------
-\subsection{RADICAL-Cybertools}
-
-We discuss the RADICAL-Cybertools (RCT) software stack used to support the
-flexible and scalable execution of pipelines and upon which HTBAC is built.
-RCT consists of three main components: Ensemble Toolkit
-(EnTK)~\cite{balasubramanian2016ensemble}, RADICAL-Pilot
-(RP)~\cite{merzky2015radical} and RADICAL-SAGA (RS)~\cite{saga-x}. EnTK
-provides the ability to create and execute ensemble-based
-workflows/applications with complex coordination and communication but
+We have designed RADICAL-Cybertools (RCT) to address some of the challenges
+in developing and executing workflows on HPC platforms. RCT consists of three
+main components: Ensemble Toolkit (EnTK)~\cite{balasubramanian2016ensemble},
+RADICAL-Pilot (RP)~\cite{merzky2015radical} and RADICAL-SAGA
+(RS)~\cite{saga-x}. EnTK provides the ability to create and execute ensemble-
+based workflows/applications with complex coordination and communication but
 without the need for explicit resource management. EnTK uses RP which
 provides resource management and task execution capabilities, and RP uses RS
-as an interoperable resource access  interface. % layer.
+as an interoperable resource access  interface.
 
 RCT eschew the concept of a monolithic workflow systems and uses ``building
 blocks''. RCT provide scalable implementations of building blocks in Python
 that are used to support dozens of scientific applications on high-performance
 and distributed systems~\cite{turilli2016analysis, angius2017converging,
 treikalis2016repex, balasubramanian2016ensemble, balasubramanian2016extasy}. 
+In this section we discuss details of RP and EnTK, and understand how these 
+components have been used to support the flexible and scalable execution of 
+pipelines, which will permit a deeper understanding of HTBAC in the next 
+section.
 
-% RCT has also been used extensively to support
-% biomolecular sciences algorithms/methods, e.g., replica-exchange and adaptive
-% sampling.
+
+% RCT has also been used extensively to support biomolecular sciences
+% algorithms/methods, e.g., replica-exchange and adaptive sampling.
 
 % ---------------------------------------------------------------------------
 % \subsubsection*{RADICAL-Pilot}\label{sec:pilot}
 
-A primary challenge faced is the scalable execution of applications
-consisting of large ensembles of tasks.  Traditionally, each task is
-submitted as an individual job, or MPI capabilities are used to  execute
-multiple tasks as part of a multi-node single job. The former method suffers
-from unpredictable queue time for each job; the latter is suitable to execute
-tasks that are homogeneous and have no dependencies, and relies on the fault
-tolerance of MPI\@.
+\subsection{RADICAL-Pilot}
+
+The scalable execution of applications with large ensembles of tasks is
+challenging. Traditionally, two methods are used to execute multiple tasks on
+a resource: each task is scheduled as an individual job, or MPI capabilities
+are used to execute multiple tasks as part of a single job. The former method
+suffers from unpredictable queue time: each task independently awaits in the
+resource's queue to be scheduled. The latter method relies on the fault
+tolerance of MPI, and is suitable to execute tasks that are homogeneous and
+have no interdependencies.
 
 The Pilot abstraction~\cite{turilli2017comprehensive} solves these issues:
 The pilot abstraction: (i) uses a placeholder job without any tasks assigned
