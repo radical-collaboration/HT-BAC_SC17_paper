@@ -151,28 +151,30 @@ filesystem latency on the HPC resource. EnTK submits CU descriptions to the
 MongoDB used by RP, and the RP pilot pulls these descriptions from the same
 database. As described in Section~\ref{ssec:exp_setup}, this pull operation
 occurs over a wide area network, introducing varying amounts of latency.
-Further, RP pilot writes and reads the CU descriptions multiple times to and
+Further, RP writes and reads the CU descriptions multiple times to and
 from the shared filesystem of the HPC machine. Together, these two factors
 introduce delays in the scheduling of the CUs.
 
-When the workload is the EGFR kinase, we see (Figure~\ref{fig:exp2}) that the
+When the workload includes the EGFR kinase, we see (Figure~\ref{fig:exp2}) that the
 RP overhead becomes on average less than 10\% of the average total execution
 time (TTX), defined as \(TTX = TTC - T_q\) where \(TTC\) is
-time-to-completion and \(T_q\) is time spent queuing on the HPC machine. We
-notice the TTX is essentially invariant across pipelines of different size
-and that, when accounting for variance, RP overheads also shows linear weak
-scaling behavior. As expected, EnTK overhead remains superlinear and
+time-to-completion and \(T_q\) is time spent queuing on the HPC machine. We further break down TTX into the time-to-completion per stage, where stages 1,2, and 7 perform file movements, while stages 3,4,5, and 6 execute NAMD tasks. At this level we notice that the time-to-completion of the NAMD stages are essentially invariant across pipelines of different size while file movement stages exhibit linearly increasing behavior. In addition, when accounting for variance, RP overheads also show linear weak scaling behavior. 
+%We also notice the TTX is essentially invariant across pipelines of different size
+%and that, when accounting for variance, RP overheads also shows linear weak
+%scaling behavior. 
+As expected, EnTK overhead remains superlinear and
 comparable to the one measured in Experiment 1. This is because in both
 experiments EnTK overhead depends on the number of tasks translated to CU
 descriptions.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{FIGURES/namd_workload_overheads.pdf}
+  \includegraphics[width=\columnwidth]{FIGURES/esmacs_32.pdf}
   \caption{Introducing the use-case EGFR kinase workload, we observe
   similar EnTK/RP overhead behavior as with the null workload with higher
-  values as the number of pipelines increases. Across pipeline
-  configurations, TTX and RP overheads (accounting for the error bars) show
+  values as the number of pipelines increases. We show a breakdown of TTX of 
+  each stage (Stage 1 - Stage 7). Across pipeline configurations, TTX and RP overheads 
+  (accounting for the error bars) show
   weak scaling performance.}\label{fig:exp2}
 \end{figure}
 
