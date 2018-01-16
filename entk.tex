@@ -46,15 +46,16 @@ at ORNL and Blue Waters at NCSA. At this scale, multiple sources of failure
 affect execution, producing loss of information and compute time. Thus, fault
 tolerance and recovery capabilities are first order concerns of the design of
 EnTK\@. As such, EnTK can handle task execution failures, resource-level
-failures, and failures of its own subcomponents and subprocesses, including
+failures, and failures of its own components and subcomponents, including
 network connectivity issues.
 
-EnTK exposes to the end-user four components, namely \textbf{Resource Handle}, \textbf{Pipeline}, \textbf{Stage} and \textbf{Task}, to create ensemble-based applications. Users
-also use the \textbf{Application Manager} component to specify resources for
-the execution of their ensemble-based application. Two internal components
-called \textbf{WF Processor} and \textbf{Execution Manager} are used
-to coordinate and enact the execution of the application (see
-Figure~\ref{fig:entk_arch}).
+EnTK exposes to the end-user five API components, namely \textbf{Resource Handle}, 
+\textbf{Pipeline}, \textbf{Stage} and \textbf{Task}, to create ensemble-based applications. 
+Users then instantiate the last API component, namely the \textbf{Application Manager}  
+to pass the application description and specify cyberinfrastructure resources for the 
+execution of their ensemble-based application. The Application Manager holds these 
+descriptions, and instantiates internal components which coordinate and enact the 
+execution of the application (see Figure~\ref{fig:entk_arch}).
 
 \begin{figure}
   \centering
@@ -65,10 +66,11 @@ Figure~\ref{fig:entk_arch}).
            toolkit.}\label{fig:entk_arch}
 \end{figure}
 
-The Task component is used to encapsulate an executable  and its input/output
-data, resource and software environment requirements. The Stage component is
-used to group tasks that have the same dependencies and can be executed
-concurrently. The Pipeline component is used to describe a sequence of
+
+The Task component is used to encapsulate an executable and its software 
+environment and its data dependencies. The Stage component contains a set 
+of tasks without mutual dependencies that can be executed concurrently. 
+The Pipeline component is used to describe a sequence of
 stages, i.e., operations that need to be executed sequentially, not concurrently.
 
 EnTK enables users to program ensemble-based applications directly in Python,
@@ -78,10 +80,9 @@ and list data structures, avoids the need to express explicitly relationship
 among tasks. These relationships are insured by design, depending on the
 partitioning of the set of tasks into stages and then pipelines. Further,
 EnTK enables an explicit definition of pre and post conditions on the
-execution of tasks, stages, and pipelines, enabling a fine grained
-adaptivity, both a local and global level. Conveniently, this does not
-require the codification of a directed acyclic graph (DAG), a process that imposes a rigid
-representation model on the domain scientists.
+execution of tasks, enabling a fine grained adaptivity, both a local and global 
+level. Conveniently, this does not require the codification of a directed acyclic 
+graph (DAG), a process that imposes a rigid representation model on the domain scientists.
 
 % The \textbf{Application Manager} component of EnTK enables users to specify
 % target resources for the execution of the ensemble-based application. This
@@ -100,24 +101,43 @@ representation model on the domain scientists.
 % these workloads (see \textbf{Figure~\ref{fig:entk_arch}}, right schematic
 % of left panel).
 
-Once the workflow of an ensemble-based application is described, one or more
-pipelines are submitted to the Application Manager module for execution. The
-Application Manager sets up multiple processes, threads and a messaging
-infrastructure for communication. The WF Processor processes each pipeline,
-identifying tasks which have their dependencies satisfied and can be executed
-concurrently. These tasks are handed over to the Execution Manager that binds
-tasks to resources on the basis of a set of heuristics called ``execution
-strategies''. The Execution Manager uses the underlying runtime system,
-RADICAL-Pilot, to execute the tasks on the specific target resource.
+% Once the workflow of an ensemble-based application is described, one or more
+% pipelines are submitted to the Application Manager module for execution. 
+
+Upon initialization, the Application Manager creates multiple queues and 
+uses a subcomponent called the \textbf{Synchronizer} which updates the state 
+of the application at runtime. In addition, the Application Manager initializes 
+two additional EnTK components, namely called \textbf{WF Processor} and 
+\textbf{Execution Manager}. 
+
+The WF Processor initiates the execution by creating a local copy of the
+application description passed by the Application Manager and tags tasks 
+for execution. Tasks, stages and pipelines are implemented as objects, and
+are moved between queues. The Execution Manager pulls execution-ready tasks
+from the appropriate queue and submits them to the runtime system. All EnTK 
+components are implemented as processes, and all subcomponents are implemented 
+as threads. The Application Manager serves as the master process spawning all 
+the other processes. Synchronization among processes is achieved by message-passing via 
+queues. EnTK relies on RabbitMQ message queueing infrastructure to transport the 
+objects and messages among components~\cite{balasubramanian2017powerofmany}. 
+
+% Application Manager sets up multiple processes, threads and a messaging
+% infrastructure for communication. The WF Processor processes each pipeline,
+% identifying tasks which have their dependencies satisfied and can be executed
+% concurrently. These tasks are handed over to the Execution Manager that binds
+% tasks to resources on the basis of a set of heuristics called ``execution
+% strategies''. The Execution Manager uses the underlying runtime system,
+% RADICAL-Pilot, to execute the tasks on the specific target resource.
 
 EnTK is implemented as a multiprocess application. The number of processes
 can be tuned to match the throughput requirements of ensemble-based
 applications and the capabilities of diverse target resources. All but the
-master process of the toolkit are stateless, enabling process-level fault
-tolerance. Upon failure of one or more stateless processes, application tasks
-can be assigned to existing or newly created processes without blocking the
-overall execution. Upon failure of the master process, execution can be
-restarted without loosing data about tasks that have been already executed.
+master process i.e  the Application Manager of the toolkit are stateless, 
+enabling process-level fault tolerance. Upon failure of one or more stateless 
+processes, application tasks can be assigned to existing or newly created 
+processes without blocking the overall execution. Upon failure of the master 
+process, execution can be restarted without loosing data about tasks that have 
+been already executed.
 
 % A description of the set of resources to be utilized is provided to the
 % \textbf{Application Manager}.
