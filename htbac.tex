@@ -7,7 +7,7 @@ of the pipelines, stages and synchronization~\cite{Bhati2017}.
 
 
 RADICAL-Cybertools provides advanced resource management capabilities and,
-thereby delivers the necessary high- throughput capabilities required. HTBAC is
+thereby delivers the necessary high-throughput capabilities required. HTBAC is
 integrated with the EnTK component of RCT. EnTK provides a common API,
 execution and programming model, thus allowing HTBAC to express the workflows
 associated with different protocols uniformly, and thus minimize development
@@ -15,23 +15,38 @@ effort and complexity.
 
 We express the application logic of HTBAC using the user-facing API 
 components of EnTK. We describe these components for the ESMACS
-protocol\@. The concept of an ensemble in the ESMACS protocol maps directly to
+protocol\@. A protocol typically corresponds to a single physical
+system. The ESMACS protocol of the HTBAC workflow enables the 
+user to modify the workflow, and define parameters such as the physical 
+system, number of replicas, and core allocation per replica. 
+
+\begin{figure}
+\centering
+  \includegraphics[width=0.5\textwidth]{FIGURES/HTBAC_Workflow_ESMACS.pdf}
+  \caption{ESMACS protocol implemented as an HTBAC workflow, encoded using the EnTK PST model. 
+  Each protocol represents a physical system and is captured as a set of independent pipelines. 
+  Each pipeline maps to a single replica. Stages within a pipeline maintain temporal 
+  ordering. Each stage contains a single task.}
+  \label{figure:HTBAC}
+\end{figure}
+
+The concept of an ensemble in the ESMACS protocol maps directly to
 a set of pipelines in EnTK, where each pipeline contains functions that operate
 on a given replica. EnTK interprets these replicas as independent pipelines.
 Each pipeline consists of multiple stages representing a well-defined execution
 order; each stage can contain heterogeneous workloads. Although each stage of a
 pipeline depends on its predecessor, the pipelines execute independently of each
 other. The patterns within pipelines are identical and describe an ensemble of replica
-simulations, as shown in Fig~\ref{figure:ESMACS-pipelines}.
+simulations, as shown in Fig~\ref{figure:HTBAC}.
 
-\begin{figure}
-\centering
-  \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_control_flow_only.pdf}
-  \caption{ESMACS protocol indicating how an N replica ensemble is implemented in HTBAC.
-  Each replica is mapped to a single EnTK pipeline.
-  Each pipeline is equivalent and represents a set of simulations which are captured as stages by
-  EnTK.}\label{figure:ESMACS-pipelines}
-\end{figure}
+% \begin{figure}
+% \centering
+%   \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_control_flow_only.pdf}
+%   \caption{ESMACS protocol indicating how an N replica ensemble is implemented in HTBAC.
+%   Each protocol instance is mapped to a single EnTK pipeline.
+%   Each pipeline is equivalent and represents a set of simulations which are captured as stages by
+%   EnTK.}\label{figure:ESMACS-pipelines}
+% \end{figure}
 
 %\begin{itemize}
 %	\item 1) Untar configuration files

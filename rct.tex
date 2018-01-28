@@ -1,13 +1,21 @@
 
 We have designed RADICAL-Cybertools (RCT) to address some of the challenges
-in developing and executing workflows on HPC platforms. RCT consists of three
-main components: Ensemble Toolkit (EnTK)~\cite{balasubramanian2016ensemble},
-RADICAL-Pilot (RP)~\cite{merzky2015radical} and RADICAL-SAGA
-(RS)~\cite{saga-x}. EnTK provides the ability to create and execute ensemble-
+in developing and executing workflows on HPC platforms, which are functionally 
+delineated middleware building blocks. The HTBAC workflow depends on two 
+RCT components, mainly the Ensemble Toolkit (EnTK) and RADICAL-Pilot (RP). 
+
+
+% RCT consists of three
+% main components: Ensemble Toolkit (EnTK)~\cite{balasubramanian2016ensemble},
+% RADICAL-Pilot (RP)~\cite{merzky2015radical} and RADICAL-SAGA
+% (RS)~\cite{saga-x}. 
+
+EnTK provides the ability to create and execute ensemble-
 based workflows/applications with complex coordination and communication but
-without the need for explicit resource management. EnTK uses RP which
-provides resource management and task execution capabilities, and RP uses RS
-as an interoperable resource access  interface.
+without the need for explicit resource management. EnTK uses RP as the runtime
+system which provides resource management and task execution capabilities. 
+
+% and RP uses RS as an interoperable resource access interface.
 
 RCT eschew the concept of a monolithic workflow systems and uses ``building
 blocks''. RCT provide scalable implementations of building blocks in Python
