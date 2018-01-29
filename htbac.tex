@@ -70,6 +70,14 @@ be executed including runtime, queue, and account details. We capture the
 integration of the application (ESMACS protocol) and how it interfaces with
 EnTK in Fig~\ref{figure:ht-bac_rp}.
 
+\begin{figure}
+\centering
+  \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_control_flow_only.pdf}
+  \caption{\bf NAMD Stages of HTBAC ESMACS protocol.}
+  \label{figure:ESMACS-pipelines}
+\end{figure}
+
+
 We define the client resource in Fig~\ref{figure:ht-bac_rp} as the workload
 system---HTBAC which describes a series of replicas with ordered functions as
 a pipelines with stages and tasks. EnTK interprets these pipelines as a
@@ -81,13 +89,15 @@ pilot that submits placeholders to the queue. Once the pilot is activated,
 the RP-Agent submits the tasks in the form of compute units to the
 placeholders to begin execution.
 
+
 \begin{figure}
 \centering
   \includegraphics[width=0.5\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
   \caption{\bf Integration between HTBAC workflow and EnTK\@. Numbers
   indicate the temporal sequence of execution. RADICAL-Pilot (RP) database
   (DB) can be deployed on any host reachable from the
-  resources.\dwwnote{I think CU needs to be defined here}}\label{figure:ht-bac_rp}
+  resources.\dwwnote{I think CU needs to be defined here}}
+  \label{figure:ht-bac_rp}
 \end{figure}
 
 
@@ -96,9 +106,9 @@ thereby delivers the necessary high-throughput capabilities required. HTBAC is
 integrated with the EnTK component of RCT. 
 
 
-%\begin{figure}[ht]
-%\centering
+% \begin{figure}[ht]
+% \centering
 %  \includegraphics[width=0.5\textwidth]{FIGURES/entk_htbac_integration.pdf}
- % \caption{\bf Integration between HT-BAC workflow system and EnTK that shows resource/application managers.}
-   %\label{figure:ht-bac_entk}
-%\end{figure}
+%   \caption{\bf Integration between HT-BAC workflow system and EnTK that shows resource/application managers.}
+%   \label{figure:ht-bac_entk}
+% \end{figure}
