@@ -23,7 +23,7 @@ simulations, as shown in Fig~\ref{figure:HTBAC}.
   \caption{ESMACS protocol implemented as an HTBAC workflow, encoded using the EnTK PST model. 
   Each protocol represents a physical system and is captured as a set of independent pipelines. 
   Each pipeline maps to a single replica. Stages within a pipeline maintain temporal 
-  ordering. Each stage contains a single task.}
+  ordering. Each stage contains a single task. Stages S3-S6 contain NAMD tasks.}
   \label{figure:HTBAC}
 \end{figure}
 
@@ -31,10 +31,6 @@ The ESMACS protocol consist of pipelines with stages comprised of heterogeneous 
 For example, equilibration and production, followed by post processing steps. 
 The different protocols differ in the details of the pipelines, stages and 
 synchronization~\cite{Bhati2017}.
-
-
-
-
 
 
 % \begin{figure}
@@ -62,7 +58,7 @@ attributes that define the workload parameters such as the location of input
 files, the number of simulations and the MD engine(s) to launch simulations.
 The ESMACS protocol defines 7 stages, in which the first and last
 stages perform staging of the input/output data. The middle stages indicate
-simulation tasks as shown in Fig~\ref{figure:ESMACS-pipelines}. The task is
+simulation tasks as shown in Fig~\ref{figure:HTBAC}. The task is
 appended to a stage and stages are appended to a pipeline to maintain
 temporal order. The workflow relies on a resource configuration which
 consists of the details required to use a resource where the application will
@@ -70,12 +66,12 @@ be executed including runtime, queue, and account details. We capture the
 integration of the application (ESMACS protocol) and how it interfaces with
 EnTK in Fig~\ref{figure:ht-bac_rp}.
 
-\begin{figure}
-\centering
-  \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_control_flow_only.pdf}
-  \caption{\bf NAMD Stages of HTBAC ESMACS protocol.}
-  \label{figure:ESMACS-pipelines}
-\end{figure}
+% \begin{figure}
+% \centering
+%   \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_control_flow_only.pdf}
+%   \caption{\bf NAMD Stages of HTBAC ESMACS protocol.}
+%   \label{figure:ESMACS-pipelines}
+% \end{figure}
 
 
 We define the client resource in Fig~\ref{figure:ht-bac_rp} as the workload
