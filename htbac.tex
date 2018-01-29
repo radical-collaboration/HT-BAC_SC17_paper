@@ -1,24 +1,21 @@
-
-HTBAC uses RCT to implement ESMACS, and similar
-protocols such as TIES\@. These protocols consist of pipelines with stages
-comprised of heterogeneous tasks. For example, equilibration and production,
-followed by post processing steps. The different protocols differ in the details 
-of the pipelines, stages and synchronization~\cite{Bhati2017}.
-
-
-RADICAL-Cybertools provides advanced resource management capabilities and,
-thereby delivers the necessary high-throughput capabilities required. HTBAC is
-integrated with the EnTK component of RCT. EnTK provides a common API,
+HTBAC by design represents binding free energy protocols, such 
+ESMACS and TIES. We model a protocol using a series of 
+simulation steps and assigning the number of replicas. 
+We express the application logic of HTBAC using the user-facing API 
+components of EnTK. EnTK provides a common API,
 execution and programming model, thus allowing HTBAC to express the workflows
 associated with different protocols uniformly, and thus minimize development
-effort and complexity.
-
-We express the application logic of HTBAC using the user-facing API 
-components of EnTK. We describe these components for the ESMACS
+effort and complexity. We describe these components for the ESMACS
 protocol\@. A protocol typically corresponds to a single physical
-system. The ESMACS protocol of the HTBAC workflow enables the 
-user to modify the workflow, and define parameters such as the physical 
-system, number of replicas, and core allocation per replica. 
+system. The concept of an ensemble in the ESMACS protocol maps directly to
+a set of pipelines in EnTK, where each pipeline contains functions that operate
+on a given replica. EnTK interprets these replicas as independent pipelines.
+Each pipeline consists of multiple stages representing a well-defined execution
+order; each stage can contain heterogeneous workloads. Although each stage of a
+pipeline depends on its predecessor, the pipelines execute independently of each
+other. The patterns within pipelines are identical and describe an ensemble of replica
+simulations, as shown in Fig~\ref{figure:HTBAC}.
+
 
 \begin{figure}
 \centering
@@ -30,14 +27,15 @@ system, number of replicas, and core allocation per replica.
   \label{figure:HTBAC}
 \end{figure}
 
-The concept of an ensemble in the ESMACS protocol maps directly to
-a set of pipelines in EnTK, where each pipeline contains functions that operate
-on a given replica. EnTK interprets these replicas as independent pipelines.
-Each pipeline consists of multiple stages representing a well-defined execution
-order; each stage can contain heterogeneous workloads. Although each stage of a
-pipeline depends on its predecessor, the pipelines execute independently of each
-other. The patterns within pipelines are identical and describe an ensemble of replica
-simulations, as shown in Fig~\ref{figure:HTBAC}.
+The ESMACS protocol consist of pipelines with stages comprised of heterogeneous tasks. 
+For example, equilibration and production, followed by post processing steps. 
+The different protocols differ in the details of the pipelines, stages and 
+synchronization~\cite{Bhati2017}.
+
+
+
+
+
 
 % \begin{figure}
 % \centering
@@ -92,6 +90,10 @@ placeholders to begin execution.
   resources.\dwwnote{I think CU needs to be defined here}}\label{figure:ht-bac_rp}
 \end{figure}
 
+
+RADICAL-Cybertools provides advanced resource management capabilities and,
+thereby delivers the necessary high-throughput capabilities required. HTBAC is
+integrated with the EnTK component of RCT. 
 
 
 %\begin{figure}[ht]
