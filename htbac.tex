@@ -2,14 +2,20 @@ HTBAC % by design
 allows to % represents 
 encode binding free energy protocols, such ESMACS and TIES\@. We model a
 protocol using a series of simulation steps and define the number of 
-replicas. In turn, each replica runs the same series of simulation steps.
+replicas. \jhanote{I don't think this is a suitable description of
+how we model a protocol: what is a simulation step? steps or stages?}
+In turn, each replica runs the same series of simulation steps.
 \mtnote{I am not sure I understand this sentence: to what do we
-assign one or more replica?} \jdnote{better?}. We express the application logic of HTBAC using
-the user-facing API % components 
+assign one or more replica?} \jdnote{better?}. We express the application
+logic of HTBAC using the user-facing API % components 
 of EnTK (\S\ref{ssec:entk}). 
 
+\jhanote{Why not use ensemble member as opposed to replica? ensemble --> the
+collective; ensemble member --> a non-specific ensemble instance drawn from
+the collective.}
+
 EnTK % provides a common 
-API and programming model allow HTBAC to express the workflows associated
+API and programming model \jhanote{What programming model? EnTK's programming model?} allow HTBAC to express the workflows associated
 with different protocols as ensemble-based applications,
 % uniformly, and thus 
 minimizing development effort and complexity. 
@@ -17,13 +23,15 @@ minimizing development effort and complexity.
 % Typically, a protocol % typically 
 % corresponds to a single physical system. 
 The concept of % an 
-ensemble in the ESMACS and TIES \mtnote{and TIES? You mentioned it above. At some
-point we will have to transition to ESMACS only but the transition needs to
-be justified.} protocol maps directly to a set of pipelines in EnTK, where each 
-replica maps to a single pipeline. As defined earlier by the ESMACS protocol,
-each replica is assigned a series of simulation steps. EnTK interprets these steps 
-as a workflow of stages and tasks. Stages maintain a well-defined execution 
-order while the simulation steps are translated as tasks. 
+ensemble in the ESMACS and TIES \mtnote{and TIES? You mentioned it above. At
+some point we will have to transition to ESMACS only but the transition needs
+to be justified.} protocol maps directly to a set of pipelines in EnTK, where
+each replica \jhanote{replica of what?} maps to a single pipeline. As defined
+earlier by the ESMACS protocol, each replica is assigned a series of
+simulation steps. \jhanote{Achtung: simulation steps will be confused with the number of
+steps for an MD simulation} EnTK interprets these steps as a workflow of stages and
+tasks. Stages maintain a well-defined execution order while the simulation
+steps are translated as tasks.
 
 
 % directly to a set of pipelines in EnTK, where
@@ -32,7 +40,7 @@ order while the simulation steps are translated as tasks.
 % multiple stages representing a well-defined execution order; each stage can
 % contain heterogeneous workloads. Although each stage of a pipeline depends on
 % its predecessor, the pipelines execute independently of each other. 
-The patterns within pipelines are identical and describe an ensemble of replica
+The patterns \jhanote{what is a pattern within a pipeline? a pipeline is a pattern by some accounts?} within pipelines are identical and describe an ensemble of replica
 simulations, as shown in Fig~\ref{figure:HTBAC}.\mtnote{I am afraid we need
 to iterate the whole pragraph. We need to separate between the abstracitons
 used in the ESMACS protocol (replica, function, simulation) to those of EnTK
