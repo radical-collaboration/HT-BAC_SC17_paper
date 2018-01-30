@@ -107,16 +107,19 @@ like the location of input files, the number of simulations and the MD
 engine(s) used to launch those simulations. The ESMACS protocol % defines 
 has 7 stages: %, in which 
 the first and last stages perform staging of the input/output data, the
-middle stages indicate simulation tasks as shown in Fig~\ref{figure:HTBAC}.
-The task is appended to a stage and stages are appended to a pipeline to
-maintain temporal order during execution. \mtnote{The following should be
-edited for readability and probably separated into a new paragraph. Note how
-we introduce `resource configuration' here and we use it again in the
-following paragraph.} The workflow relies on a resource configuration which
-consists of the details required to use a resource where the application will
-be executed including runtime, queue, and account details. We capture the
-integration of the application (ESMACS protocol) and how it interfaces with
-EnTK in Fig.~\ref{figure:ht-bac_rp}.
+middle stages indicate simulation tasks as shown in
+Fig~\ref{figure:HTBAC}\mtnote{I notice that in the experiment section we
+write: ``where stages 1,2, and 7 perform file movements, while stages 3,4,5,
+and 6 execute NAMD tasks.'' Should we edit the previous sentence
+accordingly?}. The task is appended to a stage and stages are appended to a
+pipeline to maintain temporal order during execution. \mtnote{The following
+should be edited for readability and probably separated into a new paragraph.
+Note how we introduce `resource configuration' here and we use it again in
+the following paragraph.} The workflow relies on a resource configuration
+which consists of the details required to use a resource where the
+application will be executed including runtime, queue, and account details.
+We capture the integration of the application (ESMACS protocol) and how it
+interfaces with EnTK in Fig.~\ref{figure:ht-bac_rp}.
 
 % \begin{figure}
 % \centering
