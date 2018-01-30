@@ -1,9 +1,10 @@
 HTBAC % by design 
 allows to % represents 
 encode binding free energy protocols, such ESMACS and TIES\@. We model a
-protocol using a series of simulation steps and assigning the number of
-replicas\mtnote{I am not sure I understand this sentence: to what do we
-assign one or more replica?}. We express the application logic of HTBAC using
+protocol using a series of simulation steps and define the number of 
+replicas. In turn, each replica runs the same series of simulation steps.
+\mtnote{I am not sure I understand this sentence: to what do we
+assign one or more replica?} \jdnote{better?}. We express the application logic of HTBAC using
 the user-facing API % components 
 of EnTK (\S\ref{ssec:entk}). 
 
@@ -16,20 +17,27 @@ minimizing development effort and complexity.
 % Typically, a protocol % typically 
 % corresponds to a single physical system. 
 The concept of % an 
-ensemble in the ESMACS \mtnote{and TIES? You mentioned it above. At some
+ensemble in the ESMACS and TIES \mtnote{and TIES? You mentioned it above. At some
 point we will have to transition to ESMACS only but the transition needs to
-be justified.} protocol maps directly to a set of pipelines in EnTK, where
-each pipeline contains functions that operate on a given replica. EnTK
-interprets these replicas as independent pipelines. Each pipeline consists of
-multiple stages representing a well-defined execution order; each stage can
-contain heterogeneous workloads. Although each stage of a pipeline depends on
-its predecessor, the pipelines execute independently of each other. The
-patterns within pipelines are identical and describe an ensemble of replica
+be justified.} protocol maps directly to a set of pipelines in EnTK, where each 
+replica maps to a single pipeline. As defined earlier by the ESMACS protocol,
+each replica is assigned a series of simulation steps. EnTK interprets these steps 
+as a workflow of stages and tasks. Stages maintain a well-defined execution 
+order while the simulation steps are translated as tasks. 
+
+
+% directly to a set of pipelines in EnTK, where
+% each pipeline contains functions that operate on a given replica. EnTK
+% interprets these replicas as independent pipelines. Each pipeline consists of
+% multiple stages representing a well-defined execution order; each stage can
+% contain heterogeneous workloads. Although each stage of a pipeline depends on
+% its predecessor, the pipelines execute independently of each other. 
+The patterns within pipelines are identical and describe an ensemble of replica
 simulations, as shown in Fig~\ref{figure:HTBAC}.\mtnote{I am afraid we need
 to iterate the whole pragraph. We need to separate between the abstracitons
 used in the ESMACS protocol (replica, function, simulation) to those of EnTK
 (pipeline, stage and task). Once separated, we need to map the former into
-the latter.}
+the latter.} \jdnote{better?}
 
 \begin{figure}
 \centering
