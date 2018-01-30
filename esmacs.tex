@@ -48,18 +48,19 @@ The common philosophy behind the two protocols entails similar middleware
 requirements: In this work we focus on the ESMACS protocol but all results are
 applicable also to TIES.
 
-Each replica within the ESMACS protocol consists of a series of simulation
-steps followed by post production analysis. Generally, an ESMACS replica will
-contain between 3 and 12 equilibration simulation steps followed by a
+Each replica within the ESMACS protocol consists of a sequence of simulation
+stages followed by post production analysis. Generally, an ESMACS replica will
+contain between 3 and 12 equilibration simulation stages followed by a
 production MD run, all of which are conducted in the NAMD
-package~\cite{Phillips2005}. The first step is system minimization, the
-following steps involve the gradual release of positional constraints upon
+package~\cite{Phillips2005}. The first stage is system minimization, the
+following stages involve the gradual release of positional constraints upon
 the structure and the heating to a physiologically realistic temperature.
 Upon completion of the MD simulation, free energy computation (via MMPBSA and
 potentially normal mode analysis) is performed using
 AmberTools~\cite{Case2005, MillerIII2012}.
 
-The ESMACS protocol is highly customizable. Both the number of simulation replicas in the ensemble and the lengths of their runs can be varied to
+The ESMACS protocol is highly customizable. Both the number of simulation replicas 
+in the ensemble and the lengths of their runs can be varied to
 obtain optimal performance for any given system. Using replicas that only
 vary in the initial velocities assigned to the atoms of the system we have
 defined a standard protocol which prescribes a 25 replica ensemble, each run
