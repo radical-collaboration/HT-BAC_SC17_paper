@@ -106,14 +106,17 @@ parameters % such as
 like the location of input files, the number of simulations and the MD
 engine(s) used to launch those simulations. The ESMACS protocol % defines 
 has 7 stages: %, in which 
-the first and last stages perform staging of the input/output data, and the
+the first and last stages perform staging of the input/output data, the
 middle stages indicate simulation tasks as shown in Fig~\ref{figure:HTBAC}.
 The task is appended to a stage and stages are appended to a pipeline to
-maintain temporal order. The workflow relies on a resource configuration
-which consists of the details required to use a resource where the
-application will be executed including runtime, queue, and account details.
-We capture the integration of the application (ESMACS protocol) and how it
-interfaces with EnTK in Fig~\ref{figure:ht-bac_rp}.
+maintain temporal order during execution. \mtnote{The following should be
+edited for readability and probably separated into a new paragraph. Note how
+we introduce `resource configuration' here and we use it again in the
+following paragraph.} The workflow relies on a resource configuration which
+consists of the details required to use a resource where the application will
+be executed including runtime, queue, and account details. We capture the
+integration of the application (ESMACS protocol) and how it interfaces with
+EnTK in Fig.~\ref{figure:ht-bac_rp}.
 
 % \begin{figure}
 % \centering
@@ -123,16 +126,25 @@ interfaces with EnTK in Fig~\ref{figure:ht-bac_rp}.
 %   \label{figure:ESMACS-pipelines}
 % \end{figure}
 
-We define the client resource in Fig~\ref{figure:ht-bac_rp} as the workload
-system---HTBAC which describes a set of replicas with ordered functions as a
-pipelines with stages and tasks. EnTK interprets these pipelines as a
-functional set of tasks and generates the pilot description that contains the
-resource configuration of how to run the HTBAC workload. For the ESMACS
-protocol running on Blue Waters we define the runtime system, queue, and the
-pilot size. Once RADICAL-Pilot receives this new workload it generates a
-pilot that submits placeholders to the queue. Once the pilot is activated,
-the RP-Agent submits the tasks in the form of compute units to the
-placeholders to begin execution.
+We define the client resource in Fig.~\ref{figure:ht-bac_rp} as the workload
+system---HTBAC\mtnote{I do not understand this sentence. Some problems I see
+with it: I do not see a definition if Fig. 4; what is a `client resource'?
+What is a `workload system' in this context?} which describes a set of
+replicas with ordered functions as a pipelines with stages and tasks
+\mtnote{The rest of the sentence seems to use functions as previously done in
+the opening paragraphs?}. EnTK interprets these pipelines as a functional set
+of tasks \mtnote{I am not sure I understand what a `functional set of tasks'
+is} and generates the pilot description that contains the resource
+configuration of how to run the HTBAC workload. For the ESMACS protocol
+running on Blue Waters we define the runtime system, queue, and the pilot
+size. Once RADICAL-Pilot receives this new workload, it generates a pilot
+that submits placeholders to the queue\mtnote{A pilot is a resource
+placeholder. The sentence needs editing.}. Once the pilot % is activated
+becomes active, the RP-Agent submits the tasks in the form of compute units
+to the placeholders to begin execution \mtnote{RP-Agent is the pilot and
+therefore the resource placeholder. Let's discuss in person about RP
+execution model and how it is implemented by both RP modules and
+components}.
 
 \begin{figure}
 \centering
@@ -145,9 +157,10 @@ placeholders to begin execution.
 \end{figure}
 
 RADICAL-Cybertools provides advanced resource management capabilities and,
-thereby delivers the necessary high-throughput capabilities required. HTBAC
-is integrated with the EnTK component of RCT.
-
+thereby delivers the necessary high-throughput capabilities
+required\mtnote{Required by?}. HTBAC is integrated with the EnTK component of
+RCT\@.\mtnote{I am not sure what we want to say with this short paragraph.
+Maybe we want to expand on it or comment it out?}
 
 % \begin{figure}[ht]
 % \centering
