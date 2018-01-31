@@ -14,10 +14,6 @@ be covered?}
 We express the application logic of HTBAC using the user-facing API 
 % components 
 of EnTK (\S\ref{ssec:entk}). 
-\jhanote{Why not use ensemble member as opposed to replica? ensemble --> the
-collective; ensemble member --> a non-specific ensemble instance drawn from
-the collective.} \jdnote{Earlier in methodology we refer to a replica as an
-ensemble member.}
 The EnTK % provides a common 
 API and its programming model 
 allow HTBAC to express the workflows associated with different protocols as
@@ -25,6 +21,11 @@ ensemble-based applications, % uniformly, and thus
 minimizing development effort and complexity.
 % We describe these components for the ESMACS protocol\@. Typically, a
 % protocol % typically corresponds to a single physical system.
+
+\jhanote{Why not use ensemble member as opposed to replica? ensemble --> the
+collective; ensemble member --> a non-specific ensemble instance drawn from
+the collective.} \jdnote{Earlier in methodology we refer to a replica as an
+ensemble member.}
 
 An ensemble of replicas in the ESMACS and TIES protocol directly maps to a set of
 pipelines in EnTK, where each replica maps to a single pipeline consisting of
