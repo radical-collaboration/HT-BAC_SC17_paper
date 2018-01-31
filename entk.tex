@@ -56,13 +56,13 @@ to acquire the resources needed by applications to manage task execution.
 
 EnTK enables the creation of ensemble-based applications by 
 % exposes to the end-user five 
-exposing an API with five components: %, namely 
-\textbf{Resource Handle}, \textbf{Pipeline}, \textbf{Stage} and
+exposing an API with four components: %, namely 
+\textbf{Application Manager}, \textbf{Pipeline}, \textbf{Stage} and
 \textbf{Task}. % , to create ensemble-based applications. 
 Users describe ensembles in terms of pipelines, stages and tasks, (PST), and pass this description to an instance of 
 % instantiate the last API component, namely the \textbf{Application Manager}
 Application Manager, % to pass the application description and specify
-specifying what Resource Handle to use for executing the application (see
+specifying what resource to use for executing the application (see
 Figure~\ref{fig:entk_arch}).
 
 % cyberinfrastructure resources for the execution of their ensemble-based
@@ -111,17 +111,17 @@ target resources for the execution of the ensemble-based application. This
 includes properties like walltime, number of nodes and credentials for
 resource access. Users can also define execution setup parameters such as the
 number of processes or messaging queues that should be used by EnTK\@. This
-allow to size and tune the performance of EnTK, depending on the number of
+allows to size and tune the performance of EnTK, depending on the number of
 tasks, stages and pipelines, but also on the resources available to the
 toolkit.
 
 The Application Manager along with the \textbf{WF Processor} is responsible
-for the transformation of the application workflow into a sequence of tasks
-that can be submitted to the indicated resources for execution. Internally,
-the \textbf{Resource Manager} and \textbf{Execution Manager} components
-enable the acquisition of resources and the management of execution of these
-workloads (see \textbf{Figure~\ref{fig:entk_arch}}, right schematic of left
-panel).
+for the transformation of the application workflow into workloads, i.e. set of 
+tasks, that can be submitted to the indicated resources for execution. 
+Internally, the \textbf{Resource Manager} and \textbf{Execution Manager} 
+components enable the acquisition of resources and the management of execution 
+of these workloads (see \textbf{Figure~\ref{fig:entk_arch}}, right schematic of 
+left panel).
 
 % Once the workflow of an ensemble-based application is described, one or
 % more pipelines are submitted to the Application Manager module for
