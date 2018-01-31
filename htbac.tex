@@ -6,6 +6,10 @@ replica consists of an identical sequence of simulation stages.
 \jhanote{I don't think this is a suitable description of how we model a
 protocol: what is a simulation step? steps or stages?} \jdnote{@sj I
 redefined simulation steps as simulation stages in the entire paper.}
+\jhanote{the definition of protocol profferred here is too generic: e.g., 
+per definition of protocol above it is unclear if "interacting" replicas would
+be covered?}
+
 
 We express the application logic of HTBAC using the user-facing API 
 % components 
@@ -16,25 +20,18 @@ the collective.} \jdnote{Earlier in methodology we refer to a replica as an
 ensemble member.}
 The EnTK % provides a common 
 API and its programming model 
-\jhanote{What programming model? EnTK's programming model?} \jdnote{changed
-to the EnTK API and its programming model}
 allow HTBAC to express the workflows associated with different protocols as
 ensemble-based applications, % uniformly, and thus 
 minimizing development effort and complexity.
 % We describe these components for the ESMACS protocol\@. Typically, a
 % protocol % typically corresponds to a single physical system.
 
-The concept of % an 
-ensemble of replicas in the ESMACS and TIES protocol directly maps to a set
-of pipelines in EnTK, where each replica
-\jhanote{replica of what?}\jdnote{I defined a replica earlier where each
-replica consists of a sequence of simulations steps} maps to a single
-pipeline consisting of a sequence of stages. Each stage consists of a task
+An ensemble of replicas in the ESMACS and TIES protocol directly maps to a set of
+pipelines in EnTK, where each replica maps to a single pipeline consisting of
+a sequence of stages. Each stage consists of a task
 \mtnote{each stage has only one task as specified in the following paragraph}
 \jdnote{done} that perform unique functions including preprocessing and
-molecular dynamics simulations. \jhanote{Achtung: simulation steps will be
-confused with the number of steps for an MD simulation} \jdnote{changed from
-sim step to sim stage}
+molecular dynamics simulations. 
 
 % directly to a set of pipelines in EnTK, where each pipeline contains
 % functions that operate on a given replica. EnTK interprets these replicas
@@ -43,7 +40,7 @@ sim step to sim stage}
 % heterogeneous workloads. Although each stage of a pipeline depends on its
 % predecessor, the pipelines execute independently of each other.
 ESMACS and TIES protocols differ in the details of the pipelines, stages and
-synchronization~\cite{Bhati2017}.
+synchronization~\cite{Bhati2017}. 
 % The patterns
 % \jhanote{what is a pattern within a pipeline? a pipeline is a pattern by
 % some accounts?} within pipelines; however, are identical and describe an
@@ -131,6 +128,14 @@ system, the pilot becomes active, and it bootstaps the Agent module of RP\@.
 The Agent communicates with the MongoDB database (RP DB), and pulls compute
 unit descriptions in bulk. Once resources become available, the compute unit
 descriptions are translated into executable units and spawned for execution.
+\jhanote{I do not think the last few sentences in the paragraph above are
+relevant to HTBAC. A HTBAC user/developer used EnTK and should know nothing
+below that. As an HTBAC user I would be justified in not knowing anything about
+SAGA and RP!}
+
+\jhanote{As the end of this section the reader still does not know what HTBAC
+is? Also, the reader knows what HTBAC enables, but not how.}
+
 % \jdnote{Better?}\mtnote{further iterated.}
 
 % When the job gets scheduled by BW, the job is given resources, and the
