@@ -29,13 +29,9 @@ ensemble of replicas in the ESMACS and TIES protocol directly maps to a set
 of pipelines in EnTK, where each replica
 \jhanote{replica of what?}\jdnote{I defined a replica earlier where each
 replica consists of a sequence of simulations steps} maps to a single
-pipeline consisting of a sequence of stages. Each stage consists of tasks
+pipeline consisting of a sequence of stages. Each stage consists of a task
 \mtnote{each stage has only one task as specified in the following paragraph}
-\jdnote{@mt at this point the abstraction is still general and not ESMACS 
-specific. Later on I indicate that each Stage for ESMACS only contains 1
-task}\mtnote{The paragraph opens with a specific reference to ESMACS. I
-believe this frames the whole argumentation within the boundaries of that
-protocol.} that perform unique functions including preprocessing and
+\jdnote{done} that perform unique functions including preprocessing and
 molecular dynamics simulations. \jhanote{Achtung: simulation steps will be
 confused with the number of steps for an MD simulation} \jdnote{changed from
 sim step to sim stage}
@@ -66,16 +62,15 @@ protocol.
 \centering
   \includegraphics[width=0.5\textwidth]{FIGURES/HTBAC_Workflow_ESMACS.pdf}
   \caption{ESMACS protocol implemented as an HTBAC
-  workflow\mtnote{application?}, encoded using the EnTK % PST model
-  API\mtnote{PST model is not defined in this paper}. \jdnote{I made a note
-  of PST in entk.tex}\mtnote{If you accept my suggestion to comment out `PST
-  model' and instead use API, then that note is not required}. Each protocol
-  represents a physical system and is % captured 
+  application \mtnote{application?} \jdnote{done}, encoded using the EnTK % PST model
+  API \mtnote{If you accept my suggestion to comment out `PST
+  model' and instead use API, then that note is not required}. \jdnote{done}. 
+  Each protocol represents a physical system and is % captured 
   encoded as a set of independent pipelines. Each pipeline maps to a single
   replica, where ESMACS consists of 25 replicas. Stages within a pipeline
   % maintain temporal ordering
-  are executed sequentially. Each stage contains tasks \mtnote{each stage has
-  only one task as specified in the following paragraph} performing unique
+  are executed sequentially. Each stage contain a task \mtnote{each stage has
+  only one task as specified in the following paragraph} \jdnote{done} performing unique
   functions, as required by the protocol. Stages S3--S6 contain molecular
   dynamics simulation tasks executed with NAMD\@.}\label{figure:HTBAC}
 \end{figure}
