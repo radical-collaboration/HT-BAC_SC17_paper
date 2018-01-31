@@ -32,11 +32,13 @@ replica consists of a sequence of simulations steps} maps to a single
 pipeline consisting of a sequence of stages. Each stage consists of tasks
 \mtnote{each stage has only one task as specified in the following paragraph}
 \jdnote{@mt at this point the abstraction is still general and not ESMACS 
-specific. Later on I indicate that each Stage for ESMACS only contains 1 task}
-that perform unique functions including preprocessing and molecular dynamics
-simulations. \jhanote{Achtung: simulation steps will be confused with the
-number of steps for an MD simulation} \jdnote{changed from sim step to sim
-stage}
+specific. Later on I indicate that each Stage for ESMACS only contains 1
+task}\mtnote{The paragraph opens with a specific reference to ESMACS. I
+believe this frames the whole argumentation within the boundaries of that
+protocol.} that perform unique functions including preprocessing and
+molecular dynamics simulations. \jhanote{Achtung: simulation steps will be
+confused with the number of steps for an MD simulation} \jdnote{changed from
+sim step to sim stage}
 
 % directly to a set of pipelines in EnTK, where each pipeline contains
 % functions that operate on a given replica. EnTK interprets these replicas
@@ -65,8 +67,9 @@ protocol.
   \includegraphics[width=0.5\textwidth]{FIGURES/HTBAC_Workflow_ESMACS.pdf}
   \caption{ESMACS protocol implemented as an HTBAC
   workflow\mtnote{application?}, encoded using the EnTK % PST model
-  API\mtnote{PST model is not defined in this paper}. \jdnote{I made a note of PST in
-  entk.tex}. Each protocol
+  API\mtnote{PST model is not defined in this paper}. \jdnote{I made a note
+  of PST in entk.tex}\mtnote{If you accept my suggestion to comment out `PST
+  model' and instead use API, then that note is not required}. Each protocol
   represents a physical system and is % captured 
   encoded as a set of independent pipelines. Each pipeline maps to a single
   replica, where ESMACS consists of 25 replicas. Stages within a pipeline
@@ -74,8 +77,7 @@ protocol.
   are executed sequentially. Each stage contains tasks \mtnote{each stage has
   only one task as specified in the following paragraph} performing unique
   functions, as required by the protocol. Stages S3--S6 contain molecular
-  dynamics simulation tasks executed with NAMD\@.}
-  \label{figure:HTBAC}
+  dynamics simulation tasks executed with NAMD\@.}\label{figure:HTBAC}
 \end{figure}
 
 % The ESMACS protocol consist of pipelines with stages comprised of
@@ -110,44 +112,41 @@ parameters % such as
 like the location of input files, the number of simulations and the MD
 engine(s) used to launch those simulations. The ESMACS protocol % defines 
 has 7 stages: %, in which 
-the first, second and last stages perform staging of the input/output data, the
-middle stages indicate simulation tasks as shown in
-Fig~\ref{figure:HTBAC}\mtnote{I notice that in the experiment section we
-write: ``where stages 1,2, and 7 perform file movements, while stages 3,4,5,
-and 6 execute NAMD tasks.'' Should we edit the previous sentence
-accordingly?} \jdnote{fixed}. The task is appended to a stage and stages are appended to a
-pipeline to maintain temporal order during execution. We capture the integration of the application 
-(ESMACS protocol) and how it interfaces with EnTK in Fig.~\ref{figure:ht-bac_rp}.
+the first, second and last stages perform staging of the input/output data,
+the middle stages indicate simulation tasks as shown in
+Fig~\ref{figure:HTBAC}. The task is appended to a stage and stages are
+appended to a pipeline to maintain temporal order during execution. 
 
+% \mtnote{I notice that in the experiment section we write: ``where stages
+% 1,2, and 7 perform file movements, while stages 3,4,5, and 6 execute NAMD
+% tasks.'' Should we edit the previous sentence accordingly?} \jdnote{fixed}
 
-\mtnote{The following
-should be edited for readability and probably separated into a new paragraph.
-Note how we introduce `resource configuration' here and we use it again in
-the following paragraph.} 
+% \mtnote{The following should be edited for readability and probably
+% separated into a new paragraph. Note how we introduce `resource
+% configuration' here and we use it again in the following paragraph.}
 
-HTBAC provides methods for the user to specify a resource request
-including walltime, cores, queue, and user credentials.
-EnTK converts the HTBAC workflow into a set of tasks called compute unit
-descriptions and submits them to RP, along with the resource request. 
-RP uses SAGA to submit a job to the specified queue in the batch system
-of the HPC. 
-Once the job is scheduled by the batch system, the pilot 
-becomes active, and it bootstaps the Agent module of RP. The Agent 
-communicates with the MongoDB database (RP DB), and pulls compute unit descriptions 
-in bulk. Once resources become available, the compute unit descriptions 
-are translated into executable units and spawned for execution. 
-\jdnote{Better?}
+We capture the integration of the application (ESMACS protocol) and how it
+interfaces with EnTK in Fig.~\ref{figure:ht-bac_rp}. HTBAC provides methods
+for the user to specify a resource request including walltime, cores, queue,
+and user credentials. EnTK converts the HTBAC workflow into a set of tasks
+called compute unit descriptions and submits them to RP, along with the
+resource request. RP uses SAGA to submit a job to the specified queue in the
+batch system of the HPC machine. Once the job is scheduled by the batch
+system, the pilot becomes active, and it bootstaps the Agent module of RP\@.
+The Agent communicates with the MongoDB database (RP DB), and pulls compute
+unit descriptions in bulk. Once resources become available, the compute unit
+descriptions are translated into executable units and spawned for execution.
+% \jdnote{Better?}\mtnote{further iterated.}
 
-
-
-% When the job gets scheduled by BW, the job 
-% is given resources, and the first thing done is to bootstrap the agent. The Agent is bootstrapped
-% and the first component (data staging). It calls the RP DB and pulls in bulk the avaialble CUs 
-% checks the properties of input files. THe units are ready for scehdulidng, passes it to the queue
-% of the scheduler, it pushes them to the queue of the agent scheduler. The executor manages one 
-% unit at a time. When there is a unit in the queue (inptu staging) and spawns it to the BW 
-% executor (APRUN). The executor (agent) waits for a the unit to return, passes the unit to the 
-% output staging, and informs the scheduler. 
+% When the job gets scheduled by BW, the job is given resources, and the
+% first thing done is to bootstrap the agent. The Agent is bootstrapped and
+% the first component (data staging). It calls the RP DB and pulls in bulk
+% the avaialble CUs checks the properties of input files. THe units are ready
+% for scehdulidng, passes it to the queue of the scheduler, it pushes them to
+% the queue of the agent scheduler. The executor manages one unit at a time.
+% When there is a unit in the queue (inptu staging) and spawns it to the BW
+% executor (APRUN). The executor (agent) waits for a the unit to return,
+% passes the unit to the output staging, and informs the scheduler.
 
 % \begin{figure}
 % \centering
@@ -176,8 +175,6 @@ are translated into executable units and spawned for execution.
 % therefore the resource placeholder. Let's discuss in person about RP
 % execution model and how it is implemented by both RP modules and
 % components}.
-
-
 
 \begin{figure}
 \centering
