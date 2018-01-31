@@ -1,32 +1,33 @@
-HTBAC is a Python-implemented workflow system that sits between the 
-user and cyberinfrastructure in order to scale and investigate free energy 
-protocols with a variety of physical systems. HTBAC allows to
-encode binding free energy protocols, such as ESMACS and TIES, into ensemble
-applications\@. We define a protocol as an ensemble of replicas where each
-replica consists of an identical sequence of simulation stages. 
-\jhanote{I don't think this is a suitable description of how we model a
-protocol: what is a simulation step? steps or stages?} \jdnote{@sj I
-redefined simulation steps as simulation stages in the entire paper.}
-\jhanote{the definition of protocol profferred here is too generic: e.g., 
-per definition of protocol above it is unclear if "interacting" replicas would
-be covered?}
+HTBAC is a Python-implemented workflow system \jhanote{Do you mean a workflow
+management system? Is it really a workflow (management) system? What are the
+essential properties of a workflow management system?} that sits between the
+user and cyberinfrastructure \jhanote{"sits between user and
+cyberinfrastructure" is too colloquial. is it a library? is it a runtime
+module?} in order to scale \jhanote{in order to scale: scale what?} and
+investigate free energy protocols with a variety of physical systems. HTBAC
+allows to encode binding free energy protocols, such as ESMACS and TIES, into
+ensemble applications\@. A protocol in HTBAC encoded as an ensemble of
+pipelines comprised of identical sequence of stages.
+\jhanote{ensemble of replicas is redundant. a replica is an ensemble member,
+and an ensemble is by definition comprised of ensemble members. the question
+is what is that ensemble member. here it is a pipeline of ... }
+
+\jhanote{the definition of protocol profferred here is too generic: e.g., per
+definition of protocol above it is unclear if "interacting" replicas would be
+covered?}
 \jdnote{As per ESMACS and TIES, the replicas are non-interacting. Ensembles
-can be interacting but as per ESMACS/TIES protocols the replicas
-are not required to be interacting.}
+can be interacting but as per ESMACS/TIES protocols the replicas are not
+required to be interacting.} \jhanote{I think this is narrow/constraining: we
+have discussed how replica exchange might be a future protocol}
 
-We express the application logic of HTBAC using the user-facing API 
-% components 
-of EnTK (\S\ref{ssec:entk}). 
-The EnTK % provides a common 
-API and its programming model 
-allow HTBAC to express the workflows associated with different protocols as
-ensemble-based applications, % uniformly, and thus 
-minimizing development effort and complexity. 
+We express the application logic of HTBAC using the user-facing API of EnTK
+(\S\ref{ssec:entk}). The EnTK API and its programming model allow HTBAC to
+express the workflows associated with different protocols as ensemble-based
+applications.
 
-\jhanote{Why not use ensemble member as opposed to replica? ensemble --> the
-collective; ensemble member --> a non-specific ensemble instance drawn from
-the collective.} \jdnote{Earlier in methodology we refer to a replica as an
-ensemble member.}
+\jhanote{lets get the definition and description clear, then we can come back
+and describe the advantages} \st{minimizing development effort and complexity.}
+
 
 An ensemble of replicas in the ESMACS and TIES protocol directly maps to a set of
 pipelines in EnTK, where each replica maps to a single pipeline consisting of
@@ -138,17 +139,26 @@ SAGA and RP!}
 integration of HTBAC, EnTK, RP. We mention the Agent, RP DB, Tasks, CUs, 
 Pipelines, etc. Therefore, I included a brief description of these 
 components, or else the reader would be left wondering what these components are.}
+\jhanote{the reader will still be left wondering what an Agent is, what SAGA
+is. These are not described or discussed anywhere in the text!}
 
-\jhanote{As the end of this section the reader still does not know what HTBAC
+\jhanote{At the end of this section the reader still does not know what HTBAC
 is? Also, the reader knows what HTBAC enables, but not how.}
 \jdnote{Not entirely sure if I understand this comment, I added a line at the 
-beginning of this section to see if this is the path you're referring to. Also 
-added a sentence below to address how}
+beginning of this section to see if this is the path you're referring to. Also
+added a sentence below to address how}\jhanote{My comment is that we've not
+still described whether HTBAC is a set of scripts or a library? client side
+software or server side? etc.}
 
 Once the HTBAC workflow is expressed, the user is able to define and assign
 a physical system to a specific protocol along with the number of replicas.  
-In turn, HTBAC provides scalability of protocols to enable multiple, concurrent 
-binding affinity investigations of different physical systems and mutations. 
+\jhanote{I think the workflow description includes the protocol, the number of
+replicas and physical system. These are not defined after the workflow.} 
+
+\jhanote{I would  move this to the opening paragraph of this section: } HTBAC
+is designed to provide scalable implementations of protocols to enable
+multiple, concurrent binding affinity investigations of different physical
+systems and mutations.
 
 
 % \jdnote{Better?}\mtnote{further iterated.}
