@@ -1,15 +1,18 @@
-HTBAC % by design 
-allows to % represents 
+HTBAC is a Python-implemented workflow system that sits between the 
+user and cyberinfrastructure in order to scale and investigate free energy 
+protocols with a variety of physical systems. HTBAC allows to
 encode binding free energy protocols, such as ESMACS and TIES, into ensemble
 applications\@. We define a protocol as an ensemble of replicas where each
-replica consists of an identical sequence of simulation stages.
+replica consists of an identical sequence of simulation stages. 
 \jhanote{I don't think this is a suitable description of how we model a
 protocol: what is a simulation step? steps or stages?} \jdnote{@sj I
 redefined simulation steps as simulation stages in the entire paper.}
 \jhanote{the definition of protocol profferred here is too generic: e.g., 
 per definition of protocol above it is unclear if "interacting" replicas would
 be covered?}
-
+\jdnote{As per ESMACS and TIES, the replicas are non-interacting. Ensembles
+can be interacting but as per ESMACS/TIES protocols the replicas
+are not required to be interacting.}
 
 We express the application logic of HTBAC using the user-facing API 
 % components 
@@ -18,9 +21,7 @@ The EnTK % provides a common
 API and its programming model 
 allow HTBAC to express the workflows associated with different protocols as
 ensemble-based applications, % uniformly, and thus 
-minimizing development effort and complexity.
-% We describe these components for the ESMACS protocol\@. Typically, a
-% protocol % typically corresponds to a single physical system.
+minimizing development effort and complexity. 
 
 \jhanote{Why not use ensemble member as opposed to replica? ensemble --> the
 collective; ensemble member --> a non-specific ensemble instance drawn from
@@ -133,9 +134,22 @@ descriptions are translated into executable units and spawned for execution.
 relevant to HTBAC. A HTBAC user/developer used EnTK and should know nothing
 below that. As an HTBAC user I would be justified in not knowing anything about
 SAGA and RP!}
+\jdnote{We have Fig.~\ref{figure:ht-bac_rp} just below that describes the 
+integration of HTBAC, EnTK, RP. We mention the Agent, RP DB, Tasks, CUs, 
+Pipelines, etc. Therefore, I included a brief description of these 
+components, or else the reader would be left wondering what these components are.}
 
 \jhanote{As the end of this section the reader still does not know what HTBAC
 is? Also, the reader knows what HTBAC enables, but not how.}
+\jdnote{Not entirely sure if I understand this comment, I added a line at the 
+beginning of this section to see if this is the path you're referring to. Also 
+added a sentence below to address how}
+
+Once the HTBAC workflow is expressed, the user is able to define and assign
+a physical system to a specific protocol along with the number of replicas.  
+In turn, HTBAC provides scalability of protocols to enable multiple, concurrent 
+binding affinity investigations of different physical systems and mutations. 
+
 
 % \jdnote{Better?}\mtnote{further iterated.}
 
@@ -184,7 +198,8 @@ is? Also, the reader knows what HTBAC enables, but not how.}
   the temporal sequence of execution. The database (DB) of RADICAL-Pilot (RP)
   can be deployed on any host reachable from the resources. RP pushes compute
   units (CU) to DB and RP-Agent pulls them for execution. \dwwnote{I think CU
-  needs to be defined here}\mtnote{Better?}}\label{figure:ht-bac_rp}
+  needs to be defined here}\mtnote{Better?}}
+  \label{figure:ht-bac_rp}
 \end{figure}
 
 % RADICAL-Cybertools provides advanced resource management capabilities and,
