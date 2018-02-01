@@ -73,8 +73,8 @@ inhibitors of the ERK2 kinase. If we wish to build on such studies to help
 inform later stages of the drug discovery pipeline, in which much more subtle
 alterations are involved, it is likely a much larger number of simulations
 will be required. This is before we begin to consider the influence of
-mutations or the selectivity of drugs to the more than 500 different
-genes in the human kinome~\cite{Li2016}.
+mutations or the selectivity of drugs to the more than 500 different genes in
+the human kinome~\cite{Li2016}.
 
 For molecular simulations to make the necessary impact, the dual challenge of
 scale (thousands of concurrent multi-stage pipelines) and sophistication
@@ -83,21 +83,21 @@ errors and uncertainty) will need to be tackled. Tools that facilitate the
 scalable and automated computation of varied binding free energy calculations
 on high-performance computing resources are necessary. To achieve that goal,
 we introduce the High-throughput Binding Affinity Calculator~(HTBAC). HTBAC
-translates recent advances in workflow system building blocks to the
-application of rapid and accurate calculation of  binding affinities. We
-demonstrate how the scaling of hundreds of concurrent binding affinity
+applies recent advances in workflow system building blocks to the accurate
+calculation of binding affinities, executing hundreds of concurrent
 calculations on a leadership class machine.
-\mtnote{Do we want to change this?}\jhanote{It is wrong at a couple of levels:
-in addition to not investigating/demonstrating the scaling of HTBAC, we have
-not defined pipelines so far, thus the reader will not know what is scaling?
-Proposed alternative above.} This permits the rapid time-to-solution that is
-essentially invariant of the size of candidate ligands as well as the type and
-number of protocols concurrently employed.
+\mtnote{Do we want to change this?}\jhanote{It is wrong at a couple of
+levels: in addition to not investigating/demonstrating the scaling of HTBAC,
+we have not defined pipelines so far, thus the reader will not know what is
+scaling? Proposed alternative above.}\mtnote{Agreed. Further iterated, please
+review.} This permits the rapid time-to-solution that is essentially
+invariant of the size of candidate ligands as well as the type and number of
+protocols concurrently employed.
 
 In the next Section, we provide details of ensemble molecular dynamics
 approach and its advantages over the single trajectory approach. We also
-introduce the ESMACS and related protocols to compute binding affinities using
-ensemble based approaches. In Section~\ref{sec:3}, we discuss the
+introduce the ESMACS and related protocols to compute binding affinities
+using ensemble-based approaches. In Section~\ref{sec:3}, we discuss the
 computational challenges associated with the scalable execution of multiple,
 and possibly concurrently executing protocols. Section~\ref{sec:4} introduces
 RADICAL-Cybertools---a suite of building blocks to address the challenges
@@ -106,8 +106,9 @@ manage the execution of binding affinity calculations at extreme scales.
 Experiments to characterize the performance overheads of RADICAL-Cybertools
 and the weak scaling properties of the HTBAC implementation of the ESMACS
 protocol on the Blue Waters supercomputer are discussed in
-Section~\ref{sec:6}. \mtnote{Do we want to change this? Alaternative:
-``Experiments to characterize the performance and scalability of RADICAL-
-Cybertools and HTBAC''.}\jhanote{Please see modifications above.} We conclude
-with a discussion of the impact of HTBAC, implication for binding affinity
-calculations and near-term future work.
+Section~\ref{sec:6}. 
+% \mtnote{Do we want to change this? Alaternative: ``Experiments to
+% characterize the performance and scalability of RADICAL- Cybertools and
+% HTBAC''.}\jhanote{Please see modifications above.}
+We conclude with a discussion of the impact of HTBAC, implication for binding
+affinity calculations and near-term future work.
