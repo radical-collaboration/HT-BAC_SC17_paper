@@ -85,24 +85,29 @@ on high-performance computing resources are necessary. To achieve that goal,
 we introduce the High-throughput Binding Affinity Calculator~(HTBAC). HTBAC
 translates recent advances in workflow system building blocks to the
 application of rapid and accurate calculation of  binding affinities. We
-demonstrate how HTBAC scales \mtnote{Do we want to change this?} almost
-perfectly to hundreds of concurrent pipelines of binding affinity
-calculations on a leadership class machine. This permits the rapid
-time-to-solution that is essentially invariant of the size of candidate
-ligands as well as the type and number of protocols concurrently employed.
+demonstrate how the scaling of hundreds of concurrent binding affinity
+calculations on a leadership class machine.
+\mtnote{Do we want to change this?}\jhanote{It is wrong at a couple of levels:
+in addition to not investigating/demonstrating the scaling of HTBAC, we have
+not defined pipelines so far, thus the reader will not know what is scaling?
+Proposed alternative above.} This permits the rapid time-to-solution that is
+essentially invariant of the size of candidate ligands as well as the type and
+number of protocols concurrently employed.
 
 In the next Section, we provide details of ensemble molecular dynamics
 approach and its advantages over the single trajectory approach. We also
-introduce the ESMACS and related protocols to compute binding affinities
-using ensemble based approaches. In Section~\ref{sec:3}, we discuss the
+introduce the ESMACS and related protocols to compute binding affinities using
+ensemble based approaches. In Section~\ref{sec:3}, we discuss the
 computational challenges associated with the scalable execution of multiple,
 and possibly concurrently executing protocols. Section~\ref{sec:4} introduces
 RADICAL-Cybertools---a suite of building blocks to address the challenges
 outlined in Section~\ref{sec:3}---and describe how they are used by HTBAC to
 manage the execution of binding affinity calculations at extreme scales.
-Experiments to characterize the performance and scalability of HTBAC
-\mtnote{Do we want to change this? Alaternative: ``Experiments to
-characterize the performance and scalability of RADICAL-Cybertools and
-HTBAC''.} on the Blue Waters supercomputer are discussed in
-Section~\ref{sec:6}. We conclude with a discussion of the impact of HTBAC,
-implication for binding affinity calculations and near-term future work.
+Experiments to characterize the performance overheads of RADICAL-Cybertools
+and the weak scaling properties of the HTBAC implementation of the ESMACS
+protocol on the Blue Waters supercomputer are discussed in
+Section~\ref{sec:6}. \mtnote{Do we want to change this? Alaternative:
+``Experiments to characterize the performance and scalability of RADICAL-
+Cybertools and HTBAC''.}\jhanote{Please see modifications above.} We conclude
+with a discussion of the impact of HTBAC, implication for binding affinity
+calculations and near-term future work.
