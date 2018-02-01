@@ -6,18 +6,21 @@ single protocol instance. We recently developed a secondary implementation of
 HTBAC as a Python library using the EnTK API that contains an interface enabling 
 selection of multiple protocol instances of ESMACS and TIES~\cite{dakka}. 
 
-The ESMACS protocol contains replicas which perform a sequence of simulation stages for 
-a given physical system. Each replica in ESMACS directly maps to a single pipeline in 
-EnTK, consisting of a sequence of stages. Each stage consists of a task that perform 
-unique functions including preprocessing and molecular dynamics simulations. 
-Fig~\ref{figure:HTBAC} 
-shows how pipelines, stages and tasks are organized for the ESMACS
-protocol. Each stage is composed of a single task with a set of attributes that define 
-parameters like the location of input files, the number of simulations and the MD
-engine(s) used to launch those simulations. The ESMACS protocol has 7 stages:
-the first, second and last stages perform staging of the input/output data,
-the middle stages indicate simulation tasks. A task is appended to a stage and 
-stages are appended to a pipeline to maintain temporal order during execution. 
+The ESMACS protocol contains replicas 
+\jhanote{I think replica is being used incorrectly. replica means copy. copy
+of what? that remains undefined here and other places  replica is used.} which
+perform a sequence of simulation stages for a given physical system. Each
+replica in ESMACS directly maps to a single pipeline in EnTK, consisting of a
+sequence of stages. Each stage consists of a task that perform unique
+functions including preprocessing and molecular dynamics simulations.
+Fig~\ref{figure:HTBAC} shows how pipelines, stages and tasks are organized for
+the ESMACS protocol. Each stage is composed of a single task with a set of
+attributes that define parameters like the location of input files, the number
+of simulations and the MD engine(s) used to launch those simulations. The
+ESMACS protocol has 7 stages: the first, second and last stages perform
+staging of the input/output data, the middle stages indicate simulation tasks.
+A task is appended to a stage and stages are appended to a pipeline to
+maintain temporal order during execution.
 
 \begin{figure}
 \centering
