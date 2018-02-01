@@ -1,19 +1,17 @@
-We begin with an initial design of HTBAC as a special purpose implementation
-of a single protocol, where we use the EnTK programming model to express the
-application logic of a binding affinity protocol. Here, we exclusively focus
-on ESMACS to capture the workflow logic and isolate the performance of a
-single protocol instance. We recently developed a secondary implementation of
-HTBAC as a Python library using the EnTK API that contains an interface
-enabling selection of multiple protocol instances of ESMACS and
-TIES~\cite{dakka}.
+HTBAC is initially designed to implement a single protocol using the EnTK
+programming model to express the application logic of a binding affinity
+protocol. Here, we exclusively focus on ESMACS to capture the workflow logic
+and isolate the performance of a single protocol instance. HTBAC has been
+extended as a Python library that enables the selection of multiple protocol
+instances of ESMACS and TIES~\cite{dakka}.
 
 The ESMACS protocol contains replicas 
 \jhanote{I think replica is being used incorrectly. replica means copy. copy
 of what? that remains undefined here and other places  replica is used.} which
 perform a sequence of simulation stages for a given physical system. Each
-replica in ESMACS maps to a single pipeline in EnTK, consisting of a sequence
-of stages. Each stage consists of a task that perform unique functions,
-including preprocessing and molecular dynamics simulations.
+pipeline in ESMACS consists of a sequence
+of stages. Each stage consists of a task that performs unique functions,
+including pre-processing and molecular dynamics simulations.
 Fig~\ref{figure:HTBAC} shows how pipelines, stages and tasks are organized for
 the ESMACS protocol. Each stage is composed of a single task with a set of
 attributes that define parameters like the location of input files, the number
@@ -35,15 +33,14 @@ maintain temporal order during execution.
   dynamics simulation tasks executed with NAMD\@.}\label{figure:HTBAC}
 \end{figure}
 
-We capture the integration of the application (ESMACS protocol) and how it
-interfaces with EnTK in Fig.~\ref{figure:ht-bac_rp}. ESMACS consists of
-replicas where each replica maps to a pipeline. EnTK converts the set of
-pipelines into a set of tasks called compute unit descriptions and submits
-them to RP\@. In addition, EnTK provides methods for the user to specify a
-resource request including walltime, cores, queue, and user credentials. EnTK
-convert this resource request into a pilot that RP submits a HPC machine.
-Once the pilot becomes active, it pulls compute unit descriptions in bulk
-from a database, executing them on the pilot resources.
+Fig.~\ref{figure:ht-bac_rp} shows how the ESMACS protocol integrates with
+EnTK. \st{ESMACS consists of replicas where each replica maps to a pipeline.}
+EnTK converts the set of pipelines into a set of tasks called compute unit
+descriptions and submits them to RP\@. In addition, EnTK provides methods for
+the user to specify a resource request including walltime, cores, queue, and
+user credentials. EnTK convert this resource request into a pilot that RP
+submits to a HPC machine. Once the pilot becomes active, it pulls compute unit
+descriptions in bulk from a database, executing them on the pilot resources.
 
 \begin{figure}
 \centering
