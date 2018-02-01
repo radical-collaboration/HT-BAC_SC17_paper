@@ -7,21 +7,30 @@ performance of a single protocol instance. HTBAC has been extended as a
 Python library that enables the selection of multiple protocol instances of
 ESMACS and TIES~\cite{dakka}.
 
-The ESMACS protocol contains replicas \jhanote{I think replica is being used
+The ESMACS protocol performs a sequence of simulation stages for a
+given physical system. ESMACS replicates this sequence of simulation
+stages. Replicas differ only by their parameter 
+configurations, namely initial velocities, which are randomnly generated and 
+assigned by NAMD at the start of execution. 
+
+ \jhanote{I think replica is being used
 incorrectly. replica means copy. copy of what? that remains undefined here
-and other places replica is used.} which perform a sequence of simulation
-stages for a given physical system. Each pipeline in ESMACS consists of a
-sequence of stages. Each stage consists of a task that performs unique
+and other places replica is used.} \jdnote{better?}
+
+Each replica maps to an independent EnTK pipeline. Each pipeline consists of a
+sequence of stages. Each stage consists of a single task that performs unique
 functions, including pre-processing and molecular dynamics simulations.
 Fig~\ref{figure:HTBAC} shows how pipelines, stages and tasks are organized
-for the ESMACS protocol. Each stage is composed of a single task with a set
+for the ESMACS protocol. A task is composed of a set
 of attributes that define parameters like the location of input files, the
 number of simulations and the MD engine(s) used to launch those simulations.
 The ESMACS protocol has 7 stages: the first, second and last stages perform
 staging of the input/output data, the middle stages indicate simulation
 tasks. A task is appended to a stage and stages are appended to a pipeline to
-maintain temporal order during execution.\mtnote{There is some repetition in this paragraph about pipelines/stages/tasks and ESMACS\@.}
+maintain temporal order during execution.
 
+\mtnote{There is some repetition in this paragraph about pipelines/stages/tasks and ESMACS\@.}
+\jdnote{better?}
 \begin{figure}
 \centering
   \includegraphics[width=0.5\textwidth]{FIGURES/HTBAC_Workflow_ESMACS.pdf}
@@ -35,8 +44,7 @@ maintain temporal order during execution.\mtnote{There is some repetition in thi
 \end{figure}
 
 Fig.~\ref{figure:ht-bac_rp} shows how the ESMACS protocol integrates with
-EnTK\@. \st{ESMACS consists of replicas where each replica maps to a
-pipeline.} EnTK converts the set of pipelines into a set of tasks called
+EnTK\@. EnTK converts the set of pipelines into a set of tasks called
 compute unit descriptions and submits them to RP\@. In addition, EnTK
 provides methods for the user to specify a resource request including
 walltime, cores, queue, and user credentials. EnTK converts this resource

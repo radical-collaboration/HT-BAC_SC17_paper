@@ -11,14 +11,23 @@ designing and developing the high-throughput binding affinity calculator
 (HTBAC).
 
 HTBAC employs the RADICAL-Cybertools building blocks for workflow systems
-\jhanote{Careful not to imply that HTBAC is a workflow system.} We
-% demonstrate 
-show how HTBAC \jhanote{check for consistency: HTBAC scales, or
-implementation of ESMACS protocol scales?} scales almost perfectly to
+which can be used to build ensemble-based applications like ESMACS. 
+
+\jhanote{Careful not to imply that HTBAC is a workflow system.}
+\jdnote{better?}
+ We show how the ESMACS protocol
+\jhanote{check for consistency: HTBAC scales, or
+implementation of ESMACS protocol scales?} \jdnote{done}
+
+scales almost perfectly to
 hundreds of concurrent pipelines of binding affinity calculations on a
-leadership class machine. This permits the rapid time-to-solution that is
+leadership class machine. 
+This permits a time-to-solution that is
 \mtnote{I struggle to understand `This permits the rapid time-to-solution
-that is'} essentially invariant of the size of candidate ligands as well as
+that is'} \jdnote{just reduced it to time-to-solution instead of rapid time-
+to-solution}
+
+essentially invariant of the size of candidate ligands as well as
 the type and number of protocols concurrently employed. The use of software
 abstractions (``building blocks'') future proofs users of HTBAC to evolving
 hardware platforms, while providing immediate benefits of scale and support
@@ -41,4 +50,6 @@ potentials used to approximate the chemistry of the real systems.
 \footnotesize \textbf{Software and Data} Ensemble toolkit can be found at
 \url{http://radicalensemblemd.readthedocs.io/en/latest/} and is released
 under the MIT license. Raw data and scripts to reproduce experiments can be
-found at \url{https://github.com/radical-experiments/htbac-experiments.}\mtnote{Should we add a link to HTBAC code base?}
+found at \url{https://github.com/radical-experiments/htbac-experiments.}
+\mtnote{Should we add a link to HTBAC code base?}
+\jdnote{Not sure, in case yes, https://github.com/radical-cybertools/htbac}
