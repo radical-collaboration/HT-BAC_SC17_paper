@@ -30,6 +30,8 @@
 \citation{Wan2015,Wright2014,Wan2017brd4}
 \citation{Maier2015,Wang2004}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Benchmark kinase system}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces {\mathversion  {bold}\bfseries  EGFR Structure.} Cartoon representation of the EGFR kinase bound to the inhibitor AEE788 shown in chemical representation (based on PDB:2J6M). Two residues implicated in modulating drug efficacy are highlights; in pink T790 and in orange L858. Mutations to either of these residues significantly alter the sensitivity to TKIs.}}{5}}
+\newlabel{fig:egfr}{{1}{5}}
 \citation{Sadiq2008}
 \citation{breskin2009cern}
 \citation{althouse1992ligo}
@@ -37,29 +39,41 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3}Computational Challenges at Extreme Scale}{6}}
 \newlabel{sec:3}{{3}{6}}
 \citation{turilli2016analysis,angius2017converging,treikalis2016repex,balasubramanian2016ensemble,balasubramanian2016extasy}
-\citation{turilli2017comprehensive}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Implementations}{7}}
 \newlabel{sec:4}{{4}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}RADICAL-Pilot}{7}}
-\citation{balasubramanian2017powerofmany}
+\citation{turilli2017comprehensive}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Ensemble Toolkit}{8}}
 \newlabel{ssec:entk}{{4.2}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces {\mathversion  {bold}\bfseries  EnTK Overview.} Ensemble Toolkit overview showing how the abstract workflow execution system is mapped to specific components exposed to the users and components internal to the toolkit.}}{8}}
+\newlabel{fig:entk_arch}{{2}{8}}
+\citation{balasubramanian2017powerofmany}
 \citation{dakka}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}ESMACS}{9}}
 \newlabel{sec:htbac}{{4.3}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces {\mathversion  {bold}\bfseries  ESMACS Implementation using EnTK.} ESMACS protocol implemented as an ensemble application, encoded using the EnTK API\spacefactor \@m {}. A protocol represents a physical system and is encoded as a set of independent pipelines. Each pipeline maps to a single replica. ESMACS consists of 25 replicas. Stages within a pipeline are executed sequentially. Each stage contain a single task performing unique functions, as required by the protocol. Stages S3--S6 contain molecular dynamics simulation tasks executed with NAMD\spacefactor \@m {}.  {\leavevmode {\color  {red} ***SJ: Can we chat about this schematic? fixed }}}}{9}}
+\newlabel{figure:HTBAC}{{3}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces {\mathversion  {bold}\bfseries  ESMACS-EnTK-RP Integration.} Integration between ESMACS and EnTK\spacefactor \@m {}. Numbers indicate the temporal sequence of execution. The database (DB) of RADICAL-Pilot (RP) can be deployed on any host reachable from the resources. RP pushes compute units (CU) to DB and pulls them for execution.}}{10}}
+\newlabel{figure:ht-bac_rp}{{4}{10}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{10}}
 \newlabel{sec:6}{{5}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Experiment Design}{10}}
 \newlabel{ssec:exp_design}{{5.1}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Experiment Setup}{10}}
-\newlabel{ssec:exp_setup}{{5.2}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{11}}
-\newlabel{ssec:exp_results}{{5.3}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Experiment Setup}{11}}
+\newlabel{ssec:exp_setup}{{5.2}{11}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Experiment 1 executes the 7 stages of the ESMACS protocol with a null workload; Experiment 2 uses the actual MD workload of the ESMACS protocol. ESMACS protocol with EGFR kinase workload: (1) Untar configuration files; (2) Preprep; (3) Minimize with decreasing restraints; (4) Equilibration: NVT simulation at 50K, with restraints; (5) Equilibration: NPT simulation at 300K, with decreasing restraints; (6) Equilibration: NPT at 300k, no constraints; (7) Tarball output files.}}{11}}
+\newlabel{tab:exp}{{1}{11}}
 \citation{Bhati2017}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Conclusion}{12}}
-\newlabel{sec:conclusion}{{6}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{12}}
+\newlabel{ssec:exp_results}{{5.3}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces {\mathversion  {bold}\bfseries  Null Workload Overheads.} Overheads of Ensemble Toolkit (EnTK) and RADICAL-Pilot (RP) when executing HTBAC using a null workload. We plot the baseline EnTK/RP overheads without the application workload across two trials per pipeline configuration.}}{12}}
+\newlabel{fig:exp1}{{5}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces {\mathversion  {bold}\bfseries  Weak Scaling ESMACS Protocol.} similar EnTK/RP overhead behavior as with the null workload with higher values as the number of pipelines increases. We show a breakdown of TTX of each stage (Stage 1--7). Across pipeline configurations, TTX and RP overheads (accounting for the error bars) show weak scaling performance.}}{12}}
+\newlabel{fig:exp2}{{6}{12}}
 \bibstyle{plain}
 \bibdata{rutgers,ucl}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Conclusion}{13}}
+\newlabel{sec:conclusion}{{6}{13}}
 \bibcite{althouse1992ligo}{{1}{}{{}}{{}}}
 \bibcite{ACSreport}{{2}{}{{}}{{}}}
 \bibcite{angius2017converging}{{3}{}{{}}{{}}}
@@ -81,14 +95,14 @@
 \bibcite{MillerIII2012}{{19}{}{{}}{{}}}
 \bibcite{Phillips2005}{{20}{}{{}}{{}}}
 \bibcite{Sadiq2010}{{21}{}{{}}{{}}}
-\thanksnewlabel{aff1thanks}{{1}{13}}
-\thanksnewlabel{aff2thanks}{{2}{13}}
-\thanksnewlabel{aff3thanks}{{3}{13}}
-\thanksnewlabel{aff4thanks}{{4}{13}}
 \bibcite{Sadiq2008}{{22}{}{{}}{{}}}
 \bibcite{Shah2002}{{23}{}{{}}{{}}}
 \bibcite{Sloot2009}{{24}{}{{}}{{}}}
 \bibcite{treikalis2016repex}{{25}{}{{}}{{}}}
+\thanksnewlabel{aff1thanks}{{1}{14}}
+\thanksnewlabel{aff2thanks}{{2}{14}}
+\thanksnewlabel{aff3thanks}{{3}{14}}
+\thanksnewlabel{aff4thanks}{{4}{14}}
 \bibcite{turilli2016analysis}{{26}{}{{}}{{}}}
 \bibcite{turilli2017comprehensive}{{27}{}{{}}{{}}}
 \bibcite{FDA}{{28}{}{{}}{{}}}
@@ -99,7 +113,7 @@
 \bibcite{Wang2004}{{33}{}{{}}{{}}}
 \bibcite{Wright2014}{{34}{}{{}}{{}}}
 \bibcite{Zhao2014}{{35}{}{{}}{{}}}
-\newlabel{LastPage}{{}{14}}
-\xdef\lastpage@lastpage{14}
+\newlabel{LastPage}{{}{15}}
+\xdef\lastpage@lastpage{15}
 \gdef\lastpage@lastpageHy{}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
