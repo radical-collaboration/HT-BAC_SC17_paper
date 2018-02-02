@@ -7,29 +7,35 @@ performance of a single protocol instance. HTBAC has been extended as a
 Python library that enables the selection of multiple protocol instances of
 ESMACS and TIES~\cite{dakka}.
 
-A pipeline is defined as a well defined sequence of simulation stages for a
-given physical system. In the ESMACS protocol, these pipelines are
+A simulation pipeline is a defined sequence of simulation stages for a given
+physical system. In the ESMACS protocol, these simulation pipelines are
 replicated, where replicas differ only by their parameter configurations,
 namely initial velocities, which are randomly generated and assigned by NAMD
-at the start of execution.
+at the start of execution. A simulation pipeline in the ESMACS protocol has 7
+stages: the first, second and last stages perform staging of the input/output
+data, the middle stages indicate simulation tasks. A task is appended to a
+stage and stages are appended to a pipeline to maintain temporal order during
+execution.
 
-\jhanote{Work in progress\ldots}
-% The ESMACS protocol performs a sequence of simulation stages for a given physical system. ESMACS replicates this sequence of simulation stages. Replicas differ only by their parameter configurations, namely initial velocities, which are randomnly generated and assigned by NAMD at the start of execution.
+% The ESMACS protocol performs a sequence of simulation stages for a given
+% physical system. ESMACS replicates this sequence of simulation stages.
+% Replicas differ only by their parameter configurations, namely initial
+% velocities, which are randomnly generated and assigned by NAMD at the start
+% of execution.
 
-Each replica maps to an independent EnTK pipeline. Each pipeline consists of
-a sequence of stages, and each stage consists of a single task that performs
-unique functions, including pre-processing and molecular dynamics
-simulations. Fig~\ref{figure:HTBAC} shows how pipelines, stages and tasks are
-organized for the ESMACS protocol. A task is composed of a set of attributes
-that define parameters like the location of input files, the number of
-simulations and the MD engine(s) used to launch those simulations. The ESMACS
-protocol has 7 stages: the first, second and last stages perform staging of
-the input/output data, the middle stages indicate simulation tasks. A task is
-appended to a stage and stages are appended to a pipeline to maintain
-temporal order during execution. \mtnote{There is some repetition in this
-paragraph about pipelines/stages/tasks and ESMACS\@.}
+Each simulation pipeline replica maps to an independent EnTK pipeline. Each
+pipeline consists of a sequence of stages, and each stage consists of a single
+task that performs unique functions, including pre-processing and molecular
+dynamics simulations. Fig~\ref{figure:HTBAC} shows how pipelines, stages and
+tasks are organized for the ESMACS protocol. A task is composed of a set of
+attributes that define parameters like the location of input files, the number
+of simulations and the MD engine(s) used to launch those simulations.
+
+\mtnote{There is some repetition in this paragraph about
+pipelines/stages/tasks and ESMACS\@.}
 \jdnote{better?}\mtnote{Waiting for the paragraph above to be iterated before
-editing this paragraph further.}
+editing this paragraph further.}\jhanote{please review.}
+
 
 \begin{figure}
 \centering
@@ -41,7 +47,7 @@ editing this paragraph further.}
   executed sequentially. Each stage contain a single task performing unique
   functions, as required by the protocol. Stages S3--S6 contain molecular
   dynamics simulation tasks executed with NAMD\@. \jhanote{Can we chat about
-  this schematic?}}\label{figure:HTBAC}
+  this schematic? JD agreed to fix.}}\label{figure:HTBAC}
 \end{figure}
 
 Fig.~\ref{figure:ht-bac_rp} shows how the ESMACS protocol integrates with
