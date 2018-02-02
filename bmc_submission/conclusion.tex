@@ -13,23 +13,24 @@ executing protocols like ESMACS at scale. We show how the implementation of
 the ESMACS protocol scales almost perfectly to hundreds of concurrent
 pipelines of binding affinity calculations on Blue Waters.
 \jhanote{check for consistency: HTBAC scales, or implementation of ESMACS
-protocol scales?}\jdnote{done} \jhanote{I don't think the protocol scales, but
-our implementation of the protocol. Please see changed version. } This permits
-a time-to-solution that is essentially invariant of the number
-\jhanote{we should replace "size" with "number"} of candidate ligands, as well
-as the type and number of protocols concurrently employed.
+protocol scales?}\jdnote{done} \jhanote{I don't think the protocol scales,
+but our implementation of the protocol. Please see changed version.
+}\mtnote{I agree with the new version.} This permits a time-to-solution that
+is essentially invariant of the number
+\jhanote{we should replace "size" with "number"}\mtnote{agreed.} of candidate
+ligands, as well as the type and number of protocols concurrently employed.
 
 % \jhanote{Careful not to imply that HTBAC is a workflow system.}
 % \jdnote{better?}\mtnote{Further iterated. Please review.}
 
 % \mtnote{I struggle to understand `This permits the rapid time-to-solution
-% that is'} \jdnote{just reduced it to time-to-solution instead of rapid time-
-% to-solution}
+% that is'} \jdnote{just reduced it to time-to-solution instead of rapid
+% time- to-solution}
 
 The use of software implementing well-defined abstractions like that of
 ``building blocks'', future proofs users of HTBAC to evolving hardware
-platforms, while providing immediate benefits of scale and support for a range
-of different application workflows. Thus, HTBAC represents an important
+platforms, while providing immediate benefits of scale and support for a
+range of different application workflows. Thus, HTBAC represents an important
 advance towards the use of molecular dynamics based free energy calculations
 to the point where they can produce actionable results both in the clinic and
 industrial drug discovery.
