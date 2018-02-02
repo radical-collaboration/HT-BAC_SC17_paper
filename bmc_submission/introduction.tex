@@ -1,0 +1,116 @@
+In recent years, chemotherapy based on targeted kinase inhibitors (TKIs) has
+played an increasingly prominent role in the treatment of cancer. TKIs have
+been developed to selectively inhibit kinases involved in the signaling
+pathways that control growth and proliferation, which often become
+dysregulated in cancers. This targeting of specific cancers reduces the risk
+of damage to healthy cells and increases treatment success. Currently, 35
+FDA-approved small molecule TKIs are in clinical use, and they represent a
+significant fraction of the \$37 billion U.S. market for oncology
+drugs~\cite{FDA, Zhao2014}. Imatinib, the first of these of drugs, is
+partially credited for doubling survivorship rates in certain
+cancers~\cite{Zhao2014, ACSreport}.
+
+Unfortunately, the development of resistance to these drugs limits the amount
+of time that patients can derive benefits from their treatment. Resistance to
+therapeutics is responsible for more than 90\% of deaths in patients with
+metastatic cancer~\cite{Longley2005}. While drug resistance can emerge via
+multiple mechanisms, small changes to the chemical composition of the
+therapeutic target (known as mutations) control treatment sensitivity and
+drive drug resistance in many patients (see Fig.~\ref{fig:egfr}). In some
+commonly targeted kinases such as Abl, these changes account for as many as
+90\% of treatment failure~\cite{Shah2002}.
+
+There are two major strategies for countering the threat to treatment
+efficacy posed by resistance: tailoring the drug regimen received by a
+patient according to the mutations present in their particular cancer, and
+developing more advanced therapies that retain potency for known resistance
+mutations. In both cases, future developments require insight into the
+molecular changes produced by mutations, as well as ways to predict their
+impact on drug binding on a timescale much shorter than is typically
+experimentally feasible. This represents a grand challenge for computational
+approaches.
+
+The rapidly decreasing cost of next-generation sequencing has led many cancer
+centers to begin deep sequencing of patient tumors to identify the genetic
+alterations driving individual cancers. The ultimate goal is to make
+individualized therapeutic decisions based upon these data---an approach
+termed \textit{precision cancer therapy}. While several common (recurrent)
+mutations have been cataloged for their ability to induce resistance or for
+their susceptibility to particular kinase inhibitors, the vast majority of
+clinically observed mutations are rare. Essentially, this ensures that it
+will be impossible to make therapeutic decisions about the majority of
+individual patient tumors by using catalog-building alone.
+
+Fortunately, concurrent improvements in computational power and algorithm
+design are enabling the use of molecular simulations to reliably quantify
+differences in binding strength. This provides the opportunity to use
+advances in molecular simulations to supplement existing inductive decision
+support systems with deductive predictive modeling and drug
+ranking~\cite{Marias2011, Sloot2009}. Where existing systems based on
+statistical inference are inherently limited in their range of applicability
+by the existence of data from previous similar cases, the addition of
+modeling allows evidence based decision making even in the absence of direct
+past experience.
+
+The same molecular simulation technologies that can be employed to
+investigate the origins of drug resistance can also be used to design new
+therapeutics. Creating simulation protocols which have well defined
+uncertainty and produce statistically meaningful results represents a
+significant computational challenge. Furthermore, it is highly likely that
+differences among investigated systems will demand different protocols as
+studies progress. For example, drug design programmes often require the rapid
+screening of thousands of candidate compounds to filter out the worst binders
+before using more sensitive methods to refine the structure. Not all changes
+induced in protein shape or behavior are local to the drug binding site and,
+in some cases, simulation protocols will need to adjust to account for
+complex interactions between drugs and their targets within individual
+studies.
+
+Recent work that used molecular simulations to provide input to machine
+learning models~\cite{Ash2017} required simulations of 87 compounds even if
+they were designed merely to distinguish the highly active from weak
+inhibitors of the ERK2 kinase. If we wish to build on such studies to help
+inform later stages of the drug discovery pipeline, in which much more subtle
+alterations are involved, it is likely a much larger number of simulations
+will be required. This is before we begin to consider the influence of
+mutations or the selectivity of drugs to the more than 500 different genes in
+the human kinome~\cite{Li2016}.
+
+For molecular simulations to make the necessary impact, the dual challenge of
+scale (thousands of concurrent multi-stage pipelines) and sophistication
+(adaptive selection of binding affinity protocols based upon statistical
+errors and uncertainty) will need to be tackled. Tools that facilitate the
+scalable and automated computation of varied binding free energy calculations
+on high-performance computing resources are necessary. To achieve that goal,
+we introduce the High-throughput Binding Affinity Calculator~(HTBAC). HTBAC
+applies recent advances in workflow system building blocks to the accurate
+calculation of binding affinities, executing hundreds of concurrent
+calculations on a leadership class machine. This permits the rapid time-to-
+solution that is essentially invariant of the size of candidate ligands as
+well as the type and number of protocols concurrently employed.
+
+% \mtnote{Do we want to change this?}\jhanote{It is wrong at a couple of
+% levels: in addition to not investigating/demonstrating the scaling of HTBAC,
+% we have not defined pipelines so far, thus the reader will not know what is
+% scaling? Proposed alternative above.}\mtnote{Agreed. Further iterated, please
+% review.} 
+
+
+In the next Section, we provide details of ensemble molecular dynamics
+approach and its advantages over the single trajectory approach. We also
+introduce the ESMACS and related protocols to compute binding affinities
+using ensemble-based approaches. In Section~\ref{sec:3}, we discuss the
+computational challenges associated with the scalable execution of multiple,
+and possibly concurrently executing protocols. Section~\ref{sec:4} introduces
+RADICAL-Cybertools---a suite of building blocks to address the challenges
+outlined in Section~\ref{sec:3}---and describe how they are used by HTBAC to
+manage the execution of binding affinity calculations at extreme scales.
+Experiments to characterize the performance overheads of RADICAL-Cybertools
+and the weak scaling properties of the HTBAC implementation of the ESMACS
+protocol on the Blue Waters supercomputer are discussed in
+Section~\ref{sec:6}. 
+% \mtnote{Do we want to change this? Alaternative: ``Experiments to
+% characterize the performance and scalability of RADICAL- Cybertools and
+% HTBAC''.}\jhanote{Please see modifications above.}
+We conclude with a discussion of the impact of HTBAC, implication for binding
+affinity calculations and near-term future work.

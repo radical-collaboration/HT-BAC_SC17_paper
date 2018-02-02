@@ -1,0 +1,237 @@
+\begin{thebibliography}{10}
+
+\bibitem{althouse1992ligo}
+William~E Althouse, Michael~E Zucker, et~al.
+\newblock {LIGO}: The laser interferometer gravitational-wave observatory.
+\newblock {\em Science}, 256(5055):325, 1992.
+
+\bibitem{ACSreport}
+{American Cancer Society}.
+\newblock Cancer facts \& figures 2015, 2015.
+\newblock [Online; accessed 7-May-2015].
+
+\bibitem{angius2017converging}
+Alessio Angius, Danila Oleynik, Sergey Panitkin, Matteo Turilli, Kaushik De,
+  Alexei Klimentov, Sarp~H Oral, Jack~C Wells, and Shantenu Jha.
+\newblock Converging high-throughput and high-performance computing: A case
+  study.
+\newblock {\em arXiv preprint arXiv:1704.00978}, 2017.
+
+\bibitem{Ash2017}
+Jeremy Ash and Denis Fourches.
+\newblock Characterizing the chemical space of {ERK2} kinase inhibitors using
+  descriptors computed from molecular dynamics trajectories.
+\newblock {\em J. Chem. Inf. Model.}, 57(6):1286--1299, 2017.
+\newblock PMID: 28471171.
+
+\bibitem{balasubramanian2017powerofmany}
+Vivek Balasubramanian, Matteo Turilli, Weiming Hu, Matthieu Lefebvre, Wenjie
+  Lei, Guido Cervone, Jeroen Tromp, and Shantenu Jha.
+\newblock Harnessing the power of many: Extensible toolkit for scalable
+  ensemble applications.
+\newblock {\em arXiv preprint arXiv}, 2017.
+\newblock http://arxiv.org/abs/1710.08491.
+
+\bibitem{balasubramanian2016extasy}
+Vivekanandan Balasubramanian, Iain Bethune, Ardita Shkurti, Elena Breitmoser,
+  Eugen Hruska, Cecilia Clementi, Charles Laughton, and Shantenu Jha.
+\newblock Extasy: Scalable and flexible coupling of md simulations and advanced
+  sampling techniques.
+\newblock In {\em Proceedings of the 2016 {IEEE} 12th International Conference
+  on e-Science}, pages 361--370, 2016.
+
+\bibitem{balasubramanian2016ensemble}
+Vivekanandan Balasubramanian, Antons Treikalis, Ole Weidner, and Shantenu Jha.
+\newblock Ensemble toolkit: Scalable and flexible execution of ensembles of
+  tasks.
+\newblock In {\em Parallel Processing (ICPP), 2016 45th International
+  Conference on}, pages 458--463. IEEE, 2016.
+
+\bibitem{Bhati2017}
+A.~P. Bhati, S.~Wan, D.~W. Wright, and P.~V. Coveney.
+\newblock Rapid, accurate, precise and reliable relative free energy prediction
+  using ensemble based thermodynamic integration.
+\newblock {\em J. Chem. Theory Comput.}, 13(1):210--222, 2017.
+
+\bibitem{breskin2009cern}
+Amos Breskin and R{\"u}diger Voss.
+\newblock {\em The {CERN} large hadron collider: accelerator and experiments}.
+\newblock Cern Geneva, 2009.
+
+\bibitem{Bunney2015}
+T.~D. Bunney, S.~Wan, N.~Thiyagarajan, L.~Sutto, S.~V. Williams, P.~Ashford,
+  H.~Koss, M.~A. Knowles, F.~L. Gervasio, P.~V. Coveney, and M.~Katan.
+\newblock The effect of mutations on drug sensitivity and kinase activity of
+  fibroblast growth factor receptors: a combined experimental and theoretical
+  study.
+\newblock {\em EBioMedicine}, 2(3):194--204, 2015.
+
+\bibitem{Case2005}
+D.~A. Case, T.~E. Cheatham, T.~Darden, H.~Gohlke, R.~Luo, K.~M. Merz,
+  A.~Onufriev, C.~Simmerling, B.~Wang, and R.~J. Woods.
+\newblock The {A}mber biomolecular simulation programs.
+\newblock {\em J. Comput. Chem.}, 26(16):1668--1688, 2005.
+
+\bibitem{dakka}
+Jumana Dakka, Kristof Farkas-Pall, Vivek Balasubramanian, Matteo Turilli,
+  Shunzhou Wan, David Wright~W, Stefan Zasada, Peter Coveney~V, and Shantenu
+  Jha.
+\newblock Harnessing the power of many: Extensible toolkit for scalable
+  ensemble applications.
+\newblock {\em arXiv preprint arXiv}, 2017.
+\newblock https://arxiv.org/pdf/1801.01174.pdf.
+
+\bibitem{Karplus2005}
+M~Karplus and J~Kuriyan.
+\newblock Molecular dynamics and protein function.
+\newblock {\em Proc. Natl. Acad. Sci. U.S.A.}, 102:6679--6685, May 2005.
+
+\bibitem{Karplus2002}
+M.~Karplus and J.~A. McCammon.
+\newblock Molecular dynamics simulations of biomolecules.
+\newblock {\em Nat. Struct. Mol. Biol.}, 9:646--652, 2002.
+
+\bibitem{Li2016}
+Ying~Hong Li, Pan~Pan Wang, Xiao~Xu Li, Chun~Yan Yu, Hong Yang, Jin Zhou,
+  Wei~Wei Xue, Jun Tan, and Feng Zhu.
+\newblock The human kinome targeted by {FDA} approved multi-target drugs and
+  combination products: A comparative study from the drug-target interaction
+  network perspective.
+\newblock {\em {PLOS ONE}}, 11(11):1--15, 11 2016.
+
+\bibitem{Longley2005}
+DB~Longley and PG~Johnston.
+\newblock Molecular mechanisms of drug resistance.
+\newblock {\em The Journal of pathology}, 205(2):275--292, 2005.
+
+\bibitem{Maier2015}
+J.~A. Maier, C.~Martinez, K.~Kasavajhala, L.~Wickstrom, K.~E. Hauser, and
+  C.~Simmerling.
+\newblock {ff14SB}: improving the accuracy of protein side chain and backbone
+  parameters from {ff99SB}.
+\newblock {\em J. Chem. Theory Comput.}, 11(8):3696--3713, 2015.
+
+\bibitem{Marias2011}
+K.~Marias, D.~Dionysiou, V.~Sakkalis, N.~Graf, R.~M. Bohle, P.~V. Coveney,
+  S.~Wan, A.~Folarin, P.~B{\"u}chler, M.~Reyes, G.~Clapworthy, E.~Liu,
+  J.~Sabczynski, T.~Bily, A.~Roniotis, M.~Tsiknakis, E.~Kolokotroni,
+  S.~Giatili, C.~Veith, E.~Messe, H.~Stenzhorn, Yoo-Jin Kim, S.~Zasada, A.~N.
+  Haidar, C.~May, S.~Bauer, T.~Wang, Y.~Zhao, M.~Karasek, R.~Grewer, A.~Franz,
+  and G.~Stamatakos.
+\newblock Clinically driven design of multi-scale cancer models: the
+  contracancrum project paradigm.
+\newblock {\em Interface Focus}, 1(3):450--461, 2011.
+
+\bibitem{MillerIII2012}
+B.~R. {Miller III}, T.~D. {McGee Jr}, J.~M. Swails, N.~Homeyer, H.~Gohlke, and
+  A.~E. Roitberg.
+\newblock {MMPBSA. py}: an efficient program for end-state free energy
+  calculations.
+\newblock {\em J. Chem. Theory Comput.}, 8(9):3314--3321, 2012.
+
+\bibitem{Phillips2005}
+J.~C. Phillips, R.~Braun, W.~Wang, J.~Gumbart, E.~Tajkhorshid, E.~Villa,
+  C.~Chipot, R.~D. Skeel, L.~Kal\'{e}, and K.~Schulten.
+\newblock {S}calable molecular dynamics with {NAMD}.
+\newblock {\em J. Comput. Chem.}, 26(16):1781--1802, 2005.
+
+\bibitem{Sadiq2010}
+S.~K. Sadiq, D.~W. Wright, O.~A. Kenway, and P.~V. Coveney.
+\newblock {Accurate ensemble molecular dynamics binding free energy ranking of
+  multidrug-resistant HIV-1 proteases}.
+\newblock {\em J. Chem. Inf. Model.}, 50(5):890--905, 2010.
+
+\bibitem{Sadiq2008}
+S.~K. Sadiq, D.~W. Wright, S.~J. Watson, S.~J. Zasada, I.~Stoica, and P.V.
+  Coveney.
+\newblock {Automated Molecular Simulation Based Binding Affinity Calculator for
+  Ligand-Bound HIV-1 Proteases}.
+\newblock {\em J. Chem. Inf. Model.}, 48(9):1909--1919, 2008.
+
+\bibitem{Shah2002}
+Neil~P Shah, John~M Nicoll, Bhushan Nagar, Mercedes~E Gorre, Ronald~L Paquette,
+  John Kuriyan, and Charles~L Sawyers.
+\newblock Multiple {BCR-ABL} kinase domain mutations confer polyclonal
+  resistance to the tyrosine kinase inhibitor imatinib ({STI571}) in chronic
+  phase and blast crisis chronic myeloid leukemia.
+\newblock {\em Cancer Cell}, 2(2):117--125, 2002.
+
+\bibitem{Sloot2009}
+P.M.A. Sloot, Peter~V. Coveney, G.~Ertaylan, V.~M{\"u}ller, C.A. Boucher, and
+  M.~Bubak.
+\newblock {HIV} decision support: from molecule to man.
+\newblock {\em Philosophical Transactions of the Royal Society of London A:
+  Mathematical, Physical and Engineering Sciences}, 367(1898):2691--2703, 2009.
+
+\bibitem{treikalis2016repex}
+Antons Treikalis, Andre Merzky, Haoyuan Chen, Tai-Sung Lee, Darrin~M York, and
+  Shantenu Jha.
+\newblock Repex: A flexible framework for scalable replica exchange molecular
+  dynamics simulations.
+\newblock In {\em Parallel Processing (ICPP), 2016 45th International
+  Conference on}, pages 628--637. IEEE, 2016.
+
+\bibitem{turilli2016analysis}
+Matteo Turilli, Yadu Nand~Babuji, Andre Merzky, Ming Tai~Ha, Michael Wilde,
+  Daniel S.~Katz, and Shantenu Jha.
+\newblock Evaluating distributed execution of workloads.
+\newblock {\em accepted IEEE eScience}, 2017.
+\newblock {http://arxiv.org/pdf/1605.09513}.
+
+\bibitem{turilli2017comprehensive}
+Matteo Turilli, Mark Santcroos, and Shantenu Jha.
+\newblock A comprehensive perspective on pilot-jobs.
+\newblock {\em {ACM Computing Surveys (accepted, in press)}}, 2017.
+\newblock \url{http://arxiv.org/abs/1508.04180}.
+
+\bibitem{FDA}
+{U. S. Food and Drug Administration}.
+\newblock Hematology/oncology (cancer) approvals \& safety notifications, 2015.
+\newblock [Online; accessed 9-May-2015].
+
+\bibitem{Wan2017trk}
+S.~Wan, A.~P. Bhati, S.~Skerratt, K.~Omoto, V.~Shanmugasundaram, S.~K. Bagal,
+  and P.~V. Coveney.
+\newblock Evaluation and characterization of trk kinase inhibitors for the
+  treatment of pain: Reliable binding affinity predictions from theory and
+  computation.
+\newblock {\em J. Chem. Inf. Model}, 57(4):897--909, 2017.
+
+\bibitem{Wan2017brd4}
+S.~Wan, A.~P. Bhati, S.~J. Zasada, I.~Wall, D.~Green, P.~Bamborough, and P.~V.
+  Coveney.
+\newblock Rapid and reliable binding affinity prediction of bromodomain
+  inhibitors: a computational study.
+\newblock {\em J. Chem. Theory Comput.}, 13(2):784--795, 2017.
+
+\bibitem{Wan2011}
+S.~Wan and P.~V. Coveney.
+\newblock {Rapid and accurate ranking of binding affinities of epidermal growth
+  factor receptor sequences with selected lung cancer drugs.}
+\newblock {\em J. R. Soc. Interface}, 8(61):1114--1127, 2011.
+
+\bibitem{Wan2015}
+S.~Wan, B.~Knapp, D.~W. Wright, C.~M. Deane, and P.~V. Coveney.
+\newblock Rapid, precise, and reproducible prediction of peptide--{MHC} binding
+  affinities from molecular dynamics that correlate well with experiment.
+\newblock {\em J. Chem. Theory Comput.}, 11(7):3346--3356, 2015.
+
+\bibitem{Wang2004}
+J.~Wang, R.~M. Wolf, J.~W. Caldwell, P.~A. Kollman, and D.~A. Case.
+\newblock Development and testing of a general {A}mber force field.
+\newblock {\em J. Comput. Chem.}, 25(9):1157--1174, 2004.
+
+\bibitem{Wright2014}
+D.~W. Wright, B.~A. Hall, O.~A. Kenway, S.~Jha, and P.~V. Coveney.
+\newblock Computing clinically relevant binding free energies of {HIV-}1
+  protease inhibitors.
+\newblock {\em J. Chem. Theory Comput.}, 10(3):1228--1241, 2014.
+
+\bibitem{Zhao2014}
+Zheng Zhao, Hong Wu, Li~Wang, Yi~Liu, Stefan Knapp, Qingsong Liu, and
+  Nathanael~S Gray.
+\newblock Exploration of type ii binding mode: A privileged approach for kinase
+  inhibitor focused drug discovery?
+\newblock {\em ACS Chem. Biol.}, 9(6):1230--1241, 2014.
+
+\end{thebibliography}

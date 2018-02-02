@@ -1,0 +1,169 @@
+\documentclass{bmcart}
+\input{head}
+\input{include}
+\usepackage[numbers]{natbib}
+\usepackage[utf8]{inputenc} %unicode support
+
+\def\includegraphic{}
+\def\includegraphics{}
+
+
+% \keywords{Distributed computing, Workload management system}
+
+% ---------------------------------------------------------------------------
+% BEGIN DOCUMENT
+% ---------------------------------------------------------------------------
+\begin{document}
+
+%%% Start of article front matter
+\begin{frontmatter}
+
+% \begin{fmbox}
+\dochead{Research}
+
+\title{High-throughput Binding Affinity Calculations at Extreme Scales}
+
+\author[
+   addressref={aff1}                
+]{\fnm{Jumana} \snm{Dakka}}
+\author[
+   addressref={aff1}
+]{\fnm{Matteo} \snm{Turilli}}
+\author[
+   addressref={aff2}
+]{\fnm{David W} \snm{Wright}}
+\author[
+   addressref={aff2}
+]{\fnm{Stefan J} \snm{Zasada}}
+\author[
+   addressref={aff1}
+]{\fnm{Vivek} \snm{Balasubramanian}}
+\author[
+   addressref={aff2}
+]{\fnm{Shunzhou} \snm{Wan}}
+\author[
+   addressref={aff2}
+]{\fnm{Peter V} \snm{Coveney}}
+\author[
+   addressref={aff1,aff3,aff4}
+]{\fnm{Shantenu} \snm{Jha}}
+
+
+% \author{
+%       Jumana Dakka$^=$\IEEEauthorrefmark{1},
+%       Matteo Turilli$^=$\IEEEauthorrefmark{1},
+%       David W Wright$^=$\IEEEauthorrefmark{2},
+%       Stefan J Zasada$^=$\IEEEauthorrefmark{2},\\
+%       Vivek Balasubramanian\IEEEauthorrefmark{1},
+%       Shunzhou Wan\IEEEauthorrefmark{2},
+%       Peter V Coveney\IEEEauthorrefmark{2} and
+%       Shantenu Jha\IEEEauthorrefmark{1},\IEEEauthorrefmark{3},\IEEEauthorrefmark{4}
+%     }
+    
+ 
+\address[id=aff1]{%           
+  \orgname{Department Electrical and Computer Engineering, Rutgers University},
+}
+
+\address[id=aff2]{%
+  \orgname{Centre for Computational Sciences, UCL}
+} 
+
+\address[id=aff3]{%
+  \orgname{Institute for Advanced Computational Sciences, Stony Brook University, NY, USA}
+}
+
+\address[id=aff4]{%
+  \orgname{Computational Science Initiative, Brookhaven National Laboratory} 
+}
+
+\begin{artnotes}
+%\note{Sample of title note}     % note to the article
+\note[id=n1]{Equal contributor} % note, connected to author
+\end{artnotes}
+
+% \end{fmbox}% comment this for two column layout
+
+
+\begin{abstractbox}
+
+\begin{abstract} % abstract
+\input{abstract}
+\end{abstract}
+
+\end{abstractbox}
+\end{frontmatter}
+
+% ---------------------------------------------------------------------------
+% ABSTRACT
+% ---------------------------------------------------------------------------
+
+% \begin{abstractbox}
+% \begin{abstract}
+% \input{abstract}
+% \end{abstract}
+
+
+% ---------------------------------------------------------------------------
+% I - INTRODUCTION
+% ---------------------------------------------------------------------------
+\section{Introduction}\label{sec:intro}
+\input{introduction}
+
+
+% ---------------------------------------------------------------------------
+% II - SECTION
+% ---------------------------------------------------------------------------
+\section{Methodology}\label{sec:meth}
+\input{ensembleMD}
+\input{esmacs}
+\input{bac}
+
+
+% ---------------------------------------------------------------------------
+% III - SECTION
+% ---------------------------------------------------------------------------
+\section{Computational Challenges at Extreme Scale}\label{sec:3}
+\input{CC}
+
+
+% ---------------------------------------------------------------------------
+% IV - SECTION
+% ---------------------------------------------------------------------------
+\section{Implementations}\label{sec:4}
+\input{rct}
+\input{entk}
+\input{htbac}
+
+
+% ---------------------------------------------------------------------------
+% VI - SECTION
+% ---------------------------------------------------------------------------
+\section{Experiments}\label{sec:6}
+\input{experiments}
+
+
+% ---------------------------------------------------------------------------
+% VII - CONCLUSION
+% ---------------------------------------------------------------------------
+%\vspace{-0.1in}
+\section{Discussion and Conclusion}\label{sec:conclusion}
+\input{conclusion}
+
+
+% ---------------------------------------------------------------------------
+% ACKNOWLEDGEMENTS
+% ---------------------------------------------------------------------------
+\section*{Acknowledgements}
+\input{acknowledgements}
+
+
+% ---------------------------------------------------------------------------
+% REFERENCES
+% ---------------------------------------------------------------------------
+
+
+\bibliographystyle{plain}
+\bibliography{rutgers,ucl}
+
+\end{document}

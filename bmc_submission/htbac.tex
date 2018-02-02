@@ -1,0 +1,253 @@
+\subsection{ESMACS}\label{sec:htbac}
+
+Initially, we designed HTBAC to implement a single binding affinity protocol,
+using the EnTK programming model to express the application logic. Here, we
+exclusively focus on ESMACS to capture the workflow logic and isolate the
+performance of a single protocol instance. HTBAC has been extended as a
+Python library that enables the selection of multiple protocol instances of
+ESMACS and TIES~\cite{dakka}.
+
+A simulation pipeline is a defined sequence of simulation stages for a given
+physical system. In the ESMACS protocol, these simulation pipelines are
+replicated, where replicas differ only by their parameter configurations,
+namely initial velocities, which are randomly generated and assigned by NAMD
+at the start of execution. A simulation pipeline in the ESMACS protocol has 7
+stages: the first, second and last stages perform staging of the input/output
+data, the middle stages indicate simulation tasks. A task is appended to a
+stage and stages are appended to a pipeline to maintain temporal order during
+execution.
+
+% The ESMACS protocol performs a sequence of simulation stages for a given
+% physical system. ESMACS replicates this sequence of simulation stages.
+% Replicas differ only by their parameter configurations, namely initial
+% velocities, which are randomnly generated and assigned by NAMD at the start
+% of execution.
+
+Each simulation pipeline replica maps to an independent EnTK pipeline. Each
+pipeline consists of a sequence of stages, and each stage consists of a single
+task that performs unique functions, including pre-processing and molecular
+dynamics simulations. Fig~\ref{figure:HTBAC} shows how pipelines, stages and
+tasks are organized for the ESMACS protocol. A task is composed of a set of
+attributes that define parameters like the location of input files, the number
+of simulations and the MD engine(s) used to launch those simulations.
+
+\mtnote{There is some repetition in this paragraph about
+pipelines/stages/tasks and ESMACS\@.}
+\jdnote{better?}\mtnote{Waiting for the paragraph above to be iterated before
+editing this paragraph further.}\jhanote{please review.}
+
+
+% \begin{figure}
+% \centering
+%   \includegraphics[width=0.5\textwidth]{FIGURES/HTBAC_Workflow_ESMACS.pdf}
+%   \caption{ESMACS protocol implemented as an ensemble application, encoded
+%   using the EnTK API\@. A protocol represents a physical system and is
+%   encoded as a set of independent pipelines. Each pipeline maps to a single
+%   replica. ESMACS consists of 25 replicas. Stages within a pipeline are
+%   executed sequentially. Each stage contain a single task performing unique
+%   functions, as required by the protocol. Stages S3--S6 contain molecular
+%   dynamics simulation tasks executed with NAMD\@. \jhanote{Can we chat about
+%   this schematic? JD agreed to fix.}}\label{figure:HTBAC}
+% \end{figure}
+
+Fig.~\ref{figure:ht-bac_rp} shows how the ESMACS protocol integrates with
+EnTK\@. EnTK converts the set of pipelines into a set of tasks called compute
+unit descriptions and submits them to RP\@. In addition, EnTK provides
+methods for the user to specify a resource request including walltime, cores,
+queue, and user credentials. EnTK converts this resource request into a pilot
+that RP submits to a HPC machine. Once the pilot becomes active, it pulls
+compute unit descriptions in bulk from a database, executing them on the
+pilot resources.
+
+% \begin{figure}
+% \centering
+%   \includegraphics[width=0.5\textwidth]{FIGURES/ht-bac-rp_integration.pdf}
+%   \caption{Integration between ESMACS and EnTK\@. Numbers indicate
+%   the temporal sequence of execution. The database (DB) of RADICAL-Pilot (RP)
+%   can be deployed on any host reachable from the resources. RP pushes compute
+%   units (CU) to DB and pulls them for execution.}\label{figure:ht-bac_rp}
+% \end{figure}
+
+% Included in the HTBAC workflow expression, the user is able to define and
+% assign a physical system to a specific protocol along with the number of
+% replicas. ESMACS and TIES protocols differ in the details of the pipelines,
+% stages and synchronization~\cite{Bhati2017}.
+
+% \jhanote{Do you mean a workflow management system? Is it really a workflow
+% (management) system? What are the essential properties of a workflow
+% management system?}
+
+% that sits between the user and cyberinfrastructure
+
+% \jhanote{"sits between user and cyberinfrastructure" is too colloquial. is
+% it a library? is it a runtime module?}
+
+% in order to scale
+
+% \jhanote{in order to scale: scale what?}
+
+% and investigate free energy protocols with a variety of physical systems.
+% HTBAC allows to encode binding free energy protocols, such as ESMACS and
+% TIES, into ensemble applications\@. A protocol in HTBAC encoded as an
+% ensemble of pipelines comprised of identical sequence of stages.
+
+% \jhanote{ensemble of replicas is redundant. a replica is an ensemble
+% member, and an ensemble is by definition comprised of ensemble members. the
+% question is what is that ensemble member. here it is a pipeline of ... }
+
+% \jhanote{the definition of protocol profferred here is too generic: e.g.,
+% per definition of protocol above it is unclear if "interacting" replicas
+% would be covered?}
+% \jdnote{As per ESMACS and TIES, the replicas are non-interacting. Ensembles
+% can be interacting but as per ESMACS/TIES protocols the replicas are not
+% required to be interacting.} \jhanote{I think this is narrow/constraining:
+% we have discussed how replica exchange might be a future protocol}
+
+% We express the application logic of HTBAC using the user-facing API of EnTK
+% (\S\ref{ssec:entk}). The EnTK API and its programming model allow HTBAC to
+% express the workflows associated with different protocols as ensemble-based
+% applications.
+
+% \jhanote{lets get the definition and description clear, then we can come
+% back and describe the advantages} \st{minimizing development effort and
+% complexity.}
+
+% directly to a set of pipelines in EnTK, where each pipeline contains
+% functions that operate on a given replica. EnTK interprets these replicas
+% as independent pipelines. Each pipeline consists of multiple stages
+% representing a well-defined execution order; each stage can contain
+% heterogeneous workloads. Although each stage of a pipeline depends on its
+% predecessor, the pipelines execute independently of each other.
+
+% ESMACS and TIES protocols differ in the details of the pipelines, stages
+% and synchronization~\cite{Bhati2017}.
+
+% \mtnote{I am afraid we need to iterate the whole pragraph. We need to
+% separate between the abstracitons used in the ESMACS protocol (replica,
+% function, simulation) to those of EnTK (pipeline, stage and task). Once
+% separated, we need to map the former into the latter.} \jdnote{better? also
+% see caption of HTBAC figure}
+
+% The ESMACS protocol consist of pipelines with stages comprised of
+% heterogeneous tasks. For example, equilibration and production, followed by
+% post processing steps.
+
+% \begin{figure}
+% \centering
+%   \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_contr
+%   ol_flow_only.pdf}
+%   \caption{ESMACS protocol indicating how an N replica ensemble is
+%   implemented in HTBAC. Each protocol instance is mapped to a single EnTK
+%   pipeline. Each pipeline is equivalent and represents a set of simulations
+%   which are captured as stages by EnTK.}\label{figure:ESMACS-pipelines}
+% \end{figure}
+
+%\begin{itemize}
+% \item 1) Untar configuration files
+% \item 2) Preprep
+% \item 3) Minimize with decreasing restraints
+% \item 4) Equilibration: NVT simulation at 50K, with restraints
+% \item 5) Equilibration: NPT simulation at 300K, with decreasing restraints
+% \item 6) Equlibratin: NPT at 300k, no constraints
+% \item 7) Tarball output files
+%\end{itemize}
+
+% We capture the integration of the application (ESMACS protocol) and how it
+% interfaces with EnTK in Fig.~\ref{figure:ht-bac_rp}. HTBAC provides methods
+% for the user to specify a resource request including walltime, cores,
+% queue, and user credentials. EnTK converts the HTBAC workflow into a set of
+% tasks called compute unit descriptions and submits them to RP, along with
+% the resource request. RP uses SAGA to submit a job to the specified queue
+% in the batch system of the HPC machine. Once the job is scheduled by the
+% batch system, the pilot becomes active, and it bootstaps the Agent module
+% of RP\@. The Agent communicates with the MongoDB database (RP DB), and
+% pulls compute unit descriptions in bulk. Once resources become available,
+% the compute unit descriptions are translated into executable units and
+% spawned for execution.
+% \jhanote{I do not think the last few sentences in the paragraph above are
+% relevant to HTBAC. A HTBAC user/developer used EnTK and should know nothing
+% below that. As an HTBAC user I would be justified in not knowing anything
+% about SAGA and RP!}
+% \jdnote{We have Fig.~\ref{figure:ht-bac_rp} just below that describes the
+% integration of HTBAC, EnTK, RP. We mention the Agent, RP DB, Tasks, CUs,
+% Pipelines, etc. Therefore, I included a brief description of these
+% components, or else the reader would be left wondering what these
+% components are.}
+% \jhanote{the reader will still be left wondering what an Agent is, what
+% SAGA is. These are not described or discussed anywhere in the text!}
+% \jdnote{I suggest we change the figure then, otherwise the reader will
+% wonder what the Agent and RP DB are.}
+
+% \jhanote{At the end of this section the reader still does not know what
+% HTBAC is? Also, the reader knows what HTBAC enables, but not how.}
+% \jdnote{Not entirely sure if I understand this comment, I added a line at
+% the beginning of this section to see if this is the path you're referring
+% to. Also added a sentence below to address how}\jhanote{My comment is that
+% we've not still described whether HTBAC is a set of scripts or a library?
+% client side software or server side? etc.}
+
+% Included in the HTBAC workflow expression, the user is able to define and
+% assign a physical system to a specific protocol along with the number of
+% replicas.
+
+% \jhanote{I think the workflow description includes the protocol, the number
+% of replicas and physical system. These are not defined after the workflow.}
+% \jdnote{yes, fixed}
+
+% \jhanote{I would  move this to the opening paragraph of this section: }
+% \jdnote{done}
+
+% \jdnote{Better?}\mtnote{further iterated.}
+
+% When the job gets scheduled by BW, the job is given resources, and the
+% first thing done is to bootstrap the agent. The Agent is bootstrapped and
+% the first component (data staging). It calls the RP DB and pulls in bulk
+% the avaialble CUs checks the properties of input files. THe units are ready
+% for scehdulidng, passes it to the queue of the scheduler, it pushes them to
+% the queue of the agent scheduler. The executor manages one unit at a time.
+% When there is a unit in the queue (inptu staging) and spawns it to the BW
+% executor (APRUN). The executor (agent) waits for a the unit to return,
+% passes the unit to the output staging, and informs the scheduler.
+
+% \begin{figure}
+% \centering
+%   \includegraphics[width=0.5\textwidth]{FIGURES/HT-BAC_NAMD_pipelines_contr
+%   ol_flow_only.pdf}
+%   \caption{\bf NAMD Stages of HTBAC ESMACS protocol.}
+%   \label{figure:ESMACS-pipelines}
+% \end{figure}
+
+% We define the client resource in Fig.~\ref{figure:ht-bac_rp} as the
+% workload system---HTBAC\mtnote{I do not understand this sentence. Some
+% problems I see with it: I do not see a definition if Fig. 4; what is a
+% `client resource'? What is a `workload system' in this context?} which
+% describes a set of replicas with ordered functions as pipelines with stages
+% and tasks
+% \mtnote{The rest of the sentence seems to use functions as previously done
+% in the opening paragraphs?}. EnTK interprets these pipelines as a
+% functional set of tasks \mtnote{I am not sure I understand what a
+% `functional set of tasks' is} and generates the pilot description that
+% contains the resource configuration of how to run the HTBAC workload. For
+% the ESMACS protocol running on Blue Waters we define the runtime system,
+% queue, and the pilot size. Once RADICAL-Pilot receives this new workload,
+% it generates a pilot that submits placeholders to the queue \mtnote{A pilot
+% is a resource placeholder. The sentence needs editing.}. Once the pilot %
+% is activated becomes active, the RP-Agent submits the tasks in the form of
+% compute units to the placeholders to begin execution \mtnote{RP-Agent is
+% the pilot and therefore the resource placeholder. Let's discuss in person
+% about RP execution model and how it is implemented by both RP modules and
+% components}.
+
+% RADICAL-Cybertools provides advanced resource management capabilities and,
+% thereby delivers the necessary high-throughput capabilities
+% required\mtnote{Required by?}. HTBAC is integrated with the EnTK component
+% of RCT\@.\mtnote{I am not sure what we want to say with this short
+% paragraph. Maybe we want to expand on it or comment it out?}
+
+% \begin{figure}[ht]
+% \centering
+%  \includegraphics[width=0.5\textwidth]{FIGURES/entk_htbac_integration.pdf}
+%   \caption{\bf Integration between HT-BAC workflow system and EnTK that
+%   shows resource/application managers.}
+%   \label{figure:ht-bac_entk}
+% \end{figure}

@@ -1,0 +1,57 @@
+
+It is necessary to move beyond the prevailing paradigm of running individual
+MD simulations, which provide irreproducible results and cannot provide
+meaningful error bars~\cite{Bhati2017}. Further, the ability to flexibly
+scale and adapt ensemble-based protocols to the systems of interest is vital
+to produce reliable and accurate results on timescales which make it viable
+to influence real world decision making. To meet these goals, we are
+designing and developing the high-throughput binding affinity calculator
+(HTBAC).
+
+HTBAC employs the RADICAL-Cybertools to build ensemble-based applications for
+executing protocols like ESMACS at scale. We show how the implementation of
+the ESMACS protocol scales almost perfectly to hundreds of concurrent
+pipelines of binding affinity calculations on Blue Waters.
+\jhanote{check for consistency: HTBAC scales, or implementation of ESMACS
+protocol scales?}\jdnote{done} \jhanote{I don't think the protocol scales, but
+our implementation of the protocol. Please see changed version. } This permits
+a time-to-solution that is essentially invariant of the number
+\jhanote{we should replace "size" with "number"} of candidate ligands, as well
+as the type and number of protocols concurrently employed.
+
+% \jhanote{Careful not to imply that HTBAC is a workflow system.}
+% \jdnote{better?}\mtnote{Further iterated. Please review.}
+
+% \mtnote{I struggle to understand `This permits the rapid time-to-solution
+% that is'} \jdnote{just reduced it to time-to-solution instead of rapid time-
+% to-solution}
+
+The use of software implementing well-defined abstractions like that of
+``building blocks'', future proofs users of HTBAC to evolving hardware
+platforms, while providing immediate benefits of scale and support for a range
+of different application workflows. Thus, HTBAC represents an important
+advance towards the use of molecular dynamics based free energy calculations
+to the point where they can produce actionable results both in the clinic and
+industrial drug discovery.
+
+In the short term, the development of HTBAC will allow a significant increase
+in the size of study. Much of the literature on MD-based free energy
+calculations is limited to a few tens of systems, usually of similar drugs
+bound to the same protein target. By facilitating investigations of much
+larger datasets, HTBAC also provides a step towards tackling grand challenges
+in drug design and precision medicine, where it is necessary to understand
+the influences on binding strength for hundreds or thousands of drug-protein
+variant combinations. Only in aiming to meet this ambitious goals we will be
+able to reveal the limits of existing simulation technology and the
+potentials used to approximate the chemistry of the real systems.
+
+\footnotesize \textbf{Software and Data} HTBAC, Ensemble Toolkit and
+RADICAL-Pilot can be found respectively at:
+\url{https://github.com/radical-cybertools/htbac},
+\url{https://github.com/radical-cybertools/radical.entk}, and
+\url{https://github.com/radical-cybertools/radical.pilot}. Raw data and
+scripts to reproduce experiments can be found at:
+\url{https://github.com/radical-experiments/htbac-experiments.}
+
+% \mtnote{Should we add a link to HTBAC code base?}
+% \jdnote{Not sure, in case yes, }
