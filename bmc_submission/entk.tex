@@ -21,12 +21,14 @@ ensemble-based applications by describing what, when and where should be
 executed. EnTK uses a runtime system, like RADICAL-Pilot, to acquire the
 resources needed by applications to manage task execution.
 
-EnTK enables the creation of ensemble-based applications by exposing an API
-with four components: \textbf{Application Manager}, \textbf{Pipeline},
-\textbf{Stage} and \textbf{Task}. Users describe ensembles in terms of
-pipelines, stages and tasks, (PST), and pass this description to an instance
-of Application Manager, specifying what resource to use for executing the
-application (see Figure~\ref{fig:entk_arch}).
+% \section*{Figures}
+\begin{figure}[h!]
+\caption{\csentence{EnTK Overview.}
+  Ensemble Toolkit overview showing how the abstract
+  workflow execution system is mapped to specific components exposed
+  to the users and components internal to the toolkit.}
+  \label{fig:entk_arch}
+  \end{figure}
 
 % \begin{figure}
 %   \centering
@@ -36,6 +38,14 @@ application (see Figure~\ref{fig:entk_arch}).
 %            to the users and components internal to the
 %            toolkit.}\label{fig:entk_arch}
 % \end{figure}
+
+EnTK enables the creation of ensemble-based applications by exposing an API
+with four components: \textbf{Application Manager}, \textbf{Pipeline},
+\textbf{Stage} and \textbf{Task}. Users describe ensembles in terms of
+pipelines, stages and tasks, (PST), and pass this description to an instance
+of Application Manager, specifying what resource to use for executing the
+application (see Figure~\ref{fig:entk_arch}).
+
 
 The Task component is used to encapsulate an executable and its software
 environment and data dependencies. The Stage component contains a set of
