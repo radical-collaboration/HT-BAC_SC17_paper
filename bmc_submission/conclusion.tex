@@ -11,19 +11,9 @@ designing and developing the high-throughput binding affinity calculator
 HTBAC employs the RADICAL-Cybertools to build ensemble-based applications for
 executing protocols like ESMACS at scale. We show how the implementation of
 the ESMACS protocol scales almost perfectly to hundreds of concurrent
-pipelines of binding affinity calculations on Blue Waters.
-\jhanote{check for consistency: HTBAC scales, or implementation of ESMACS
-protocol scales?}\jdnote{done} \jhanote{I don't think the protocol scales,
-but our implementation of the protocol. Please see changed version.
-}\mtnote{I agree with the new version.} 
-\jdnote{OK}
- This permits a time-to-solution that
-
-is essentially invariant of the size
-\jhanote{we should replace "size" with "number"}\mtnote{agreed.} 
-\jdnote{fixed}
-of candidate
-ligands, as well as the type and number of protocols concurrently employed.
+pipelines of binding affinity calculations on Blue Waters. 
+This permits a time-to-solution that is essentially invariant of the size
+of candidate ligands, as well as the type and number of protocols concurrently employed.
 
 % \jhanote{Careful not to imply that HTBAC is a workflow system.}
 % \jdnote{better?}\mtnote{Further iterated. Please review.}
