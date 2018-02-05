@@ -6,8 +6,12 @@
 \input{include}
 \usepackage[numbers]{natbib}
 \usepackage[utf8]{inputenc} %unicode support
+
+% Abbreviations
 \usepackage{acro}
 \acsetup{first-style=short}
+\input{abbreviations}
+
 \def\includegraphic{}
 \def\includegraphics{}
 
@@ -27,35 +31,36 @@
 \title{High-throughput Binding Affinity Calculations at Extreme Scales}
 
 \author[
-   addressref={aff1}  
-   email={jumana.dakka@rutgers.edu}              
+   addressref={aff1},
+   corref={aff1},
+   email={jumana.dakka@rutgers.edu}
 ]{\fnm{Jumana} \snm{Dakka}}
 \author[
-   addressref={aff1}
+   addressref={aff1},
    email={matteo.turilli@rutgers.edu}
 ]{\fnm{Matteo} \snm{Turilli}}
 \author[
-   addressref={aff2}
+   addressref={aff2},
    email={dave.wright@ucl.ac.uk}
 ]{\fnm{David W.} \snm{Wright}}
 \author[
-   addressref={aff2}
+   addressref={aff2},
    email={stefan.zasada@ucl.ac.uk}
 ]{\fnm{Stefan J.} \snm{Zasada}}
 \author[
-   addressref={aff1}
+   addressref={aff1},
    email={vivek.balasubramanian@rutgers.edu}
 ]{\fnm{Vivek} \snm{Balasubramanian}}
 \author[
-   addressref={aff2}
+   addressref={aff2},
    email={shunzhou.wan@ucl.ac.uk}
 ]{\fnm{Shunzhou} \snm{Wan}}
 \author[
-   addressref={aff2}
+   addressref={aff2},
    email={p.v.coveney@ucl.ac.uk}
-]{\fnm{Peter V.} \snm{Coveney}}   
+]{\fnm{Peter V.} \snm{Coveney}}
 \author[
-   addressref={aff1,aff3,aff4}
+   addressref={aff1,aff3,aff4},
    email={shantenu.jha@rutgers.edu}
 ]{\fnm{Shantenu} \snm{Jha}}
 
@@ -70,9 +75,9 @@
 %       Peter V Coveney\IEEEauthorrefmark{2} and
 %       Shantenu Jha\IEEEauthorrefmark{1},\IEEEauthorrefmark{3},\IEEEauthorrefmark{4}
 %     }
-    
- 
-\address[id=aff1]{%           
+
+
+\address[id=aff1]{%
   \orgname{Department Electrical and Computer Engineering, Rutgers University},
   \street{94 Brett Road},
   \city{Piscataway},
@@ -84,7 +89,7 @@
   \street{20 Gordon Street},
   \city{London},
   \cny{UK}
-} 
+}
 
 \address[id=aff3]{%
   \orgname{Institute for Advanced Computational Sciences, Stony Brook University, NY, USA},
@@ -94,7 +99,7 @@
 }
 
 \address[id=aff4]{%
-  \orgname{Computational Science Initiative, Brookhaven National Laboratory}, 
+  \orgname{Computational Science Initiative, Brookhaven National Laboratory},
   \street{98 Rochester St},
   \city{Shirley},
   \cny{NY, USA}
@@ -179,7 +184,10 @@
 \input{conclusion}
 
 \section{Abbreviations}\label{sec:abbreviations}
-\input{abbreviations}
+
+\acuseall
+
+\printacronyms[include-classes=abbrev, name=Abbreviations, heading=none]
 
 % ---------------------------------------------------------------------------
 % ACKNOWLEDGEMENTS
@@ -212,7 +220,7 @@ capabilities were supported by RADICAL-Cybertools (OAC 1440677) and NSF ICER
 support. PVC, SJZ and DWW would like to acknowledge the support of the EU
 H2020 CompBioMed (675451), EUDAT2020 (654065) and ComPat (671564) projects.\ldots
 
-\section*{Software and Data} 
+\section*{Software and Data}
 HTBAC, Ensemble Toolkit and
 RADICAL-Pilot can be found respectively at:
 \url{https://github.com/radical-cybertools/htbac},
