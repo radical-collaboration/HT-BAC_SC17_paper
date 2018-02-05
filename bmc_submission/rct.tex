@@ -22,7 +22,8 @@ flexible and scalable execution of pipelines.
 
 The scalable execution of applications with large ensembles of tasks is
 challenging. Traditionally, two methods are used to execute multiple tasks on
-a resource: each task is scheduled as an individual job, or MPI capabilities
+a resource: each task is scheduled as an individual job, or message-passing
+interface (MPI) capabilities
 are used to execute multiple tasks as part of a single job. The former method
 suffers from unpredictable queue time: each task independently awaits in the
 resource's queue to be scheduled. The latter method relies on the fault

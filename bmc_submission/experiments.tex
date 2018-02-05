@@ -41,7 +41,8 @@ contribute to a better understanding of the behavior of HTBAC, EnTK and RP,
 it is of limited interest for the current use case. The driving goal of HTBAC
 is to increase throughput by a means of concurrency of pipelines, not in the
 number of sequential executions per core. This is a driving motivation to
-target large HPC machines instead of so-called HTC infrastructures.
+target large HPC machines instead of so-called high-throughput computing (HTC) 
+infrastructures.
 
 % ---------------------------------------------------------------------------
 \subsection{Experiment Setup}\label{ssec:exp_setup}
@@ -191,8 +192,8 @@ First we characterize the overhead of EnTK and RP in the null workload, where
 we isolate the overhead introduced by the two systems
 (Figure~\ref{fig:exp1}). We see a (slightly) superliner increase of EnTK
 overhead, between 0.1 and 1.8 seconds. This overhead depends on the number of
-tasks that need to be translated in-memory from a Python object to a compute
-unit (CU) description. As such, it is expected to grow proportionally to the
+tasks that need to be translated in-memory from a Python object to a CU 
+description. As such, it is expected to grow proportionally to the
 number of tasks, barring some competition of resources.
 
 RP overhead is also, on average, superlinear but with a much greater

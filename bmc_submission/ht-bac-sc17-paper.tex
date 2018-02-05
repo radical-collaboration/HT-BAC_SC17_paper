@@ -6,10 +6,10 @@
 \input{include}
 \usepackage[numbers]{natbib}
 \usepackage[utf8]{inputenc} %unicode support
-
+\usepackage{acro}
+\acsetup{first-style=short}
 \def\includegraphic{}
 \def\includegraphics{}
-
 
 % \keywords{Distributed computing, Workload management system}
 
@@ -27,28 +27,36 @@
 \title{High-throughput Binding Affinity Calculations at Extreme Scales}
 
 \author[
-   addressref={aff1}                
+   addressref={aff1}  
+   email={jumana.dakka@rutgers.edu}              
 ]{\fnm{Jumana} \snm{Dakka}}
 \author[
    addressref={aff1}
+   email={matteo.turilli@rutgers.edu}
 ]{\fnm{Matteo} \snm{Turilli}}
 \author[
    addressref={aff2}
-]{\fnm{David W} \snm{Wright}}
+   email={dave.wright@ucl.ac.uk}
+]{\fnm{David W.} \snm{Wright}}
 \author[
    addressref={aff2}
-]{\fnm{Stefan J} \snm{Zasada}}
+   email={stefan.zasada@ucl.ac.uk}
+]{\fnm{Stefan J.} \snm{Zasada}}
 \author[
    addressref={aff1}
+   email={vivek.balasubramanian@rutgers.edu}
 ]{\fnm{Vivek} \snm{Balasubramanian}}
 \author[
    addressref={aff2}
+   email={shunzhou.wan@ucl.ac.uk}
 ]{\fnm{Shunzhou} \snm{Wan}}
 \author[
    addressref={aff2}
-]{\fnm{Peter V} \snm{Coveney}}
+   email={p.v.coveney@ucl.ac.uk}
+]{\fnm{Peter V.} \snm{Coveney}}   
 \author[
    addressref={aff1,aff3,aff4}
+   email={shantenu.jha@rutgers.edu}
 ]{\fnm{Shantenu} \snm{Jha}}
 
 
@@ -66,18 +74,30 @@
  
 \address[id=aff1]{%           
   \orgname{Department Electrical and Computer Engineering, Rutgers University},
+  \street{94 Brett Road},
+  \city{Piscataway},
+  \cny{NJ, USA}
 }
 
 \address[id=aff2]{%
-  \orgname{Centre for Computational Sciences, UCL}
+  \orgname{Centre for Computational Sciences, UCL},
+  \street{20 Gordon Street},
+  \city{London},
+  \cny{UK}
 } 
 
 \address[id=aff3]{%
-  \orgname{Institute for Advanced Computational Sciences, Stony Brook University, NY, USA}
+  \orgname{Institute for Advanced Computational Sciences, Stony Brook University, NY, USA},
+  \street{Lake Dr, Laufer Center},
+  \city{Stony Brook},
+  \cny{NY, USA}
 }
 
 \address[id=aff4]{%
-  \orgname{Computational Science Initiative, Brookhaven National Laboratory} 
+  \orgname{Computational Science Initiative, Brookhaven National Laboratory}, 
+  \street{98 Rochester St},
+  \city{Shirley},
+  \cny{NY, USA}
 }
 
 \begin{artnotes}
@@ -110,39 +130,44 @@
 % ---------------------------------------------------------------------------
 % I - INTRODUCTION
 % ---------------------------------------------------------------------------
-\section{Introduction}\label{sec:intro}
+
+\section{Background}\label{sec:intro}
 \input{introduction}
 
 
 % ---------------------------------------------------------------------------
 % II - SECTION
 % ---------------------------------------------------------------------------
-\section{Methodology}\label{sec:meth}
+\section{Methods}\label{sec:meth}
 \input{ensembleMD}
 \input{esmacs}
 \input{bac}
-
-
-% ---------------------------------------------------------------------------
-% III - SECTION
-% ---------------------------------------------------------------------------
-\section{Computational Challenges at Extreme Scale}\label{sec:3}
 \input{CC}
-
-
-% ---------------------------------------------------------------------------
-% IV - SECTION
-% ---------------------------------------------------------------------------
-\section{Implementations}\label{sec:4}
 \input{rct}
 \input{entk}
 \input{htbac}
 
 
 % ---------------------------------------------------------------------------
+% III - SECTION
+% % ---------------------------------------------------------------------------
+% \section{Computational Challenges at Extreme Scale}\label{sec:3}
+% \input{CC}
+
+
+% ---------------------------------------------------------------------------
+% IV - SECTION
+% ---------------------------------------------------------------------------
+% \section{Implementations}\label{sec:4}
+% \input{rct}
+% \input{entk}
+% \input{htbac}
+
+
+% ---------------------------------------------------------------------------
 % VI - SECTION
 % ---------------------------------------------------------------------------
-\section{Experiments}\label{sec:6}
+\section{Results}\label{sec:6}
 \input{experiments}
 
 
@@ -150,23 +175,54 @@
 % VII - CONCLUSION
 % ---------------------------------------------------------------------------
 %\vspace{-0.1in}
-\section{Discussion and Conclusion}\label{sec:conclusion}
+\section{Conclusion}\label{sec:conclusion}
 \input{conclusion}
 
+\section{Abbreviations}\label{sec:abbreviations}
+\input{abbreviations}
 
 % ---------------------------------------------------------------------------
 % ACKNOWLEDGEMENTS
 % ---------------------------------------------------------------------------
-\section*{Acknowledgements}
-\input{acknowledgements}
+% \section*{Acknowledgements}
+% \input{acknowledgements}
 
 
 % ---------------------------------------------------------------------------
 % REFERENCES
 % ---------------------------------------------------------------------------
 
+\begin{backmatter}
+
+\section*{Competing interests}
+The authors declare that they have no competing interests.
+
+\section*{Author's contributions}
+PVC and SJ conceived this work. MT and SJ
+designed the experiments with support from JD and VB. JD performed the bulk of
+experiments on Blue Waters, with support from DWW and VB. VB developed the
+version of EnTK used for experiments. MT, VB, JD and SJ analyzed the data. SJZ
+initially developed the ESMACS protocol using EnTK. DWW, MT and SJ wrote the
+bulk of the paper. \ldots
+
+\section*{Acknowledgements}
+Access to Blue Waters was made possible by NSF OAC 1713749. The software
+capabilities were supported by RADICAL-Cybertools (OAC 1440677) and NSF ICER
+1639694. We thank Andre Merzky and other members of the RADICAL team for
+support. PVC, SJZ and DWW would like to acknowledge the support of the EU
+H2020 CompBioMed (675451), EUDAT2020 (654065) and ComPat (671564) projects.\ldots
+
+\section*{Software and Data} 
+HTBAC, Ensemble Toolkit and
+RADICAL-Pilot can be found respectively at:
+\url{https://github.com/radical-cybertools/htbac},
+\url{https://github.com/radical-cybertools/radical.entk}, and
+\url{https://github.com/radical-cybertools/radical.pilot}. Raw data and
+scripts to reproduce experiments can be found at:
+\url{https://github.com/radical-experiments/htbac-experiments.}
+
+\end{backmatter}
 
 \bibliographystyle{plain}
 \bibliography{rutgers,ucl}
-
 \end{document}
