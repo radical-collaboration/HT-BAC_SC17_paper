@@ -41,7 +41,8 @@ contribute to a better understanding of the behavior of HTBAC, EnTK and RP,
 it is of limited interest for the current use case. The driving goal of HTBAC
 is to increase throughput by a means of concurrency of pipelines, not in the
 number of sequential executions per core. This is a driving motivation to
-target large HPC machines instead of so-called HTC infrastructures.
+target large HPC machines instead of so-called high-throughput computing (HTC) 
+infrastructures.
 
 % ---------------------------------------------------------------------------
 \subsection{Experiment Setup}\label{ssec:exp_setup}
@@ -66,6 +67,49 @@ Further, the EGFR kinase studies can benefit from greater concurrency because
 potential HTBAC users may wish to extend their protocols beyond the current
 scale of ESMACS\@. Consistently, our experiments push the boundaries of
 current scale by executing 8, 16, 32, 64 and 128 concurrent pipelines.
+
+% \begin{table}[h!]
+% \caption{Experiment 1 executes the 7 stages of the ESMACS protocol with
+% a null workload; Experiment 2 uses the actual MD workload of the ESMACS
+% protocol. ESMACS protocol with EGFR kinase workload: (1) Untar configuration
+% files; (2) Preprep; (3) Minimize with decreasing restraints; (4)
+% Equilibration: NVT simulation at 50K, with restraints; (5) Equilibration: NPT
+% simulation at 300K, with decreasing restraints; (6) Equilibration: NPT at
+% 300k, no constraints; (7) Tarball output files.}
+%   \label{tab:exp}
+%       \resizebox{\textwidth}{!}{
+%       \begin{tabular}{llllllll}
+% \toprule
+% \textbf{Experiment ID}      &
+% \textbf{Protocol}           &
+% \textbf{Workload}           &
+% \textbf{\# Trials}          &
+% \textbf{\# Pipelines}       &
+% \textbf{\# Stages}          &
+% \textbf{\# Tasks}           &
+% \textbf{\# Cores per pilot} \\
+% \toprule
+% % %
+% 1                           &
+% ESMACS                      &
+% Null workload               &
+% 2                           &
+% 8, 16, 32, 64, 128          &
+% 7                           &
+% 7                           &
+% 64, 128, 256, 512, 1024     \\
+% % %
+% 2                           &
+% ESMACS                      &
+% EGFR kinase Workload        &
+% 2                           &
+% 8, 16, 32, 64, 128          &
+% 7                           &
+% 7                           &
+% 64, 128, 256, 512, 1024     \\
+% \bottomrule
+% \end{tabular}}
+% \end{table}
 
 \begin{table*}[t]
 \centering
@@ -109,8 +153,8 @@ EGFR kinase Workload        &
 \end{tabular}
 \end{table*}
 
-EnTK uses RP to acquire resources via a single pilot. The size of the pilot is
-contingent upon characterization of performance, in this case, weak
+EnTK uses RP to acquire resources via a single pilot. The size of the pilot
+is contingent upon characterization of performance, in this case, weak
 scalability. Accordingly, we request the maximum number of cores required by
 the workload as the number of cores in a pilot. We use between 64 and 1024
 cores in Experiment 2 as the NAMD executable used in stages 3, 4, 5, and 6
@@ -119,22 +163,21 @@ of Experiment 1 requires only 1 core per stage but we request the same number
 of cores as for Experiment 2 to be able to compare the overheads of both EnTK
 and RP across experiments.
 
-
-All experiments use EnTK version 0.4.7 and RP version 0.42. The MD engine used
-is NAMD-MPI\@. The equilibration tasks of stage 4 and 6 are assigned 5000
-timesteps while the task of stage 5 requires 55000 timesteps. We ran two
+All experiments use EnTK version 0.4.7 and RP version 0.42. The MD engine
+used is NAMD-MPI\@. The equilibration tasks of stage 4 and 6 are assigned
+5000 timesteps while the task of stage 5 requires 55000 timesteps. We ran two
 trials of both the null and MD workload at each pipeline configurations.
 
 % ---------------------------------------------------------------------------
 \subsection{Results}\label{ssec:exp_results}
 
-First we characterize the overhead of EnTK and RP in the null workload, where
-we isolate the overhead introduced by the two systems
-(Figure~\ref{fig:exp1}). We see a (slightly) superliner increase of EnTK
-overhead, between 0.1 and 1.8 seconds. This overhead depends on the number of
-tasks that need to be translated in-memory from a Python object to a compute
-unit (CU) description. As such, it is expected to grow proportionally to the
-number of tasks, barring some competition of resources.
+% \begin{figure}[h!]
+% \caption{\csentence{Null Workload Overheads.}
+%   Overheads of Ensemble Toolkit (EnTK) and RADICAL-Pilot (RP) when
+%   executing HTBAC using a null workload. We plot the baseline
+%   EnTK/RP overheads without the application workload across two
+%   trials per pipeline configuration.}\label{fig:exp1}
+%   \end{figure}
 
 \begin{figure}
   \centering
@@ -144,6 +187,14 @@ number of tasks, barring some competition of resources.
            EnTK/RP overheads without the application workload across two
            trials per pipeline configuration.}\label{fig:exp1}
 \end{figure}
+
+First we characterize the overhead of EnTK and RP in the null workload, where
+we isolate the overhead introduced by the two systems
+(Figure~\ref{fig:exp1}). We see a (slightly) superliner increase of EnTK
+overhead, between 0.1 and 1.8 seconds. This overhead depends on the number of
+tasks that need to be translated in-memory from a Python object to a CU 
+description. As such, it is expected to grow proportionally to the
+number of tasks, barring some competition of resources.
 
 RP overhead is also, on average, superlinear but with a much greater
 variance. This variance is due to mainly two factors: Network latency and
@@ -155,28 +206,45 @@ Further, RP writes and reads the CU descriptions multiple times to and
 from the shared filesystem of the HPC machine. Together, these two factors
 introduce delays in the scheduling of the CUs.
 
-When the workload includes the EGFR kinase, we see (Figure~\ref{fig:exp2}) that the
-RP overhead becomes on average less than 10\% of the average total execution
-time (TTX), defined as \(TTX = TTC - T_q\) where \(TTC\) is
-time-to-completion and \(T_q\) is time spent queuing on the HPC machine. We further break down TTX into the time-to-completion per stage, where stages 1,2, and 7 perform file movements, while stages 3,4,5, and 6 execute NAMD tasks. At this level we notice that the time-to-completion of the NAMD stages are essentially invariant across pipelines of different size while file movement stages exhibit linearly increasing behavior. In addition, when accounting for variance, RP overheads also show linear weak scaling behavior. 
-%We also notice the TTX is essentially invariant across pipelines of different size
-%and that, when accounting for variance, RP overheads also shows linear weak
-%scaling behavior. 
-As expected, EnTK overhead remains superlinear and
-comparable to the one measured in Experiment 1. This is because in both
-experiments EnTK overhead depends on the number of tasks translated to CU
-descriptions.
+% \begin{figure}[h!]
+% \caption{\csentence{Weak Scaling ESMACS Protocol.}
+%   similar EnTK/RP overhead behavior as with the null workload with higher
+%   values as the number of pipelines increases. We show a breakdown of TTX of
+%   each stage (Stage 1--7). Across pipeline configurations, TTX and RP
+%   overheads (accounting for the error bars) show weak scaling
+%   performance.}
+%   \label{fig:exp2}
+%   \end{figure}
+
 
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{esmacs_32.pdf}
-  \caption{Introducing the use-case EGFR kinase workload, we observe
-  similar EnTK/RP overhead behavior as with the null workload with higher
-  values as the number of pipelines increases. We show a breakdown of TTX of 
-  each stage (Stage 1 - Stage 7). Across pipeline configurations, TTX and RP overheads 
-  (accounting for the error bars) show
-  weak scaling performance.}\label{fig:exp2}
+  \caption{Similar EnTK/RP overhead behavior as with the null workload with higher
+  values as the number of pipelines increases. We show a breakdown of TTX of
+  each stage (Stage 1--7). Across pipeline configurations, TTX and RP
+  overheads (accounting for the error bars) show weak scaling
+  performance.}\label{fig:exp2}
 \end{figure}
+
+
+When the workload includes the EGFR kinase, we see (Figure~\ref{fig:exp2})
+that the RP overhead becomes on average less than 10\% of the average total
+execution time (TTX), defined as \(TTX = TTC - T_q\) where \(TTC\) is
+time-to-completion and \(T_q\) is time spent queuing on the HPC machine. We
+further break down TTX into the time-to-completion per stage, where stages
+1,2, and 7 perform file movements, while stages 3,4,5, and 6 execute NAMD
+tasks. At this level, we notice that the time-to-completion of the NAMD
+stages are essentially invariant across pipelines of different size while
+file movement stages exhibit linearly increasing behavior. In addition, when
+accounting for variance, RP overheads also show linear weak scaling behavior.
+% We also notice the TTX is essentially invariant across pipelines of
+% different size and that, when accounting for variance, RP overheads also
+% shows linear weak scaling behavior.
+As expected, EnTK overhead remains superlinear and comparable to the one
+measured in Experiment 1. This is because in both experiments EnTK overhead
+depends on the number of tasks translated to CU descriptions.
+
 
 Experiments 1 and 2 show how the overheads of both EnTK and RP tend to be
 invariant across type of workload executed. Their scaling behavior and, to

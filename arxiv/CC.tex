@@ -1,5 +1,3 @@
-% \subsection{Computational Challenges}
-
 High-performance computing (HPC) environments were designed to primarily
 support the execution of single simulations. Current HPC platforms enable the
 strong and weak scaling of single tasks (hitherto mostly simulations), with
@@ -9,11 +7,6 @@ nature of scientific inquiry and the applications to support that inquiry
 evolve, there is a critical need to support the scalable and concurrent
 execution of a large number of heterogeneous tasks.
 
-%  each of which is typically smaller than the traditional single simulations
-% supported by HPC\@.
-
-% The aggregation of multiple tasks alongside their dependencies are usually
-% referred to as ``workflows''.
 Sets of tasks with dependencies that determine the order of their execution
 are usually referred to as ``workflows''. Often times, the structure of the
 task dependencies is simple and adheres to discernible patterns, even though
@@ -40,8 +33,7 @@ LHC~\cite{breskin2009cern} or LIGO~\cite{althouse1992ligo}. The fact that the
 same workflow would be used by thousands of scientists over many years
 justified, if not amortized, the large overhead of integrating application
 workflows with monolithic workflow systems. This influenced the design and
-implementation of % workflow system
-interfaces and programming models.
+implementation of interfaces and programming models.
 
 However as the nature, number and usage of workflows has evolved so have the
 requirements: scale remains important but only when delivered with the
@@ -54,22 +46,16 @@ have similar execution times. The pipeline-to-pipeline fluctuation must be
 minimal while also managing the task-to-task runtime fluctuation across
 concurrently executing pipelines.
 
-Thus the flexible execution of heterogeneous ensembles\mtnote{Should we
-define what an ensemble is?} of MD simulations face both system software and
-middleware challenges: existing system software that is typically designed to
-support the execution of single large simulations on the one hand, and
-workflow systems that are designed to support specific use cases or
-`locked-in' end-to-end executions. % monolithic workflows.
-In the next section, we discuss the design and implementation of the
-RADICAL-Cybertools, a set of software building blocks that can be easily
-composed to design, implement and execute domain specific workflows rapidly
-and at scale.
+% \mtnote{Should we define what an ensemble is?} \jdnote{We defined ensemble
+% in the Methodology Section: We term this approach ensemble molecular
+% dynamics, “ensemble” here referring to the set of individual (replica)
+% simulations conducted for the same physical system.}
 
-% that have the necessary properties.
-
-% \begin{itemize}
-% 	\item $N_T$ : Number of tasks
-% 	\item ${{n_C}^T}$: Number of cores per task
-% 	\item $N_c$ : Number of cores (total)
-% 	\item $t_x$ : Time durations of a task
-% \end{itemize}
+Thus the flexible execution of heterogeneous ensembles MD simulations face
+both system software and middleware challenges: existing system software that
+is typically designed to support the execution of single large simulations on
+the one hand, and workflow systems that are designed to support specific use
+cases or `locked-in' end-to-end executions. In the next Section, we discuss
+the design and implementation of the RADICAL-Cybertools, a set of software
+building blocks that can be easily composed to design, implement and execute
+domain specific workflows rapidly and at scale.

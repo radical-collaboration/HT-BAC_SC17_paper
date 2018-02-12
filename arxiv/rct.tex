@@ -1,36 +1,29 @@
-
-We have designed RADICAL-Cybertools (RCT) to address some of the challenges
-in developing and executing workflows on HPC platforms. RCT consists of three
-main components: Ensemble Toolkit (EnTK)~\cite{balasubramanian2016ensemble},
-RADICAL-Pilot (RP)~\cite{merzky2015radical} and RADICAL-SAGA
-(RS)~\cite{saga-x}. EnTK provides the ability to create and execute ensemble-
-based workflows/applications with complex coordination and communication but
-without the need for explicit resource management. EnTK uses RP which
-provides resource management and task execution capabilities, and RP uses RS
-as an interoperable resource access  interface.
+We have designed RADICAL-Cybertools (RCT) to be functionally delineated
+middleware building blocks and to address some of the challenges in
+developing and executing workflows on HPC platforms. HTBAC uses two RCT
+components, mainly the Ensemble Toolkit (EnTK) and RADICAL-Pilot (RP).
+% \mtnote{I do not think HTBAC is a workflow! Should we just say `HTBAC uses
+% two RCT components\ldots'?} \jhanote{Please review above paragraph.}
+EnTK provides the ability to create and execute ensemble-based
+workflows/applications with complex coordination and communication but
+without the need for explicit resource management. EnTK uses RP as a
+runtime system which provides resource management and task execution
+capabilities.
 
 RCT eschew the concept of a monolithic workflow systems and uses ``building
 blocks''. RCT provide scalable implementations of building blocks in Python
-that are used to support dozens of scientific applications on high-performance
-and distributed systems~\cite{turilli2016analysis, angius2017converging,
-treikalis2016repex, balasubramanian2016ensemble, balasubramanian2016extasy}. 
-In this section we discuss details of RP and EnTK, and understand how these 
-components have been used to support the flexible and scalable execution of 
-pipelines, which will permit a deeper understanding of HTBAC in the next 
-section.
-
-
-% RCT has also been used extensively to support biomolecular sciences
-% algorithms/methods, e.g., replica-exchange and adaptive sampling.
+that are used to support dozens of scientific applications on
+high-performance and distributed systems~\cite{turilli2016analysis,angius2017converging,treikalis2016repex, balasubramanian2016ensemble,balasubramanian2016extasy}. In this Section we discuss details of RP, EnTK
+and HTBAC, understanding how these components have been used to support the
+flexible and scalable execution of pipelines.
 
 % ---------------------------------------------------------------------------
-% \subsubsection*{RADICAL-Pilot}\label{sec:pilot}
-
 \subsection{RADICAL-Pilot}
 
 The scalable execution of applications with large ensembles of tasks is
 challenging. Traditionally, two methods are used to execute multiple tasks on
-a resource: each task is scheduled as an individual job, or MPI capabilities
+a resource: each task is scheduled as an individual job, or message-passing
+interface (MPI) capabilities
 are used to execute multiple tasks as part of a single job. The former method
 suffers from unpredictable queue time: each task independently awaits in the
 resource's queue to be scheduled. The latter method relies on the fault
@@ -44,10 +37,10 @@ to it, so as to acquire resources via the local resource management system
 task-to-resource assignment. Once the pilot (container-job) is scheduled via
 the LRMS, it can pull computational tasks for execution. This functionality
 allows all the computational tasks to be executed directly on the resources,
-without being queued via the LRMS\@. % individually. 
-The pilot abstraction thus supports the requirements of task-level
-parallelism and high-throughput as needed by science drivers, without
-affecting or circumventing the queue policies of HPC resources.
+without being queued via the LRMS\@. The pilot abstraction thus supports the
+requirements of task-level parallelism and high-throughput as needed by
+science drivers, without affecting or circumventing the queue policies of HPC
+resources.
 
 RADICAL-Pilot is an implementation of the pilot abstraction, engineered to
 support scalable and efficient launching of heterogeneous tasks across
