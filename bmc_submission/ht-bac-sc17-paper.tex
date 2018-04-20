@@ -28,7 +28,7 @@
 \begin{fmbox}
 \dochead{Research}
 
-\title{ls}
+\title{High-throughput Binding Affinity Calculations at Extreme Scales}
 
 \address[id=aff1]{%
   \orgname{Department Electrical and Computer Engineering, Rutgers University},
@@ -255,7 +255,7 @@ well as the type and number of protocols concurrently employed.
 % review.} 
 
 
-In the next Section, we provide details of ensemble molecular dynamics
+In the next section, we provide details of ensemble molecular dynamics
 approach and its advantages over the single trajectory approach. We also
 introduce the ESMACS and related protocols to compute binding affinities
 using ensemble-based approaches. In Section~\ref{sec:2}, we discuss the
@@ -529,9 +529,9 @@ Thus the flexible execution of heterogeneous ensembles MD simulations face
 both system software and middleware challenges: existing system software that
 is typically designed to support the execution of single large simulations on
 the one hand, and workflow systems that are designed to support specific use
-cases or `locked-in' end-to-end executions. In the next Section, we discuss
+cases or `locked-in' end-to-end executions. In the next sections, we discuss
 the design and implementation of the RADICAL-Cybertools, a set of software
-building blocks that can be easily composed to design, implement and execute
+building blocks that can be composed to design, implement and execute
 domain specific workflows rapidly and at scale.
 
 % ---------------------------------------------------------------------------
@@ -635,7 +635,7 @@ with four components: \textbf{Application Manager}, \textbf{Pipeline},
 \textbf{Stage} and \textbf{Task}. Users describe ensembles in terms of
 pipelines, stages and tasks, and pass this description to an instance
 of Application Manager, specifying what resource to use for executing the
-application (see Figure~\ref{fig:entk_arch}).
+application (see Fig. ~\ref{fig:entk_arch}).
 
 
 The Task component is used to encapsulate an executable and its software
@@ -671,18 +671,14 @@ for the transformation of the application workflow into workloads, i.e., set
 of tasks, that can be submitted to the indicated resources for execution.
 Internally, the \textbf{Resource Manager} and \textbf{Execution Manager}
 components enable the acquisition of resources and the management of
-execution of these workloads (see \textbf{Figure~\ref{fig:entk_arch}}).
+execution of these workloads (see Fig. ~\ref{fig:entk_arch}).
 
 % ---------------------------------------------------------------------------
 
 \subsection{ESMACS}\label{sec:htbac}
 
-Initially, we designed HTBAC to implement a single binding affinity protocol,
-using the EnTK programming model to express the application logic. Here, we
-exclusively focus on ESMACS to capture the workflow logic and isolate the
-performance of a single protocol instance. HTBAC has been extended as a
-Python library that enables the selection of multiple protocol instances of
-ESMACS and TIES~\cite{dakka}.
+HTBAC captures the workflow logic of binding affinity calculation protocols using existing RCT tools. Initially, we designed HTBAC to implement a single binding affinity protocol, using the EnTK programming model to express the application logic. Here, we exclusively focus on ESMACS to capture the workflow logic and isolate the performance of a single protocol instance, by describing the ESMACS protocol directly with the user-facing API of EnTK. HTBAC has been extended as a Python library that enables the selection of multiple protocol instances of ESMACS and TIES~\cite{dakka}. To this end, we establish a distinction between HTBAC, the Python library, and the ESMACS implementation using EnTK. 
+
 
 A simulation pipeline is a defined sequence of simulation stages for a given
 physical system. In the ESMACS protocol, these simulation pipelines are
@@ -692,7 +688,7 @@ at the start of execution. A simulation pipeline in the ESMACS protocol has 7
 stages: the first, second and last stages perform staging of the input/output
 data, the middle stages indicate simulation tasks. A task is appended to a
 stage and stages are appended to a pipeline to maintain temporal order during
-execution.
+execution. 
 
 % \begin{figure}[h!]
 % \caption{\csentence{ESMACS Implementation using EnTK.}
@@ -724,10 +720,8 @@ execution.
 Each simulation pipeline replica maps to an independent EnTK pipeline. Each
 pipeline consists of a sequence of stages, and each stage consists of a single
 task that performs unique functions, including pre-processing and molecular
-dynamics simulations. Fig~\ref{figure:HTBAC} shows how pipelines, stages and
-tasks are organized for the ESMACS protocol. A task is composed of a set of
-attributes that define parameters like the location of input files, the number
-of simulations and the MD engine(s) used to launch those simulations.
+dynamics simulations. Fig. ~\ref{figure:HTBAC} shows how pipelines, stages and
+tasks are organized for a single ESMACS protocol instance. A task is composed of a set of attributes that define parameters like the location of input files, the number of simulations and the MD engine(s) used to launch those simulations.
 
 
 % \begin{figure}[h!]
@@ -768,19 +762,14 @@ pilot resources.
 Before embarking on a computational campaign that will consume 150M core
 hours on the NCSA Blue Waters machine, we studied the scalability of HTBAC so
 as to determine optimal workflow sizing and resource utilization for the
-ESMACS protocol. The goal is twofold: (1) understanding the invariance of
-HTBAC execution time over the number of workflow pipelines executed; and (2)
-studying how the performance of EnTK and RP varies in relation to the size of
-workflow.
+ESMACS protocol. The goal is twofold: (1) understanding the invariance of HTBAC execution time for a single protocol instance over the number of workflow pipelines executed; and (2) studying how the performance of EnTK and RP varies 
+in relation to the size of workflow.
 
 % ---------------------------------------------------------------------------
 \subsection{Experiment Design}\label{ssec:exp_design}
 
-We designed two experiments to measure HTBAC, EnTK and RP weak scalability
-when executing an increasing number of concurrent pipelines. According to the
-use case described in Section~\ref{sec:htbac}, each pipeline consists of
-seven stages, each stage with a single task. EnTK manages the queuing of the
-tasks in accordance with the order and concurrency mandated by stages and
+We designed two experiments to measure weak scalability properties using the 
+ESMACS protocol when executing an increasing number of concurrent pipelines. According to the use case described in Section~\ref{sec:htbac}, each pipeline consists of seven stages, each stage with a single task. EnTK manages the queuing of the tasks in accordance with the order and concurrency mandated by stages and
 pipelines: For each pipeline, each stage is executed sequentially while
 pipelines are executed concurrently.
 
@@ -799,12 +788,13 @@ the executed workflow affects its overheads. Further, Experiment 2 shows also
 whether HTBAC execution time is sensitive to the number of concurrent
 pipelines executed.
 
-Both experiments measure the weak scalability of HTBAC, EnTK and RP\@. This
+Both experiments measure the weak scalability properties of a single ESMACS protocol instance, executed with RCT\@. This
 means that the ratio between the number of pipelines and cores is kept
 constant by design. While an investigation of strong scalability would
-contribute to a better understanding of the behavior of HTBAC, EnTK and RP,
-it is of limited interest for the current use case. The driving goal of HTBAC
-is to increase throughput by a means of concurrency of pipelines, not in the
+contribute to a better understanding of the behavior of a single ESMACS protocol
+instance,
+it is of limited interest for the current use case. The driving goal of this 
+study is to increase throughput by a means of concurrency of pipelines, not in the
 number of sequential executions per core. This is a driving motivation to
 target large HPC machines instead of so-called high-throughput computing (HTC) 
 infrastructures.
@@ -815,15 +805,24 @@ infrastructures.
 We perform both Experiment 1 and 2 on NCSA's Blue Waters---a 13.3 petaFLOPS
 Cray, with 32 Interlago cores/50 GB RAM per node, Cray Gemini, Lustre shared
 file system. Currently, we exclusively use CPUs on Blue Waters as GPUs are
-not required by our use case. RCT support the use of both type of
-architectures and we previously benchmarked the use of GPUs.
+not required by our use case. 
 
-We perform our experiments from a virtual machine hosted in Europe. This
+% RCT supports the use of both types of
+% architectures and we previously benchmarked the use of GPUs.
+
+We perform our experiments from a virtual machine, which maintains a stable network connection. This helps to simulate the conditions in which the experimental campaign will be performed by the research group at UCL\@, where users run experiments from local machines. 
+
+% This is relevant because, as most HPC resources, Blue Waters does not allow for executing applications on the login node of the cluster. 
+
+% To this end, RCTs support \textmd{gsissh} for X509
+% authentication and authorization. The virtual machine serves as the client, from 
+% which the user provides the description of the experiments including the physical systems and resource requirements. 
+
+To this end, we perform our experiments from a virtual machine. This
 helps to simulate the conditions in which the experimental campaign will be
-performed by the research group at UCL\@. This is relevant because, as most
-HPC resources, Blue Waters does not allow for executing applications on the
-login node of the cluster. To this end, RCTs support \textmd{gsissh} for X509
-authentication and authorization.
+performed from a local machine. To allow this, RCT support \textmd{gsissh} for
+authentication and authorization. The virtual machine serves as the client from 
+which the user provides the description of the experiments including the physical systems, and resource requirements. Once the experiment is submitted, RCT establish a gsissh connection from the virtual machine to the remote resource i.e. Blue Waters and maintain a tunnel for the duration of the experiment. 
 
 Table~\ref{tab:exp} shows the setup for Experiment 1 and 2. The ESMACS
 protocol is executed with up to 25 concurrent but independent pipelines and
@@ -955,7 +954,7 @@ trials of both the null and MD workload at each pipeline configurations.
 
 First we characterize the overhead of EnTK and RP in the null workload, where
 we isolate the overhead introduced by the two systems
-(Figure~\ref{fig:exp1}). We see a (slightly) superliner increase of EnTK
+(Fig. ~\ref{fig:exp1}). We see a (slightly) superliner increase of EnTK
 overhead, between 0.1 and 1.8 seconds. This overhead depends on the number of
 tasks that need to be translated in-memory from a Python object to a CU 
 description. As such, it is expected to grow proportionally to the
@@ -994,7 +993,7 @@ introduce delays in the scheduling of the CUs.
 % \end{figure}
 
 
-When the workload includes the EGFR kinase, we see (Figure~\ref{fig:exp2})
+When the workload includes the EGFR kinase, we see (Fig. ~\ref{fig:exp2})
 that the RP overhead becomes on average less than 10\% of the average total
 execution time (TTX), defined as \(TTX = TTC - T_q\) where \(TTC\) is
 time-to-completion and \(T_q\) is time spent queuing on the HPC machine. We
@@ -1015,7 +1014,7 @@ depends on the number of tasks translated to CU descriptions.
 Experiments 1 and 2 show how the overheads of both EnTK and RP tend to be
 invariant across type of workload executed. Their scaling behavior and, to
 some approximation, their absolute values are comparable between
-Figure~\ref{fig:exp1} and~\ref{fig:exp2}. This is relevant because it shows
+Fig. ~\ref{fig:exp1} and~\ref{fig:exp2}. This is relevant because it shows
 that the systems used to coordinate and execute the ESMACS protocol add a
 constant and comparatively not relevant overhead to the execution of NAMD\@.
 
