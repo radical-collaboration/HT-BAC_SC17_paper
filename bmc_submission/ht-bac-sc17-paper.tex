@@ -374,8 +374,17 @@ sampling of molecular dynamics with approximation of continuum
 solvent)~\cite{Wan2017brd4} and TIES (thermodynamic integration with enhanced
 sampling)~\cite{Bhati2017}. The former protocol is based on variants of the
 molecular mechanics Poisson-Boltzmann surface area (MMPBSA) end-point method,
-the latter on the `alchemical' thermodynamic integration (TI) approach. In
-both cases, ensembles of MD simulations are employed to perform averaging and
+the latter on the `alchemical' thermodynamic integration (TI) approach. 
+ A wide variety of free energy methods are available, ranging from very fast molecular docking 
+ methods to rigorous but expensive absolute binding free energy methods~\cite{Mobley2009}. The methods examined here 
+ - MMPBSA based approximate absolute and TI based rigorous relative calculations - 
+ exist between these two extremes.  It should be noted that there are many methods for analysing 
+ the results of relative free energy  computations. 
+ Here we use the simple TI formalism, the relative performance of more complex schemes, such as those based 
+ on Bennett's acceptance ratio, has been seen to be highly system dependent~\cite{Ruiter2013, Christ2014, Bhati2018}.
+
+In
+both ESMACS and TIES, ensembles of MD simulations are employed to perform averaging and
 to obtain tight control of error bounds in our estimates. In addition, the
 ability to run replica simulations concurrently means that, as long as
 sufficient compute resources are available, turn around times can be
@@ -409,7 +418,8 @@ In these systems, the error we obtained more than halves between ensembles of
 5 and 25 replicas but increases in ensemble size have generally produced only
 small improvements. More generally though, there may be cases where it is
 important to increase the sampling of phase space either through expanding
-the ensemble or by considering multiple initial configurations.
+the ensemble or by considering multiple initial configurations. 
+For example, systems such as kinases where flexible loops impact the binding site interactions may require the use of much greater levels of simulation to obtain correctly converged results.
 
 The ESMACS protocol can also be extended to account for adaptation energies
 involved in altering the conformation of the protein or ligand during
