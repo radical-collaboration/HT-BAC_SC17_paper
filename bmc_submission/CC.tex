@@ -17,7 +17,7 @@ typically found.
 
 Many workflow systems have emerged in response to the aforementioned problem.
 Each workflow system has its strengths and unique capability, however each
-system typically introduces its problems and challenges. In spite of the many
+system typically introduces problems and challenges. In spite of the many
 successes of workflow systems, there is a perceived high barrier-to-entry,
 integration overhead and limited flexibility.
 
@@ -51,11 +51,25 @@ concurrently executing pipelines.
 % dynamics, “ensemble” here referring to the set of individual (replica)
 % simulations conducted for the same physical system.}
 
+Executing biomolecular applications on HPC systems require specific knowledge 
+of resource, data, and execution management. For example, gSOAP enables web 
+services for HPC applications while Ninf-G and OmniRPC support distributed 
+programming via a client/server architecture. These solutions provide methods
+to launch application tasks on remote machines but leave the details of task 
+scheduling, resource and data management to the user. On the other hand, 
+domain-specific workflows provide a customized interface to the domain 
+scientist, but require users to manage resource selection and setup the 
+execution environments on the HPC system. 
+
 Thus the flexible execution of heterogeneous ensembles MD simulations face
 both system software and middleware challenges: existing system software that
 is typically designed to support the execution of single large simulations on
 the one hand, and workflow systems that are designed to support specific use
-cases or `locked-in' end-to-end executions. In the next Section, we discuss
-the design and implementation of the RADICAL-Cybertools, a set of software
-building blocks that can be easily composed to design, implement and execute
-domain specific workflows rapidly and at scale.
+cases or `locked-in' end-to-end executions. 
+
+In the next Section, we discuss the design and implementation of the 
+RADICAL-Cybertools, a set of software building blocks that can be easily 
+composed to design, implement and execute domain specific workflows rapidly and 
+at scale.
+
+
