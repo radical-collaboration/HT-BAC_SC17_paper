@@ -528,6 +528,18 @@ justified, if not amortized, the large overhead of integrating application
 workflows with monolithic workflow systems. This influenced the design and
 implementation of interfaces and programming models.
 
+Executing biomolecular applications on HPC systems require specific knowledge 
+of resource, data, and execution management. Several middleware frameworks~\cite{middleware} 
+have been developed to abstract some of these details from the user. 
+For example, gSOAP~\cite{gsoap} enables web 
+services for HPC applications while Ninf-G~\cite{ninf} and OmniRPC~\cite{omnirpc} support distributed 
+programming via a client/server architecture. These solutions provide methods
+to launch application tasks on remote machines but leave the details of task 
+scheduling, resource and data management to the user. On the other hand, 
+domain-specific workflows provide a customized interface to the domain 
+scientist, but require users to manage resource selection and setup the 
+execution environments on the HPC system. 
+
 However as the nature, number and usage of workflows has evolved so have the
 requirements: scale remains important but only when delivered with the
 ability to prototype quickly and flexibly. Furthermore, there are also new
