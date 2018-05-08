@@ -853,7 +853,8 @@ which the user provides the description of the experiments including the physica
 
 Table~\ref{tab:exp} shows the setup for Experiment 1 and 2. The ESMACS
 protocol is executed with up to 25 concurrent but independent pipelines and
-therefore their concurrent execution does not entail communication overhead.
+therefore their concurrent execution does not entail communication overhead. While 
+EnTK can support 128 pipelines, ESMACS only requires 25 concurrent pipelines. 
 Further, the EGFR kinase studies can benefit from greater concurrency because
 potential HTBAC users may wish to extend their protocols beyond the current
 scale of ESMACS\@. Consistently, our experiments push the boundaries of
