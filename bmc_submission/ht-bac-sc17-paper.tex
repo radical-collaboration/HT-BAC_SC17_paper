@@ -26,7 +26,7 @@
 \begin{frontmatter}
 
 \begin{fmbox}
-\dochead{Research}
+\dochead{Research Article}
 
 \title{High-throughput Binding Affinity Calculations at Extreme Scales}
 
@@ -156,7 +156,8 @@ based on genome sequencing and drug discovery.
 % I - INTRODUCTION
 % ---------------------------------------------------------------------------
 
-\section{Background}\label{sec:1}
+\section*{Background}
+% \label{sec:1}
 In recent years, chemotherapy based on targeted kinase inhibitors (TKIs) has
 played an increasingly prominent role in the treatment of cancer. TKIs have
 been developed to selectively inhibit kinases involved in the signaling
@@ -279,7 +280,7 @@ affinity calculations and near-term future work.
 % ---------------------------------------------------------------------------
 % II - SECTION
 % ---------------------------------------------------------------------------
-\section{Methods}\label{sec:2}
+\section*{Methods}\label{sec:2}
 The strength of drug binding is determined by a thermodynamic property known
 as the binding free energy (or binding affinity). One promising technology for
 estimating binding free energies and the influence of protein composition on
@@ -293,7 +294,7 @@ simulations conducted for the same physical system. In this Section we discuss
 the advantages to this approach.
 
 % ---------------------------------------------------------------------------
-\subsection{Ensemble Molecular Dynamics Simulations}
+\subsection*{Ensemble Molecular Dynamics Simulations}
 
 Atomistically detailed models of the drug and target protein can be used as the
 starting point for MD simulations to
@@ -346,7 +347,7 @@ mechanisms with low performance overheads.
 % system.
 
 % ---------------------------------------------------------------------------
-\subsection{Protocols for Binding Affinity Calculations}
+\subsection*{Protocols for Binding Affinity Calculations}
 
 We have demonstrated the lack of reproducibility of single trajectory
 approaches in both HIV-1 protease and MHC systems, with calculations for the
@@ -432,7 +433,7 @@ receptor trajectories to account for adaptation energies, providing further
 motivation to deploy the protocol via flexible and scalable middleware.
 
 % ---------------------------------------------------------------------------
-\subsection{Benchmark Kinase System}
+\subsection*{Benchmark Kinase System}
 
 % \begin{figure}[h!]
 % \caption{\csentence{EGFR Structure.}
@@ -469,7 +470,7 @@ ff99SBildn and GAFF force fields~\cite{Maier2015, Wang2004} were used to
 parameterize the system for this work.
 
 % ---------------------------------------------------------------------------
-\subsection{Automated Binding Affinity Calculations}
+\subsection*{Automated Binding Affinity Calculations}
 
 The implementation of any physically realistic molecular simulation has
 always been an involved and multistage process, often requiring the scientist
@@ -490,7 +491,7 @@ how we have enhanced BAC using the RADICAL-Cybertools to produce (HTBAC).
 
 % ---------------------------------------------------------------------------
 
-\subsection{Computational Challenges at Scale}\label{ssec:CC}
+\subsection*{Computational Challenges at Scale}\label{ssec:CC}
 
 High-performance computing (HPC) environments were designed to primarily
 support the execution of single simulations. Current HPC platforms enable the
@@ -563,7 +564,7 @@ domain specific workflows rapidly and at scale.
 
 % ---------------------------------------------------------------------------
 
-\subsection{RADICAL-Cybertools}\label{ssec:RCT}
+\subsection*{RADICAL-Cybertools}\label{ssec:RCT}
 
 We have designed RADICAL-Cybertools (RCT) to be functionally delineated
 middleware building blocks and to address some of the challenges in
@@ -585,7 +586,7 @@ and HTBAC, understanding how these components have been used to support the
 flexible and scalable execution of pipelines.
 
 % ---------------------------------------------------------------------------
-\subsection{RADICAL-Pilot}\label{ssec:RP}
+\subsection*{RADICAL-Pilot}\label{ssec:RP}
 
 The scalable execution of applications with large ensembles of tasks is
 challenging. Traditionally, two methods are used to execute multiple tasks on
@@ -615,7 +616,7 @@ different platforms.
 
 % ---------------------------------------------------------------------------
 
-\subsection{Ensemble Toolkit}\label{ssec:entk}
+\subsection*{Ensemble Toolkit}\label{ssec:entk}
 
 An ensemble-based application is a \textbf{workflow}, i.e. tasks
 with dependencies that determine the order of their execution. Subsets of
@@ -702,7 +703,7 @@ execution of these workloads (see Fig. ~\ref{fig:entk_arch}).
 
 % ---------------------------------------------------------------------------
 
-\subsection{ESMACS}\label{sec:htbac}
+\subsection*{ESMACS}\label{sec:htbac}
 
 HTBAC captures the workflow logic of binding affinity calculation protocols using existing RCT tools. Initially, we designed HTBAC to implement a single binding affinity protocol, using the EnTK programming model to express the application logic. Here, we exclusively focus on ESMACS to capture the workflow logic and isolate the performance of a single protocol instance, by describing the ESMACS protocol directly with the user-facing API of EnTK. HTBAC has been extended as a Python library that enables the selection of multiple protocol instances of ESMACS and TIES~\cite{dakka}. To this end, we establish a distinction between HTBAC, the Python library, and the ESMACS implementation using EnTK. 
 
@@ -784,7 +785,7 @@ pilot resources.
 % ---------------------------------------------------------------------------
 % III - SECTION
 % ---------------------------------------------------------------------------
-\section{Results}\label{sec:3}
+\section*{Results}\label{sec:3}
 
 Before embarking on a computational campaign that will consume 150M core
 hours on the NCSA Blue Waters machine, we studied the scalability of HTBAC so
@@ -793,7 +794,7 @@ ESMACS protocol. The goal is twofold: (1) understanding the invariance of HTBAC 
 in relation to the size of workflow.
 
 % ---------------------------------------------------------------------------
-\subsection{Experiment Design}\label{ssec:exp_design}
+\subsection*{Experiment Design}\label{ssec:exp_design}
 
 We designed two experiments to measure weak scalability properties using the 
 ESMACS protocol when executing an increasing number of concurrent pipelines. According to the use case described in Section~\ref{sec:htbac}, each pipeline consists of seven stages, each stage with a single task. EnTK manages the queuing of the tasks in accordance with the order and concurrency mandated by stages and
@@ -827,7 +828,7 @@ target large HPC machines instead of so-called high-throughput computing (HTC)
 infrastructures.
 
 % ---------------------------------------------------------------------------
-\subsection{Experiment Setup}\label{ssec:exp_setup}
+\subsection*{Experiment Setup}\label{ssec:exp_setup}
 
 We perform both Experiment 1 and 2 on NCSA's Blue Waters---a 13.3 petaFLOPS
 Cray, with 32 Interlago cores/50 GB RAM per node, Cray Gemini, Lustre shared
@@ -864,48 +865,7 @@ workload in a single run. Consistently, our experiments
 push the boundaries of current scale by executing 8, 16, 32, 64 and 128 
 concurrent pipelines.
 
-\begin{table}[h!]
-\caption{Experiment 1 executes the 7 stages of the ESMACS protocol with
-a null workload; Experiment 2 uses the actual MD workload of the ESMACS
-protocol. ESMACS protocol with EGFR kinase workload: (1) Untar configuration
-files; (2) Preprep; (3) Minimize with decreasing restraints; (4)
-Equilibration: NVT simulation at 50K, with restraints; (5) Equilibration: NPT
-simulation at 300K, with decreasing restraints; (6) Equilibration: NPT at
-300k, no constraints; (7) Tarball output files.}
-  \label{tab:exp}
-      \resizebox{\textwidth}{!}{
-      \begin{tabular}{llllllll}
-\toprule
-\textbf{Experiment ID}      &
-\textbf{Protocol}           &
-\textbf{Workload}           &
-\textbf{\# Trials}          &
-\textbf{\# Pipelines}       &
-\textbf{\# Stages}          &
-\textbf{\# Tasks}           &
-\textbf{\# Cores per pilot} \\
-\toprule
-% %
-1                           &
-ESMACS                      &
-Null workload               &
-2                           &
-8, 16, 32, 64, 128          &
-7                           &
-7                           &
-64, 128, 256, 512, 1024     \\
-% %
-2                           &
-ESMACS                      &
-EGFR kinase Workload        &
-2                           &
-8, 16, 32, 64, 128          &
-7                           &
-7                           &
-64, 128, 256, 512, 1024     \\
-\bottomrule
-\end{tabular}}
-\end{table}
+% table here 
 
 % \begin{table*}[t]
 % \centering
@@ -965,7 +925,7 @@ used is NAMD-MPI\@. The equilibration tasks of stage 4 and 6 are assigned
 trials of both the null and MD workload at each pipeline configurations.
 
 % ---------------------------------------------------------------------------
-\subsection{Results}\label{ssec:exp_results}
+\subsection*{Results}\label{ssec:exp_results}
 
 % \begin{figure}[h!]
 % \caption{\csentence{Null Workload Overheads.}
@@ -1056,7 +1016,7 @@ constant and comparatively not relevant overhead to the execution of NAMD\@.
 % ---------------------------------------------------------------------------
 %\vspace{-0.1in}
 
-\section{Conclusion}\label{sec:4}
+\section*{Discussion}\label{sec:4}
 
 It is necessary to move beyond the prevailing paradigm of running individual
 MD simulations, which provide irreproducible results and cannot provide
@@ -1106,24 +1066,25 @@ potentials used to approximate the chemistry of the real systems.
 
 
 
-\section{List of Abbreviations}\label{sec:abbreviations}
+\section*{List of Abbreviations}\label{sec:abbreviations}
 
 \acuseall
 
 \printacronyms[include-classes=abbrev, name=Abbreviations, heading=none]
 
-\section{Declaration}\label{sec:declarations}
+\section*{Ethics approval and consent to participate}\label{sec:declarations}
+ 
 
-\subsection{Ethics}
-Not Applicable. 
+% \subsection{Ethics}
+% Not Applicable. 
 
-\subsection{Approval and Consent to Participate}
-Not Applicable. 
+% \subsection{Approval and Consent to Participate}
+% Not Applicable. 
 
-\subsection{Consent to Publish}
-The authors declare consent to publish. 
+\subsection*{Consent for publication}
+Not applicable. 
 
-\subsection{Availability of Data and Materials}
+\subsection*{Availability of Data and Materials}
 HTBAC, Ensemble Toolkit and
 RADICAL-Pilot can be found respectively at:
 \url{https://github.com/radical-cybertools/htbac},
@@ -1132,10 +1093,10 @@ RADICAL-Pilot can be found respectively at:
 scripts to reproduce experiments can be found at:
 \url{https://github.com/radical-experiments/htbac-experiments.}
 
-\subsection{Competing Interests}
+\subsection*{Competing Interests}
 The authors declare that they have no competing interests.
 
-\subsection{Funding}
+\subsection*{Funding}
 Access to Blue Waters was made possible by NSF OAC 1713749. The software
 capabilities were supported by RADICAL-Cybertools (OAC 1440677) and NSF ICER
 1639694. PVC, SJZ and DWW acknowledge the support of the EU
@@ -1143,7 +1104,7 @@ H2020 CompBioMed (675451), EUDAT2020 (654065) and ComPat (671564) projects.
 We acknowledge MRC Medical Bioinformatics project (MR/ L016311/1), 
 and funding for publication charges from the UCL Provost. 
 
-\subsection{Authors' Contributions}
+\subsection*{Authors' Contributions}
 PVC and SJ conceived this work. MT and SJ
 designed the experiments with support from JD and VB. JD performed the bulk of
 experiments on Blue Waters, with support from DWW and VB. VB developed the
@@ -1151,7 +1112,7 @@ version of EnTK used for experiments. MT, VB, JD and SJ analyzed the data. SJZ
 initially developed the ESMACS protocol using EnTK. DWW, MT and SJ wrote the
 bulk of the paper. All authors have read and approved the final manuscript. 
 
-\subsection{Acknowledgements}
+\subsection*{Acknowledgements}
 We thank Andre Merzky and other members of the RADICAL team for support.
 
 
@@ -1194,7 +1155,50 @@ We thank Andre Merzky and other members of the RADICAL team for support.
 \bibliographystyle{plain}
 \bibliography{rutgers,ucl}
 
-\section{Figures}
+\section*{Figures and Tables}
+
+\begin{table}[h!]
+\caption{Experiment 1 executes the 7 stages of the ESMACS protocol with
+a null workload; Experiment 2 uses the actual MD workload of the ESMACS
+protocol. ESMACS protocol with EGFR kinase workload: (1) Untar configuration
+files; (2) Preprep; (3) Minimize with decreasing restraints; (4)
+Equilibration: NVT simulation at 50K, with restraints; (5) Equilibration: NPT
+simulation at 300K, with decreasing restraints; (6) Equilibration: NPT at
+300k, no constraints; (7) Tarball output files.}
+  \label{tab:exp}
+      \resizebox{\textwidth}{!}{
+      \begin{tabular}{llllllll}
+\toprule
+\textbf{Experiment ID}      &
+\textbf{Protocol}           &
+\textbf{Workload}           &
+\textbf{\# Trials}          &
+\textbf{\# Pipelines}       &
+\textbf{\# Stages}          &
+\textbf{\# Tasks}           &
+\textbf{\# Cores per pilot} \\
+\toprule
+% %
+1                           &
+ESMACS                      &
+Null workload               &
+2                           &
+8, 16, 32, 64, 128          &
+7                           &
+7                           &
+64, 128, 256, 512, 1024     \\
+% %
+2                           &
+ESMACS                      &
+EGFR kinase Workload        &
+2                           &
+8, 16, 32, 64, 128          &
+7                           &
+7                           &
+64, 128, 256, 512, 1024     \\
+\bottomrule
+\end{tabular}}
+\end{table}
 
 \begin{figure}[h!]
 \caption{\csentence{EGFR Structure.}
