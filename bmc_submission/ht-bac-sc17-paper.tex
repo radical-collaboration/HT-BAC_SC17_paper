@@ -946,7 +946,7 @@ trials of both the null and MD workload at each pipeline configurations.
 
 First we characterize the overhead of EnTK and RP in the null workload, where
 we isolate the overhead introduced by the two systems
-(Fig. ~\ref{fig:exp1}). We see a (slightly) superliner increase of EnTK
+(Fig. ~\ref{fig:exp1}). We see a (slightly) superlinear increase of EnTK
 overhead, between 0.1 and 1.8 seconds. This overhead depends on the number of
 tasks that need to be translated in-memory from a Python object to a CU 
 description. As such, it is expected to grow proportionally to the
@@ -1002,13 +1002,6 @@ As expected, EnTK overhead remains superlinear and comparable to the one
 measured in Experiment 1. This is because in both experiments EnTK overhead
 depends on the number of tasks translated to CU descriptions.
 
-Experiments 1 and 2 show how the overheads of both EnTK and RP tend to be
-invariant across type of workload executed. Their scaling behavior and, to
-some approximation, their absolute values are comparable between
-Fig. ~\ref{fig:exp1} and~\ref{fig:exp2}. This is relevant because it shows
-that the systems used to coordinate and execute the ESMACS protocol add a
-constant and comparatively not relevant overhead to the execution of NAMD\@.
-
 
 % ---------------------------------------------------------------------------
 % VII - CONCLUSION
@@ -1018,13 +1011,14 @@ constant and comparatively not relevant overhead to the execution of NAMD\@.
 \section*{Discussion}\label{sec:4}
 
 
-HTBAC employs the RADICAL-Cybertools to build ensemble-based applications for
-executing protocols like ESMACS at scale. We show how the implementation of
-the ESMACS protocol scales almost perfectly to hundreds of concurrent
-pipelines of binding affinity calculations on Blue Waters. 
-This permits a time-to-solution that is essentially invariant of the size
-of candidate ligands, as well as the type and number of protocols concurrently 
-employed.
+We designed experiments in Table~\ref{tab:exp} to characterize the overheads 
+of the ESMACS protocol with null and NAMD workloads, respectively. Experiments 
+1 and 2 show how the overheads of both EnTK and RP tend to be
+invariant across type of workload executed. Their scaling behavior and, to
+some approximation, their absolute values are comparable between
+Fig. ~\ref{fig:exp1} and~\ref{fig:exp2}. This is relevant because it shows
+that the physical systems used to coordinate and execute the ESMACS protocol add 
+a constant and comparatively not relevant overhead to the execution of NAMD\@.
 
 
 \section*{Conclusion}\label{sec:5}
@@ -1037,6 +1031,14 @@ to produce reliable and accurate results on timescales which make it viable
 to influence real world decision making. To meet these goals, we are
 designing and developing the high-throughput binding affinity calculator
 (HTBAC).
+
+HTBAC employs the RADICAL-Cybertools to build ensemble-based applications for 
+executing protocols like ESMACS at scale. We show how the implementation of
+the ESMACS protocol scales almost perfectly to hundreds of concurrent
+pipelines of binding affinity calculations on Blue Waters. 
+This permits a time-to-solution that is essentially invariant of the size
+of candidate ligands, as well as the type and number of protocols concurrently 
+employed.
 
 The use of software implementing well-defined abstractions like that of
 ``building blocks'', future proofs users of HTBAC to evolving hardware
@@ -1085,7 +1087,7 @@ potentials used to approximate the chemistry of the real systems.
 % \label{sec:declarations}
 Not Applicable. 
 
-\subsection*{Ethics approval and consent to participate}
+\subsection*{Ethics Approval and Consent to Participate}
 Not Applicable. 
 
 % \subsection{Ethics}
