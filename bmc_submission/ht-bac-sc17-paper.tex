@@ -1032,13 +1032,12 @@ to influence real world decision making. To meet these goals, we are
 designing and developing the high-throughput binding affinity calculator
 (HTBAC).
 
-HTBAC employs the RADICAL-Cybertools to build ensemble-based applications for 
+HTBAC employs the RADICAL-Cybertools to build ensemble-based applications for
 executing protocols like ESMACS at scale. We show how the implementation of
 the ESMACS protocol scales almost perfectly to hundreds of concurrent
-pipelines of binding affinity calculations on Blue Waters. 
-This permits a time-to-solution that is essentially invariant of the size
-of candidate ligands, as well as the type and number of protocols concurrently 
-employed.
+pipelines of binding affinity calculations on Blue Waters. This permits a
+time-to-solution that is essentially invariant of the size of candidate
+ligands, as well as the type and number of protocols concurrently employed.
 
 The use of software implementing well-defined abstractions like that of
 ``building blocks'', future proofs users of HTBAC to evolving hardware
@@ -1049,16 +1048,15 @@ to the point where they can produce actionable results both in the clinic and
 industrial drug discovery.
 
 In the short term, the development of HTBAC will allow a significant increase
-in the size of study. Much of the literature on MD-based free  
-calculations is limited to a few tens of systems, usually of similar drugs
-bound to the same protein target. By facilitating investigations of much
-larger datasets, HTBAC also provides a step towards tackling grand challenges
-in drug design and precision medicine, where it is necessary to understand 
-the influences on binding strength for hundreds or thousands of drug-protein
-variant combinations. Only in aiming to meet this ambitious goals we will be
-able to reveal the limits of existing simulation technology and the
-potentials used to approximate the chemistry of the real systems.
-
+in the size of study. Much of the literature on MD-based free calculations is
+limited to a few tens of systems, usually of similar drugs bound to the same
+protein target. By facilitating the investigation of much larger set of
+systems, HTBAC contributes to solve the grand challenge in drug design and
+precision medicine: understanding the influences on binding strength for
+hundreds or thousands of drug-protein variant combinations. While
+contributing to reach this ambitious goal, we reveal the limits of existing
+simulation technology and of the potentials used to approximate the chemistry
+of the real systems.\mtnote{I am not sure I understand the last sentence.}
 
 % \jhanote{Careful not to imply that HTBAC is a workflow system.}
 % \jdnote{better?}\mtnote{Further iterated. Please review.}
@@ -1120,12 +1118,12 @@ We acknowledge MRC Medical Bioinformatics project (MR/ L016311/1),
 and funding for publication charges from the UCL Provost. 
 
 \subsection*{Authors' Contributions}
-PVC and SJ conceived this work. MT and SJ
-designed the experiments with support from JD and VB. JD performed the bulk of
-experiments on Blue Waters, with support from DWW and VB. VB developed the
-version of EnTK used for experiments. MT, VB, JD and SJ analyzed the data. SJZ
-initially developed the ESMACS protocol using EnTK. DWW, MT and SJ wrote the
-bulk of the paper. All authors have read and approved the final manuscript. 
+PVC and SJ conceived this work. MT and SJ designed the experiments with
+support from JD and VB\@. JD performed the bulk of experiments on Blue
+Waters, with support from DWW and VB\@. VB developed the version of EnTK used
+for experiments. MT, VB, JD and SJ analyzed the data. SJZ initially developed
+the ESMACS protocol using EnTK. DWW, MT and SJ wrote the bulk of the paper.
+All authors have read and approved the final manuscript.
 
 \subsection*{Acknowledgements}
 We thank Andre Merzky and other members of the RADICAL team for support.
@@ -1179,8 +1177,7 @@ protocol. ESMACS protocol with EGFR kinase workload: (1) Untar configuration
 files; (2) Preprep; (3) Minimize with decreasing restraints; (4)
 Equilibration: NVT simulation at 50K, with restraints; (5) Equilibration: NPT
 simulation at 300K, with decreasing restraints; (6) Equilibration: NPT at
-300k, no constraints; (7) Tarball output files.}
-  \label{tab:exp}
+300k, no constraints; (7) Tarball output files.}\label{tab:exp}
       \resizebox{\textwidth}{!}{
       \begin{tabular}{llllllll}
 \toprule
